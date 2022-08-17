@@ -1,0 +1,130 @@
+*,
+*:after,
+*:before {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+a {
+     text-decoration: none;
+}
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+ul, ol, li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+.shadow {
+    display: none;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(250, 252, 252);
+    color: #0f141e;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    width: 100%;
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_components {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.button_burger .button_burger_box_img {
+    width: 30px;
+    height: 30px;
+}
+
+.button_burger {
+    background-color: #fff;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.header_content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.header_content_page_name {
+    font-size: 30px;
+    text-align: center;
+}
+
+.header_content_user_box {
+    display: none;                   /* ТУТ ЗАМЕНИТЬ НА FLEX*/
+    flex-direction: row;
+    margin-left: auto;
+}
+
+.header_content_user {
+    text-align: end;
+}
+
+.header_content_user_img {
+    width: 40px;
+    height: 40px;
+    margin: 0 0 0 8px;
+}
+
+.header_content_login {
+    margin-left: auto;
+    display: inline;                  /* ТУТ ЗАМЕНИТЬ НА INLINE*/
+}
+
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+}
+
+.main_page_button {
+    background: rgb(96,9,240);
+    background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
+    border: none;
+}
+
+.main_page_button:before {
+    height: 0%;
+    width: 2px;
+}
+
+.main_page_button:hover {
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+                -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+      inset -4px -4px 6px 0 rgba(255,255,255,.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}

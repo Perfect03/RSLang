@@ -1,3 +1,5 @@
+import './footer.css';
+
 export const createFooter = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
 

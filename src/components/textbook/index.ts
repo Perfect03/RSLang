@@ -1,6 +1,7 @@
 import { getWords } from "../../api/api"
 import { IWord } from '../../interfaces & types/words'
 import { createTextbook } from './textbook'
+import './textbook.css';
 
 createTextbook();
 

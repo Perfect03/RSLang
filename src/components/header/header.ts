@@ -1,3 +1,4 @@
+import './header.css';
 export const createHeader = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
     const header = document.createElement('header')

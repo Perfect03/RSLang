@@ -1,4 +1,3 @@
-import './textbook.css';
 
 export const createTextbook = () => {
     const textbook = document.getElementById('textbook');
@@ -95,7 +94,7 @@ const createGames = () => {
     const textbook_games = document.createElement('div');
     textbook_games.classList.add('textbook_games');
     textbook_games.classList.add('game');
-    
+
     const a_link1 = document.createElement('a');
     const a_link2 = document.createElement('a');
     textbook_games.append(a_link1);

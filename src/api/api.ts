@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IWord } from '../interfaces & types/words'
+import { IWord } from '../interfaces & types/words';
 
 const baseUrl = 'https://rs-lang-team-38.herokuapp.com/';
 

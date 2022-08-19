@@ -1,4 +1,3 @@
-import { getWords } from "./api";
+import { getWords } from './api';
 
-
-getWords(1,1);
+getWords(1, 1);

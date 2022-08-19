@@ -1,21 +1,19 @@
-import { getWords } from "../../api/api"
-import { IWord } from '../../interfaces & types/words'
-import { createTextbook } from './textbook'
+import { getWords } from '../../api/api';
+import { IWord } from '../../interfaces & types/words';
+import { createTextbook } from './textbook';
 
 createTextbook();
 
 export const readWords = async (page: number, group: number) => {
     const cards = await getWords(page, group);
-    renderWords (cards);
-}
+    renderWords(cards);
+};
 
 export const renderWords = (cards: IWord[]) => {
-    for (let i=0; i<20; i++)
-        renderCard(cards[i]);
-}
+    for (let i = 0; i < 20; i++) renderCard(cards[i]);
+};
 
 export const renderCard = (card: IWord) => {
-    const textbook = document.getElementById('textbook');
     const newCard = document.createElement('div');
     const image = document.createElement('img');
     image.classList.add('image');
@@ -64,7 +62,10 @@ export const renderCard = (card: IWord) => {
     card_audio.setAttribute('style', 'font-size: 2rem; cursor: pointer;');
     const card_audio_path = document.createElement('path');
     card_audio.append(card_audio_path);
-    card_audio_path.setAttribute('d', 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z');
+    card_audio_path.setAttribute(
+        'd',
+        'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'
+    );
     card_content_top_right.append(card_audio);
 
     const card_content_bottom1 = document.createElement('div');
@@ -91,7 +92,6 @@ export const renderCard = (card: IWord) => {
     card_content_bottom2.append(textExample);
     card_content_bottom2.append(textExampleTranslate);
 
-    
     word.textContent = card.word;
     wordTranslate.textContent = card.wordTranslate;
     transcription.textContent = card.transcription;
@@ -105,4 +105,4 @@ export const renderCard = (card: IWord) => {
     //(newCard.querySelector('.audioMeaning') as HTMLAudioElement).src = card.audioMeaning;
 
     document.querySelector('.cards')?.appendChild(newCard);
-}
+};

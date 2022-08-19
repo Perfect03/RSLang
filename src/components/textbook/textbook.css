@@ -1,0 +1,301 @@
+
+*,
+*:after,
+*:before {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+a {
+     text-decoration: none;
+}
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+ul, ol, li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+.shadow {
+    display: none;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-weight: normal;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.header_left {
+  font-size: 30px;
+
+}
+
+.header_right button {
+  color: #0f141e;
+  padding: 5px 15px;
+}
+
+.header_right button span {
+  width: 100%;
+  display: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+}
+
+.SVGIcon {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.login_span {
+  
+  width: 100%;
+}
+
+.textbook_games {
+  background-color: rgb(237, 237, 237);
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.textbook_game {
+  display: flex;
+  padding: 8px 24px 8px 16px;
+  align-items: center;
+  box-shadow: rgb(0 0 0 / 15%) 0px 0px 10px;
+  border-radius: 10px;
+}
+
+.textbook_game:hover {
+  box-shadow: rgb(0 0 0 / 35%) 0px 0px 15px;
+  transition: 0.4s;
+}
+
+.game img {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.game a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0px 8px;
+}
+
+.pagination {
+  margin: 45px 0px;
+}
+
+.pagination ul {
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px auto;
+  list-style: none;
+  font-size: 1.4rem;
+}
+
+.pagination li {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 8px;
+  background: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 0px 10px;
+  user-select: none;
+  transition: color 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.pagination li:hover {
+  border: 2px solid rgb(242, 166, 99);
+  color: rgb(242, 166, 99);
+}
+
+.pagination a {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+  background-color: rgb(250, 252, 254);
+  display: flex;
+  box-shadow: rgb(0 0 0 / 15%) 0px 0px 10px;
+  border-radius: 10px;
+  padding: 24px;
+  width: 700px;
+}
+
+.card img {
+  width: 240px;
+  height: 281px;
+  object-fit: cover;
+}
+
+.card_content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding-left: 40px;
+}
+
+.card_content_top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_content_top_left {
+  border-left: 3px solid rgb(242, 166, 99);
+  padding-left: 23px;
+}
+
+.word {
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 28px;
+  margin-right: 9px;
+}
+
+.transcription {
+  font-size: 1.2rem;
+}
+
+.wordTranslate,.textMeaningTranslate,.textExampleTranslate {
+  color: gray;
+}
+
+.card_audio {
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  flex-shrink: 0;
+  user-select: none; 
+}
+
+.card_content_bottom {
+  flex-grow: 1;
+  display: grid;
+  align-items: end;
+  gap: 10px;
+  margin: 5px 0px; 
+}
+
+main {
+  margin: 0 auto;
+  max-width: 936px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.textbook_words {
+  display: flex;
+  justify-content: space-between;
+}
+
+.groups {
+  position: sticky;
+  width: 72px;
+  height: 422px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(232, 159, 80);
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.groups_title {
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.00933em;
+}
+
+.groups_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.groups button {
+  color: rgb(250, 252, 254);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 12px;
+  font-size: 18px;
+  min-width: 0px;
+  box-shadow: none;
+  min-height: 0px;
+  cursor: pointer;
+}
+
+.groups button:nth-child(1) {
+  background-color: rgb(242, 105, 92); 
+}
+
+.groups button:nth-child(2) {
+  background-color: rgb(242, 166, 99);
+}
+
+.groups button:nth-child(3) {
+  background-color: rgb(250, 170, 186);
+}
+
+.groups button:nth-child(4) {
+  background-color: rgb(136, 191, 176);
+}
+
+.groups button:nth-child(5) {
+  background-color: rgb(96, 164, 191);
+}
+
+.groups button:nth-child(6) {
+  background-color: rgb(89, 72, 77);
+}
+
+.groups button.active {
+  height: 50px;
+  width: 50px;
+}

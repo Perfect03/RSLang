@@ -20,7 +20,6 @@ export const renderCard = (card: IWord) => {
     const newCard = document.createElement('div');
     const image = document.createElement('img');
     image.classList.add('image');
-    image.setAttribute('src', './assets/images/flower.jpg');
     const card_content = document.createElement('div');
     card_content.classList.add('card_content');
     newCard.append(image);
@@ -43,14 +42,11 @@ export const renderCard = (card: IWord) => {
     const wordTranscription = document.createElement('div');
     const wordTranslate = document.createElement('wordTranslate');
     wordTranslate.classList.add('wordTranslate');
-    wordTranslate.textContent = 'цветок';
 
     const word = document.createElement('span');
     const transcription = document.createElement('span');
     word.classList.add('word');
     transcription.classList.add('transcription');
-    word.textContent = 'Flower';
-    transcription.textContent = '[fáuər]';
     wordTranscription.append(word);
     wordTranscription.append(transcription);
 
@@ -77,15 +73,11 @@ export const renderCard = (card: IWord) => {
     const textExample = document.createElement('div');
     textMeaning.classList.add('textMeaning');
     textExample.classList.add('textExample');
-    textMeaning.textContent = 'A flower is the colored part of a plant.';
-    textExample.textContent = 'She gave pink flowers to her grandmother.';
 
     const textMeaningTranslate = document.createElement('div');
     const textExampleTranslate = document.createElement('div');
     textMeaningTranslate.classList.add('textMeaningTranslate');
     textExampleTranslate.classList.add('textExample');
-    textMeaningTranslate.textContent = 'Цветок - это цветная часть растения.';
-    textExampleTranslate.textContent = 'Она дала розовые цветы своей бабушке.';
 
     card_content_bottom1.append(textMeaning);
     card_content_bottom1.append(textMeaningTranslate);

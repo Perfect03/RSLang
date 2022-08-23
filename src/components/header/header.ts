@@ -9,9 +9,9 @@ export const createHeader = () => {
     header.appendChild(header_components);
 
     //Burger button
-    const burger_menu = document.createElement('div')
-    burger_menu.classList.add('burger_menu')
-    header_components.append(burger_menu)
+    const burger_menu = document.createElement('div');
+    burger_menu.classList.add('burger_menu');
+    header_components.append(burger_menu);
 
     //Header pageName & userName
     const header_content = document.createElement('div');

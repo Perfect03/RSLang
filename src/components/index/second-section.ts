@@ -1,38 +1,39 @@
 export const createSecondSection = () => {
     const main = document.querySelector('main') as HTMLElement;
-    const main_section_two = document.createElement('section')
-    main_section_two.classList.add('main_section_two')
-    main.append(main_section_two)
+    const main_section_two = document.createElement('section');
+    main_section_two.classList.add('main_section_two');
+    main.append(main_section_two);
 
-    const main_section_two_h1 = document.createElement('h1')
-    main_section_two_h1.classList.add('main_section_h1')
-    main_section_two.append(main_section_two_h1)
-    main_section_two_h1.textContent = 'Advantages'
+    const main_section_two_h1 = document.createElement('h1');
+    main_section_two_h1.classList.add('main_section_h1');
+    main_section_two.append(main_section_two_h1);
+    main_section_two_h1.textContent = 'Advantages';
 
-    const main_section_two_box = document.createElement('div')
-    main_section_two_box.classList.add('main_section_two_box')
-    main_section_two.append(main_section_two_box)
+    const main_section_two_box = document.createElement('div');
+    main_section_two_box.classList.add('main_section_two_box');
+    main_section_two.append(main_section_two_box);
 
     //Textbook
-    const main_section_two_textbook = document.createElement('div')
-    main_section_two_textbook.classList.add('main_section_two_textbook', 'advantages_cards')
+    const main_section_two_textbook = document.createElement('div');
+    main_section_two_textbook.classList.add('main_section_two_textbook', 'advantages_cards');
 
     const main_section_two_textbook_img = document.createElement('img')
     main_section_two_textbook_img.classList.add('main_section_two_images')
     main_section_two_textbook_img.src = 'main-assets/textbook.png'
     main_section_two_textbook.append(main_section_two_textbook_img)
 
-    const main_section_two_textbook_h1 = document.createElement('h1')
-    main_section_two_textbook_h1.classList.add('main_section_two_headers')
-    main_section_two_textbook.append(main_section_two_textbook_h1)
-    main_section_two_textbook_h1.textContent = 'Textbook'
+    const main_section_two_textbook_h1 = document.createElement('h1');
+    main_section_two_textbook_h1.classList.add('main_section_two_headers');
+    main_section_two_textbook.append(main_section_two_textbook_h1);
+    main_section_two_textbook_h1.textContent = 'Textbook';
 
-    const main_section_two_textbook_p = document.createElement('p')
-    main_section_two_textbook_p.classList.add('main_section_two_p')
-    main_section_two_textbook.append(main_section_two_textbook_p)
-    main_section_two_textbook_p.textContent = 'The electronic textbook consists of six sections. Each section has 30 pages of 20 words. The translation of the word, the thematic image, as well as the pronunciation of both the word separately and as part of the phrase are presented.'
+    const main_section_two_textbook_p = document.createElement('p');
+    main_section_two_textbook_p.classList.add('main_section_two_p');
+    main_section_two_textbook.append(main_section_two_textbook_p);
+    main_section_two_textbook_p.textContent =
+        'The electronic textbook consists of six sections. Each section has 30 pages of 20 words. The translation of the word, the thematic image, as well as the pronunciation of both the word separately and as part of the phrase are presented.';
 
-    main_section_two_box.append(main_section_two_textbook)
+    main_section_two_box.append(main_section_two_textbook);
 
     //Dictionary
     const main_section_two_dictionary = document.createElement('div')

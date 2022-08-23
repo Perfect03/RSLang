@@ -1,5 +1,6 @@
 main {
     min-height: calc(100vh - 65px);
+    width: calc(100vw - 37px);
 }
 
 /*Первая секция */
@@ -178,4 +179,3 @@ main {
     color: rgb(80, 80, 80);
     margin-bottom: 45px;
 }
-

@@ -9,18 +9,9 @@ export const createHeader = () => {
     header.appendChild(header_components);
 
     //Burger button
-    const button_burger = document.createElement('button');
-    button_burger.classList.add('button_burger');
-    header_components.appendChild(button_burger);
-
-    const button_burger_box = document.createElement('span');
-    button_burger_box.classList.add('button_burger_box');
-    button_burger.appendChild(button_burger_box);
-
-    const button_burger_box_img = document.createElement('img');
-    button_burger_box_img.classList.add('button_burger_box_img');
-    button_burger_box.appendChild(button_burger_box_img);
-    button_burger_box_img.src = 'components/header/header-assets/burger_menu.png';
+    const burger_menu = document.createElement('div')
+    burger_menu.classList.add('burger_menu')
+    header_components.append(burger_menu)
 
     //Header pageName & userName
     const header_content = document.createElement('div');

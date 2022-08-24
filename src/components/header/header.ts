@@ -1,4 +1,3 @@
-import './header.css';
 export const createHeader = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
     const header = document.createElement('header');
@@ -55,7 +54,7 @@ export const createHeader = () => {
     const header_content_user_img = document.createElement('img');
     header_content_user_img.classList.add('header_content_user_img');
     header_content_user_img_box.appendChild(header_content_user_img);
-    header_content_user_img.src = 'assets/user.png';
+    header_content_user_img.src = 'components/header/header-assets/user.png';
 
     //Button LogIn
     const header_content_login = document.createElement('div');

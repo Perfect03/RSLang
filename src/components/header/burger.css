@@ -1,0 +1,118 @@
+.pages_links {
+    display: none;
+  }
+  
+  .burger_menu_button {
+    position: fixed;
+    z-index: 30;
+    width: 40px;
+    height: 40px;
+    border-radius: 5%;
+    transition: 0.4s;
+    top: 15px;
+  }
+  
+  .burger_menu_lines::before,
+  .burger_menu_lines::after,
+  .burger_menu_lines {
+    position: absolute;
+    width: 30px;
+    height: 5px;
+    border-radius: 20%;
+    background-color: #9642c7;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+  }
+  .burger_menu_lines {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .burger_menu_lines::before {
+    content: '';
+    top: -10px;
+  }
+  .burger_menu_lines::after {
+    content: '';
+    top: 10px;
+  }
+  
+  .burger_menu_active .burger_menu_lines {
+    background-color: transparent;
+  }
+  .burger_menu_active .burger_menu_lines::before {
+    top: 0;
+    transform: rotate(45deg);
+    background-color: #40095f;
+  }
+  .burger_menu_active .burger_menu_lines::after{
+    top: 0;
+    transform: rotate(-45deg);
+    background-color: #40095f;
+  }
+  
+  .burger_menu_nav {
+    width: 150px;
+    padding-top: 120px;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    overflow-y: auto;
+    left: -91px;
+    transition: 0.8s;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .burger_menu_active .burger_menu_nav {
+    left: 0;
+    transition: 0.4s;
+  }
+  
+  .burger_menu_link {
+    padding: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #0f141e;;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+  
+  .burger_menu_link:last-child {
+    margin-top: 20vh;
+  }
+  
+  .burger_menu_link:first-child {
+    margin-top: 5vh;
+  }
+  
+  .burger_menu_link:hover {
+    filter: brightness(0.9);
+  }
+  
+  .burger_menu_overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+  }
+  
+  .burger_menu_active .burger_menu_overlay {
+    display: block;
+    background-color: rgba(119, 75, 177, 0.295);
+  }
+  
+  .burger_menu_img {
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+  }

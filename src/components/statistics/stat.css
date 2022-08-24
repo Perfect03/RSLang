@@ -84,7 +84,7 @@
     justify-content: space-between;
 }
 
-.main_stat_accuracy_progress_circle {
+.accuracy_progress_circle {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -92,7 +92,7 @@
     position: relative;
 }
 
-.main_stat_accuracy_progress_circle.gt_50 {
+.accuracy_progress_circle.gt_50 {
     background-color: #81CE97;
 }
 
@@ -154,6 +154,6 @@
     vertical-align: middle;
 }
 
-.main_stat_accuracy_progress_circle {
+.accuracy_progress_circle {
     margin: 10px auto 0;
 }

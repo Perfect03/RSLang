@@ -1,3 +1,3 @@
-import { createHeader } from "./header";
+import { createHeader } from './header';
 
 createHeader();

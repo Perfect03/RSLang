@@ -1,1 +1,3 @@
-export const createDictionary = () => {};
+export const createDictionary = () => {
+    console.log('Dictionary');
+};

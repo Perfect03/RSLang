@@ -1,0 +1,102 @@
+.audiochallenge_container {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(335deg, rgba(2, 0, 36, 1) 0%, rgba(39, 39, 167, 1) 35%, rgba(0, 212, 255, 1) 100%);
+
+    height: 70vh;
+
+    padding-left: 60px;
+}
+
+.audiochallenge_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.audiochallenge_header {
+    display: flex;
+    height: 75px;
+    width: 100%;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0px 50px;
+
+    color: wheat;
+}
+
+.close_btn {
+    display: block;
+    width: 20px;
+    height: 20px;
+    --weight: 1px;
+    --aa: 1px;
+
+    /* anti-aliasing */
+    --color: wheat;
+    border-radius: 3px;
+    background:
+        linear-gradient(45deg, transparent calc(50% - var(--weight) - var(--aa)), var(--color) calc(50% - var(--weight)), var(--color) calc(50% + var(--weight)), transparent calc(50% + var(--weight) + var(--aa))),
+        linear-gradient(-45deg, transparent calc(50% - var(--weight) - var(--aa)), var(--color) calc(50% - var(--weight)), var(--color) calc(50% + var(--weight)), transparent calc(50% + var(--weight) + var(--aa)));
+
+    transition: 0.5s;
+}
+
+.audiochallenge_game_container {
+    display: flex;
+    flex-direction: column;
+
+    height: 50vh;
+    width: 70vw;
+
+
+    background: wheat;
+}
+
+.replay_btn_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 50%;
+}
+
+.replay_btn {
+    height: 40px;
+    width: 40px;
+    background-color: red;
+}
+
+.words_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 15%;
+}
+
+.word_div {
+    display: flex;
+
+    width: 100px;
+    height: 50px;
+    background-color: darkmagenta;
+}
+
+.skip_btn_container {
+    display: flex;
+    height: 35%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.skip_btn {
+    height: 50%;
+    width: 200px;
+    background-color: chocolate;
+}

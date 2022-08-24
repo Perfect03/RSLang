@@ -1,7 +1,10 @@
 import './textbook.css';
+import { readWords } from './index';
 
 export const createTextbook = () => {
-    const textbook = document.getElementById('textbook');
+    console.log(5);
+    const textbook = document.createElement('div');
+    textbook.id = 'textbook';
     const header = document.createElement('header');
     const header_left = document.createElement('div');
     header_left.classList.add('header_left');
@@ -22,11 +25,10 @@ export const createTextbook = () => {
     textbook_words.classList.add('textbook_words');
     const textbook_games = createGames();
 
-    const main = document.createElement('main');
-    main.append(textbook_games);
-    main.append(pagination[0]);
-    main.append(textbook_words);
-    main.append(pagination[1]);
+    textbook.append(textbook_games);
+    textbook.append(pagination[0]);
+    textbook.append(textbook_words);
+    textbook.append(pagination[1]);
 
     const cards = document.createElement('div');
     const groups = createGroups();
@@ -35,8 +37,14 @@ export const createTextbook = () => {
     textbook_words.append(cards);
     textbook_words.append(groups);
 
-    (textbook as HTMLElement).append(header);
-    (textbook as HTMLElement).append(main);
+    const main = document.querySelector('main') as HTMLElement;
+    while (main.hasChildNodes()) {
+        main.removeChild(main.firstChild as HTMLElement);
+    }
+
+    (main as HTMLElement).append(header);
+    (main as HTMLElement).append(textbook);
+    readWords(1, 1);
 };
 
 const createPagination = () => {
@@ -113,8 +121,8 @@ const createGames = () => {
     textbook_game2.classList.add('textbook_game');
     game_title1.textContent = 'Savannah';
     game_title2.textContent = 'Sprint';
-    game_img1.setAttribute('src', './assets/images/savannah.png');
-    game_img2.setAttribute('src', './assets/images/sprint.png');
+    game_img1.setAttribute('src', 'components/textbook/textbook-assets/savannah.png');
+    game_img2.setAttribute('src', 'components/textbook/textbook-assets/sprint.png');
     game_img1.setAttribute('alt', 'img');
     game_img2.setAttribute('alt', 'img');
 

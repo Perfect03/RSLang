@@ -7,7 +7,7 @@ export const createBurger = () => {
     burger_menu.append(burger_menu_button);
     burger_menu_button.href = '';
 
-    const burger_menu_lines = document.createElement('spun');
+    const burger_menu_lines = document.createElement('span');
     burger_menu_lines.classList.add('burger_menu_lines');
     burger_menu_button.append(burger_menu_lines);
 
@@ -19,7 +19,7 @@ export const createBurger = () => {
     burger_menu_link_main.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_main);
     burger_menu_link_main.textContent = 'Main';
-    burger_menu_link_main.href = '#page-1';
+    burger_menu_link_main.href = '';
 
     const burger_menu_img_main = document.createElement('img');
     burger_menu_img_main.classList.add('burger_menu_img');
@@ -30,7 +30,7 @@ export const createBurger = () => {
     burger_menu_link_textbook.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_textbook);
     burger_menu_link_textbook.textContent = 'Textbook';
-    burger_menu_link_textbook.href = '#page-2';
+    burger_menu_link_textbook.href = '#textbook';
 
     const burger_menu_img_textbook = document.createElement('img');
     burger_menu_img_textbook.classList.add('burger_menu_img');

@@ -32,5 +32,5 @@ export const createFirstSection = () => {
     const main_section_one_img = document.createElement('img');
     main_section_one_img.classList.add('main_section_one_img');
     main_section_one.append(main_section_one_img);
-    main_section_one_img.src = 'components/index/main-assets/girl.jpg';
+    main_section_one_img.src = 'components/main/main-assets/girl.jpg';
 };

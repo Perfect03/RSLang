@@ -27,17 +27,17 @@ export const createFifthSection = () => {
 
     const developer_img_box_one = document.createElement('img');
     developer_img_box_one.classList.add('developer_img_box');
-    developer_img_box_one.src = 'components/index/main-assets/gleb.jpg';
+    developer_img_box_one.src = 'components/main/main-assets/avatars/gleb.jpg';
     main_section_five_card_one.append(developer_img_box_one);
 
     const developer_img_box_two = document.createElement('img');
     developer_img_box_two.classList.add('developer_img_box');
-    developer_img_box_two.src = 'components/index/main-assets/nikita.jpg';
+    developer_img_box_two.src = 'components/main/main-assets/avatars/nikita.jpg';
     main_section_five_card_two.append(developer_img_box_two);
 
     const developer_img_box_three = document.createElement('img');
     developer_img_box_three.classList.add('developer_img_box');
-    developer_img_box_three.src = 'components/index/main-assets/alisaa.jpg';
+    developer_img_box_three.src = 'components/main/main-assets/avatars/alisaa.jpg';
     main_section_five_card_three.append(developer_img_box_three);
 
     const main_section_five_card_one_info = document.createElement('div');

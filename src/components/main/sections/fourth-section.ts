@@ -43,5 +43,5 @@ export const createFourthSection = () => {
     const main_section_four_img = document.createElement('img');
     main_section_four_img.classList.add('main_section_four_img');
     main_section_four_img_box.append(main_section_four_img);
-    main_section_four_img.src = 'components/index/main-assets//sec4.png';
+    main_section_four_img.src = 'components/main/main-assets/sec4.png';
 };

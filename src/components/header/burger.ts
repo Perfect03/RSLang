@@ -63,7 +63,7 @@ export const createBurger = () => {
     burger_menu_link_statistics.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_statistics);
     burger_menu_link_statistics.textContent = 'Statistics';
-    burger_menu_link_statistics.href = '#page-5';
+    burger_menu_link_statistics.href = '#statistics';
 
     const burger_menu_img_statistics = document.createElement('img');
     burger_menu_img_statistics.classList.add('burger_menu_img');

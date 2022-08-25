@@ -11,6 +11,9 @@ export const createLayoutAudioChallenge = () => {
     const close_btn = document.createElement('button');
     const audiochallenge_game_container = document.createElement('div');
     const replay_btn_container = document.createElement('div');
+    const word_image_container = document.createElement('div');
+    const word_image = document.createElement('img');
+    const word_audio = document.createElement('audio');
     const words_wrapper = document.createElement('div');
     const replay_btn = document.createElement('button');
     const skip_btn_container = document.createElement('div');
@@ -23,16 +26,20 @@ export const createLayoutAudioChallenge = () => {
     close_btn.classList.add('close_btn');
     audiochallenge_game_container.classList.add('audiochallenge_game_container');
     replay_btn_container.classList.add('replay_btn_container');
-    words_wrapper.classList.add('words_wrapper');
     replay_btn.classList.add('replay_btn');
+    word_image_container.classList.add('word_image_container');
+    word_image.classList.add('word_image');
+    word_audio.classList.add('word_audio');
+    words_wrapper.classList.add('words_wrapper');
     skip_btn_container.classList.add('skip_btn_container');
     skip_btn.classList.add('skip_btn');
-    skip_btn.textContent = 'I dont know';
+    skip_btn.textContent = 'Skip';
 
     deleteChildsOfMain();
 
     main.style.minHeight = '70' + 'vh';
 
+    word_image.style.display = 'none';
     progress_bar.innerText = `${dataStorage.audiochallenge__right__answers}/20`;
 
     main.appendChild(audiochallenge_section);
@@ -45,7 +52,10 @@ export const createLayoutAudioChallenge = () => {
     audiochallenge_wrapper.appendChild(audiochallenge_game_container);
 
     audiochallenge_game_container.appendChild(replay_btn_container);
+    replay_btn_container.appendChild(word_image_container);
+    word_image_container.appendChild(word_image);
     replay_btn_container.appendChild(replay_btn);
+    replay_btn.appendChild(word_audio);
     audiochallenge_game_container.appendChild(words_wrapper);
     audiochallenge_game_container.appendChild(skip_btn_container);
     skip_btn_container.appendChild(skip_btn);

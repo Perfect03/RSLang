@@ -2,8 +2,7 @@ import { baseUrl, getWordById, getWords } from '../../../api/api';
 import { IWord, IWords } from '../../../interfaces & types/words';
 import { getRandomInt } from '../../utils/helpers';
 import { dataStorage } from '../../utils/storage';
-import { addListenersToWordsBtn } from './correct-or-incorrect-answer';
-import { nextWords } from './next-words-btn';
+import { addListenersToWordsBtn, changeNextForIdkBtn } from './correct-or-incorrect-answer';
 
 export const createGameAudio = async () => {
     const level = 0;
@@ -49,6 +48,7 @@ const addWordToReplayBtn = () => {
     const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
     const random_index = getRandomInt(4);
     const replay_btn = document.querySelector('.replay_btn') as HTMLButtonElement;
+
     replay_btn.dataset.id = words_div[random_index].dataset.id;
 
     addPlayListenerToReplayBtn(replay_btn);
@@ -56,7 +56,12 @@ const addWordToReplayBtn = () => {
 
 const addPlayListenerToReplayBtn = async (button: HTMLButtonElement) => {
     const word = await getWordById(button.dataset.id as string);
-    const audio = new Audio(`${baseUrl}${word.audio}`);
+    const audio = document.querySelector('.word_audio') as HTMLAudioElement;
+    const word_image = document.querySelector('.word_image') as HTMLImageElement;
+
+    audio.src = `${baseUrl}${word.audio}`;
+    word_image.src = `${baseUrl}${word.image}`;
+
     button.addEventListener('click', function () {
         audio.play();
     });
@@ -64,11 +69,12 @@ const addPlayListenerToReplayBtn = async (button: HTMLButtonElement) => {
 
 const addListenerToSkipBtn = () => {
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
+
     skip_btn.addEventListener('click', function () {
         dataStorage.audiochallenge__round__words = [];
         createRoundGameAudio(dataStorage.audiochallenge__session__words);
-        console.log('createRoundGameAudio', dataStorage.audiochallenge__session__words);
         putWordsInGameAudio(dataStorage.audiochallenge__round__words);
-        nextWords();
+        changeNextForIdkBtn();
+        addPlayListenerToReplayBtn(event?.target as HTMLButtonElement);
     });
 };

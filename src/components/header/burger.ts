@@ -48,16 +48,27 @@ export const createBurger = () => {
     burger_menu_link_dictionary.append(burger_menu_img_dictionary)
     burger_menu_img_dictionary.src = './header-assets/dictionary.png'
 
-    const burger_menu_link_minigame = document.createElement('a')
-    burger_menu_link_minigame.classList.add('burger_menu_link')
-    burger_menu_nav.append(burger_menu_link_minigame)
-    burger_menu_link_minigame.textContent = 'Minigames'
-    burger_menu_link_minigame.href = '#page-4'
+    const burger_menu_link_audiochalenge= document.createElement('a')
+    burger_menu_link_audiochalenge.classList.add('burger_menu_link')
+    burger_menu_nav.append(burger_menu_link_audiochalenge)
+    burger_menu_link_audiochalenge.textContent = 'Audio Challenge'
+    burger_menu_link_audiochalenge.href = '#page-4'
 
-    const burger_menu_img_minigame = document.createElement('img')
-    burger_menu_img_minigame.classList.add('burger_menu_img')
-    burger_menu_link_minigame.append(burger_menu_img_minigame)
-    burger_menu_img_minigame.src = './header-assets/games.png'
+    const burger_menu_img_audiochalenge = document.createElement('img')
+    burger_menu_img_audiochalenge.classList.add('burger_menu_img')
+    burger_menu_link_audiochalenge.append(burger_menu_img_audiochalenge)
+    burger_menu_img_audiochalenge.src = './header-assets/headphones.png'
+
+    const burger_menu_link_sprint= document.createElement('a')
+    burger_menu_link_sprint.classList.add('burger_menu_link')
+    burger_menu_nav.append(burger_menu_link_sprint)
+    burger_menu_link_sprint.textContent = 'Audio Challenge'
+    burger_menu_link_sprint.href = '#page-4'
+
+    const burger_menu_img_sprint = document.createElement('img')
+    burger_menu_img_sprint.classList.add('burger_menu_img')
+    burger_menu_link_sprint.append(burger_menu_img_sprint)
+    burger_menu_img_sprint.src = './header-assets/running.png'
 
     const burger_menu_link_statistics = document.createElement('a')
     burger_menu_link_statistics.classList.add('burger_menu_link')

@@ -6,6 +6,8 @@ import './header-assets/dictionary.png';
 import './header-assets/games.png';
 import './header-assets/statistic.png';
 import './header-assets/logout.png';
+import './header-assets/headphones.png';
+import './header-assets/running.png';
 
 
 import { createHeader } from './header';

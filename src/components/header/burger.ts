@@ -99,10 +99,10 @@ export const createBurger = () => {
 };
 
 function burgerMenu() {
-    let burger_menu_main = document.querySelector('.burger_menu');
-    let button = document.querySelector('.burger_menu_button');
-    let links = document.querySelectorAll('.burger_menu_link');
-    let overlay = document.querySelector('.burger_menu_overlay');
+    const burger_menu_main = document.querySelector('.burger_menu');
+    const button = document.querySelector('.burger_menu_button');
+    const links = document.querySelectorAll('.burger_menu_link');
+    const overlay = document.querySelector('.burger_menu_overlay');
     const body = document.querySelector('body') as HTMLBodyElement;
 
     button?.addEventListener('click', (e) => {
@@ -110,7 +110,9 @@ function burgerMenu() {
         toggleMenu();
     });
 
-    links.forEach(el => { el.addEventListener('click', () => toggleMenu()) });
+    links.forEach((el) => {
+        el.addEventListener('click', () => toggleMenu());
+    });
     overlay?.addEventListener('click', () => toggleMenu());
 
     function toggleMenu() {

@@ -19,7 +19,7 @@ export const createSecondSection = () => {
 
     const main_section_two_textbook_img = document.createElement('img');
     main_section_two_textbook_img.classList.add('main_section_two_images');
-    main_section_two_textbook_img.src = 'components/index/main-assets/textbook.jpg';
+    main_section_two_textbook_img.src = 'components/main/main-assets/textbook.jpg';
     main_section_two_textbook.append(main_section_two_textbook_img);
 
     const main_section_two_textbook_h1 = document.createElement('h1');
@@ -42,7 +42,7 @@ export const createSecondSection = () => {
 
     const main_section_two_dictionary_img = document.createElement('img');
     main_section_two_dictionary_img.classList.add('main_section_two_images');
-    main_section_two_dictionary_img.src = 'components/index/main-assets/dictionary.jpg';
+    main_section_two_dictionary_img.src = 'components/main/main-assets/dictionary.jpg';
     main_section_two_dictionary.append(main_section_two_dictionary_img);
 
     const main_section_two_dictionary_h1 = document.createElement('h1');
@@ -63,7 +63,7 @@ export const createSecondSection = () => {
 
     const main_section_two_games_img = document.createElement('img');
     main_section_two_games_img.classList.add('main_section_two_images');
-    main_section_two_games_img.src = 'components/index/main-assets/games.jpg';
+    main_section_two_games_img.src = 'components/main/main-assets/games.jpg';
     main_section_two_games.append(main_section_two_games_img);
 
     const main_section_two_games_h1 = document.createElement('h1');
@@ -84,7 +84,7 @@ export const createSecondSection = () => {
 
     const main_section_two_statistics_img = document.createElement('img');
     main_section_two_statistics_img.classList.add('main_section_two_images');
-    main_section_two_statistics_img.src = 'components/index/main-assets/statistic.jpg';
+    main_section_two_statistics_img.src = 'components/main/main-assets/statistic.jpg';
     main_section_two_statistics.append(main_section_two_statistics_img);
 
     const main_section_two_statistics_h1 = document.createElement('h1');

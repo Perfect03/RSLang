@@ -63,7 +63,7 @@ body {
 }
 
 .header_components {
-    width: 90%;
+    width: calc(100vw - 37px);
     display: flex;
     flex-direction: row;
 }
@@ -87,6 +87,7 @@ body {
 }
 
 .header_content_page_name {
+    padding-left: 50px;
     font-size: 30px;
     text-align: center;
 }
@@ -131,6 +132,11 @@ body {
     background: rgb(96, 9, 240);
     background: linear-gradient(0deg, rgba(96, 9, 240, 1) 0%, rgba(129, 5, 240, 1) 100%);
     border: none;
+}
+
+.main_page_button:before {
+    height: 0%;
+    width: 2px;
 }
 
 .main_page_button:hover {

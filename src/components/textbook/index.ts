@@ -46,11 +46,24 @@ const createAudio = (card: IWord) => {
 
     card_audio_icon.addEventListener('click', () => {
         const audios = [card_audio, card_audio_meaning, card_audio_example];
-        audios[0].play();
-        for (let i = 0; i < audios.length - 1; i++) {
-            audios[i].onended = function () {
-                audios[i + 1].play();
-            };
+        if (audios.some((el) => el.currentTime)) {
+            card_audio_icon_path.setAttributeNS(
+                null,
+                'd',
+                'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'
+            );
+            audios.forEach((el) => {
+                el.pause();
+                el.currentTime = 0;
+            });
+        } else {
+            card_audio_icon_path.setAttributeNS(null, 'd', 'M6 6h12v12H6z');
+            audios[0].play();
+            for (let i = 0; i < audios.length - 1; i++) {
+                audios[i].onended = function () {
+                    audios[i + 1].play();
+                };
+            }
         }
     });
     return [card_audio_icon, card_audio, card_audio_meaning, card_audio_example];

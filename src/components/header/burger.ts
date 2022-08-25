@@ -30,7 +30,7 @@ export const createBurger = () => {
     burger_menu_link_textbook.classList.add('burger_menu_link')
     burger_menu_nav.append(burger_menu_link_textbook)
     burger_menu_link_textbook.textContent = 'Textbook'
-    burger_menu_link_textbook.href = '#page-2'
+    burger_menu_link_textbook.href = '#textbook'
 
     const burger_menu_img_textbook = document.createElement('img')
     burger_menu_img_textbook.classList.add('burger_menu_img')
@@ -74,7 +74,7 @@ export const createBurger = () => {
     burger_menu_link_statistics.classList.add('burger_menu_link')
     burger_menu_nav.append(burger_menu_link_statistics)
     burger_menu_link_statistics.textContent = 'Statistics'
-    burger_menu_link_statistics.href = '#page-5'
+    burger_menu_link_statistics.href = '#statistics'
 
     const burger_menu_img_statistics = document.createElement('img')
     burger_menu_img_statistics.classList.add('burger_menu_img')
@@ -95,6 +95,7 @@ export const createBurger = () => {
     const burger_menu_overlay = document.createElement('div')
     burger_menu_overlay.classList.add('burger_menu_overlay')
     burger_menu.append(burger_menu_overlay)
+
     burgerMenu();
 };
 

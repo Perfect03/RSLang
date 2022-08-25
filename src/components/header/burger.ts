@@ -19,7 +19,7 @@ export const createBurger = () => {
     burger_menu_link_main.classList.add('burger_menu_link')
     burger_menu_nav.append(burger_menu_link_main)
     burger_menu_link_main.textContent = 'Main'
-    burger_menu_link_main.href = '#page-1'
+    burger_menu_link_main.href = '#home'
 
     const burger_menu_img_main = document.createElement('img')
     burger_menu_img_main.classList.add('burger_menu_img')

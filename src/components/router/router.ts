@@ -38,7 +38,7 @@ export const listenMenus = () => {
 };
 
 export const locationHandler = async (): Promise<void> => {
-    let location: IPage = <IPage>window.location.hash.replace('#', '');
+    const location: IPage = <IPage>window.location.hash.replace('#', '');
     console.log(location);
     /*if (location.length == 0) {
         location = '/';

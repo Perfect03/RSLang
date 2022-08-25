@@ -1,6 +1,6 @@
 export const createFirstSection = () => {
     let main: HTMLElement;
-    if(document.querySelector('main')) {
+    if (document.querySelector('main')) {
         main = document.querySelector('main') as HTMLElement;
         const deleteChildsOfMain = () => {
             const main = document.querySelector('main') as HTMLElement;
@@ -9,8 +9,7 @@ export const createFirstSection = () => {
             }
         };
         deleteChildsOfMain();
-    }
-    else {
+    } else {
         main = document.createElement('main');
         main.classList.add('main');
         document.querySelector('body')?.append(main);

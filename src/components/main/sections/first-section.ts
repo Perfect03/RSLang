@@ -1,9 +1,20 @@
 export const createFirstSection = () => {
-    const body = document.querySelector('body') as HTMLBodyElement;
-
-    const main = document.createElement('main');
-    main.classList.add('main');
-    body.append(main);
+    let main: HTMLElement;
+    if(document.querySelector('main')) {
+        main = document.querySelector('main') as HTMLElement;
+        const deleteChildsOfMain = () => {
+            const main = document.querySelector('main') as HTMLElement;
+            while (main.hasChildNodes()) {
+                main.removeChild(main.firstChild as HTMLElement);
+            }
+        };
+        deleteChildsOfMain();
+    }
+    else {
+        main = document.createElement('main');
+        main.classList.add('main');
+        document.querySelector('body')?.append(main);
+    }
 
     const main_section_one = document.createElement('section');
     main_section_one.classList.add('main_section_one');

@@ -81,6 +81,9 @@
 
 .word_div {
     display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 
     width: 100px;
     height: 50px;

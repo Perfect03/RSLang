@@ -1,6 +1,8 @@
 import { createLayoutAudioChallenge } from './layout';
 import './audiochallenge.css';
-import { getWordsForGameAudio } from './put-words-in-game';
+import { createGameAudio } from './create-game-session';
+import './assets/correct.mp3';
+import './assets/incorrect.mp3';
 
 createLayoutAudioChallenge();
-getWordsForGameAudio();
+createGameAudio();

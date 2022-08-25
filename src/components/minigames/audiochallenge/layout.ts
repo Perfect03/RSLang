@@ -27,6 +27,7 @@ export const createLayoutAudioChallenge = () => {
     replay_btn.classList.add('replay_btn');
     skip_btn_container.classList.add('skip_btn_container');
     skip_btn.classList.add('skip_btn');
+    skip_btn.textContent = 'I dont know';
 
     deleteChildsOfMain();
 
@@ -50,9 +51,8 @@ export const createLayoutAudioChallenge = () => {
     skip_btn_container.appendChild(skip_btn);
 
     for (let i = 0; i < 4; i++) {
-        const word_div = document.createElement('div');
+        const word_div = document.createElement('button');
         word_div.classList.add(`word_div`);
-        word_div.id = `word_${i + 1}`;
         words_wrapper.appendChild(word_div);
     }
 };

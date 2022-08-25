@@ -1,1 +1,3 @@
-export const createStatistics = () => {};
+export const createStatistics = () => {
+    console.log('stat');
+};

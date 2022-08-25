@@ -57,15 +57,45 @@ export const createFifthSection = () => {
     main_section_five_card_one_name.textContent = 'Gleb Zlobin';
     main_section_five_card_one_info.append(main_section_five_card_one_name);
 
+    const main_section_five_card_one_gh_a = document.createElement('a');
+    main_section_five_card_one_gh_a.classList.add('main_section_five_card_one_gh_a');
+    main_section_five_card_one_name.appendChild(main_section_five_card_one_gh_a);
+    main_section_five_card_one_gh_a.href = 'https://github.com/Perfect03';
+
+    const main_section_five_card_one_gh = document.createElement('img');
+    main_section_five_card_one_gh.classList.add('developer_img_gh');
+    main_section_five_card_one_gh.src = 'components/main/main-assets/github.png';
+    main_section_five_card_one_gh_a.append(main_section_five_card_one_gh);
+
     const main_section_five_card_two_name = document.createElement('h1');
     main_section_five_card_two_name.classList.add('name_dev');
     main_section_five_card_two_name.textContent = 'Falderian';
     main_section_five_card_two_info.append(main_section_five_card_two_name);
 
+    const main_section_five_card_two_gh_a = document.createElement('a');
+    main_section_five_card_two_gh_a.classList.add('main_section_five_card_two_gh_a');
+    main_section_five_card_two_name.appendChild(main_section_five_card_two_gh_a);
+    main_section_five_card_two_gh_a.href = 'https://github.com/Falderian';
+
+    const main_section_five_card_two_gh = document.createElement('img');
+    main_section_five_card_two_gh.classList.add('developer_img_gh');
+    main_section_five_card_two_gh.src = 'components/main/main-assets/github.png';
+    main_section_five_card_two_gh_a.append(main_section_five_card_two_gh);
+
     const main_section_five_card_three_name = document.createElement('h1');
     main_section_five_card_three_name.classList.add('name_dev');
     main_section_five_card_three_name.textContent = 'AlisaFed';
     main_section_five_card_three_info.append(main_section_five_card_three_name);
+
+    const main_section_five_card_three_gh_a = document.createElement('a');
+    main_section_five_card_three_gh_a.classList.add('main_section_five_card_three_gh_a');
+    main_section_five_card_three_name.appendChild(main_section_five_card_three_gh_a);
+    main_section_five_card_three_gh_a.href = 'https://github.com/AlisaFed';
+
+    const main_section_five_card_three_gh = document.createElement('img');
+    main_section_five_card_three_gh.classList.add('developer_img_gh');
+    main_section_five_card_three_gh.src = 'components/main/main-assets/github.png';
+    main_section_five_card_three_gh_a.append(main_section_five_card_three_gh);
 
     const main_section_five_card_one_job = document.createElement('h2');
     main_section_five_card_one_job.classList.add('job_dev');

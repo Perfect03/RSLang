@@ -223,7 +223,6 @@ export const createStatistics = () => {
         const progress_circle = document.querySelector('.accuracy_progress_circle') as HTMLElement;
         const percent = parseInt(progress_circle.dataset.percent!);
         const deg = (360 * percent) / 100;
-        console.log(percent);
 
         if (percent > 50) {
             progress_circle?.classList.add('gt_50');

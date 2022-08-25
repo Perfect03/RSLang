@@ -10,6 +10,7 @@
     border-radius: 5%;
     transition: 0.4s;
     top: 15px;
+    left: 10px;
   }
   
   .burger_menu_lines::before,

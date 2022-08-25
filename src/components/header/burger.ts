@@ -62,7 +62,7 @@ export const createBurger = () => {
     const burger_menu_link_sprint = document.createElement('a');
     burger_menu_link_sprint.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_sprint);
-    burger_menu_link_sprint.textContent = 'Audio Challenge';
+    burger_menu_link_sprint.textContent = 'Sprint';
     burger_menu_link_sprint.href = '#page-4';
 
     const burger_menu_img_sprint = document.createElement('img');
@@ -120,8 +120,10 @@ function burgerMenu() {
         burger_menu_main?.classList.toggle('burger_menu_active');
         if (burger_menu_main?.classList.contains('burger_menu_active')) {
             body.style.overflow = 'hidden';
+            body.style.paddingRight = '17px';
         } else {
             body.style.overflow = 'visible';
+            body.style.paddingRight = '0';
         }
     }
 }

@@ -23,6 +23,11 @@ export const createHeader = () => {
     header_content_page.classList.add('header_content_page');
     header_content.appendChild(header_content_page);
 
+    const header_content_page_name = document.createElement('h1');
+    header_content_page_name.classList.add('header_content_page_name');
+    header_content_page.appendChild(header_content_page_name);
+    header_content_page_name.textContent = 'Main';
+
     //userName
     const header_content_user_box = document.createElement('div');
     header_content_user_box.classList.add('header_content_user_box');

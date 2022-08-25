@@ -1,3 +1,3 @@
 export const createMinigames = () => {
-    console.log('mini');
+    console.log('createMinigames');
 };

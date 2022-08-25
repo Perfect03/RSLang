@@ -6,9 +6,9 @@ import { createDictionary } from '../dictionary/dictionary';
 import { createMinigames } from '../minigames/minigames';
 
 const routes = {
-    '/': {
+    home: {
         template: createMain,
-        title: 'Home',
+        title: 'RSLang',
         description: 'This is the home page',
     },
     textbook: {
@@ -38,10 +38,10 @@ export const listenMenus = () => {
 };
 
 export const locationHandler = async (): Promise<void> => {
-    let location: IPage = <IPage>window.location.hash.replace('#', '');
-    if (location.length == 0) {
+    const location: IPage = <IPage>window.location.hash.replace('#', '');
+    /*if (location.length == 0) {
         location = '/';
-    }
+    }*/
     //state.view = location;
     //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];

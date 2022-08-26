@@ -64,7 +64,7 @@ body {
 }
 
 .header_components {
-    width: calc(100vw - 37px);
+    width: calc(100vw - 22px);
     display: flex;
     flex-direction: row;
 }

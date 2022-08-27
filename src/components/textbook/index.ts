@@ -2,8 +2,8 @@ import { getWords } from '../../api/api';
 import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
 
-import './textbook-assets/savannah.png';
-import './textbook-assets/sprint.png';
+import './textbook-assets/headphones.png';
+import './textbook-assets/running.png';
 
 localStorage.setItem('page', '0');
 localStorage.setItem('group', '0');

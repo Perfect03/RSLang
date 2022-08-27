@@ -112,7 +112,11 @@ function burgerMenu() {
     });
 
     links.forEach((el) => {
-        el.addEventListener('click', () => toggleMenu());
+        el.addEventListener('click', () => {
+            burger_menu_main?.classList.remove('burger_menu_active');
+            body.style.overflow = 'visible';
+            body.style.paddingRight = '0';
+        });
     });
     overlay?.addEventListener('click', () => toggleMenu());
 

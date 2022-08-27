@@ -1,10 +1,12 @@
-.audiochallenge_container {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(335deg, rgba(2, 0, 36, 1) 0%, rgba(39, 39, 167, 1) 35%, rgba(0, 212, 255, 1) 100%);
-
-    height: 70vh;
-
+.main {
+    min-height: calc(91vh - 65px);
     padding-left: 60px;
+    max-width: 100%;
+}
+
+.audiochallenge_container {
+    background: linear-gradient(335deg, rgb(98, 8, 240) 0%, rgb(135, 28, 241) 35%, rgb(212, 81, 220) 100%);
+    height: 70vh;
 }
 
 .audiochallenge_wrapper {
@@ -17,13 +19,10 @@
     display: flex;
     height: 75px;
     width: 100%;
-
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     padding: 0px 50px;
-
     color: wheat;
 }
 
@@ -47,34 +46,38 @@
 .audiochallenge_game_container {
     display: flex;
     flex-direction: column;
-
     height: 50vh;
     width: 70vw;
-
-
-    background: wheat;
+    background: #ffffffde;
+    border-radius: 2%;
 }
 
 .replay_btn_container {
     display: flex;
     align-items: center;
     justify-content: center;
-
     width: 100%;
     height: 50%;
 }
 
 .replay_btn {
+    height: 50px;
+    width: 50px;
+    background-color: #fff9f9;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.replay_btn_container_img {
     height: 40px;
     width: 40px;
-    background-color: red;
 }
 
 .words_wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-
     width: 100%;
     height: 15%;
 }
@@ -82,24 +85,58 @@
 .word_div {
     display: flex;
     justify-content: center;
-    align-content: center;
     align-items: center;
-
-    width: 100px;
+    width: 125px;
     height: 50px;
-    background-color: darkmagenta;
+    background-color: #fff;
+    border-radius: 10%;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+}
+
+.word_div:hover {
+    box-shadow: 0px 0px 10px rgba(#4dc4ef, 0.76);
 }
 
 .skip_btn_container {
     display: flex;
     height: 35%;
-
     justify-content: center;
     align-items: center;
 }
 
 .skip_btn {
-    height: 50%;
-    width: 200px;
-    background-color: chocolate;
+    height: 60px;
+    width: 180px;
+    border-radius: 5%;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(rgb(247, 90, 109) 15%, rgb(219, 137, 200) 100%);
+}
+
+@media (max-width: 740px) {
+    .audiochallenge_game_container {
+        height: 60vh;
+    }
+
+
+    .replay_btn_container {
+        height: 40%;
+    }
+
+    .skip_btn_container {
+        height: 15%;
+    }
+
+    .words_wrapper {
+        height: 45%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .word_div {
+        width: 165px;
+    }
 }

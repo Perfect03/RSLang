@@ -11,6 +11,7 @@ export const createLayoutAudioChallenge = () => {
     const close_btn = document.createElement('button');
     const audiochallenge_game_container = document.createElement('div');
     const replay_btn_container = document.createElement('div');
+    const replay_btn_container_img = document.createElement('img');
     const words_wrapper = document.createElement('div');
     const replay_btn = document.createElement('button');
     const skip_btn_container = document.createElement('div');
@@ -23,6 +24,8 @@ export const createLayoutAudioChallenge = () => {
     close_btn.classList.add('close_btn');
     audiochallenge_game_container.classList.add('audiochallenge_game_container');
     replay_btn_container.classList.add('replay_btn_container');
+    replay_btn_container_img.classList.add('replay_btn_container_img');
+    replay_btn_container_img.src = 'components/minigames/audiochallenge/assets/volume.png';
     words_wrapper.classList.add('words_wrapper');
     replay_btn.classList.add('replay_btn');
     skip_btn_container.classList.add('skip_btn_container');
@@ -30,8 +33,6 @@ export const createLayoutAudioChallenge = () => {
     skip_btn.textContent = 'I dont know';
 
     deleteChildsOfMain();
-
-    main.style.minHeight = '70' + 'vh';
 
     progress_bar.innerText = `${dataStorage.audiochallenge__right__answers}/20`;
 
@@ -46,6 +47,7 @@ export const createLayoutAudioChallenge = () => {
 
     audiochallenge_game_container.appendChild(replay_btn_container);
     replay_btn_container.appendChild(replay_btn);
+    replay_btn.appendChild(replay_btn_container_img);
     audiochallenge_game_container.appendChild(words_wrapper);
     audiochallenge_game_container.appendChild(skip_btn_container);
     skip_btn_container.appendChild(skip_btn);

@@ -44,11 +44,13 @@ const deleteCorrectWord = (wordId: string) => {
 const changeIdkForNexBtn = () => {
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
     skip_btn.innerText = 'Next';
+    skip_btn.style.background = 'linear-gradient(rgb(82, 205, 228) 15%, rgb(191, 232, 142) 100%)';
 };
 
 export const changeNextForIdkBtn = () => {
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
     const word_image = document.querySelector('.word_image') as HTMLImageElement;
     skip_btn.innerText = 'Skip';
+    skip_btn.style.background = 'linear-gradient(rgb(247, 90, 109) 15%, rgb(219, 137, 200) 100%)';
     word_image.style.display = 'None';
 };

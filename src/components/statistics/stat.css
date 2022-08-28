@@ -1,0 +1,167 @@
+.boxes_stat {
+    width: 300px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    margin: 25px;
+}
+
+.main_stat {
+    min-height: calc(91vh - 65px);
+}
+
+.main_stat_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_stat_section_day_h1 {
+    text-align: center;
+    text-shadow: 0px 0px 5px rgba(48, 47, 47, 0.253);
+    margin: 10px;
+    color: rgb(87, 83, 83);
+    font-size: 35px;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main_stat_h2 {
+    font-size: 20px;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.253);
+    margin: 10px;
+    text-align: center;
+}
+
+.main_stat_section_boxes {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 700px;
+}
+
+.main_stat_words_box_h3 {
+    font-size: 100px;
+    text-shadow: 0px 0px 10px rgba(34, 36, 163, 0.253);
+    color: #8931ee;
+}
+
+.main_stat_words_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+
+.main_stat_words_box_p {
+    margin: auto;
+    font-size: 20px;
+}
+
+.main_stat_name_box {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.main_stat_name_img {
+    width: 70px;
+    height: 70px;
+    margin-left: auto;
+}
+
+.main_stat_stat {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-size: 19px;
+    justify-content: space-between;
+}
+
+.stat_row {
+    width: 150px;
+    margin: 5px 20px 5px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.accuracy_progress_circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #E5E5E5;
+    position: relative;
+}
+
+.accuracy_progress_circle.gt_50 {
+    background-color: #81CE97;
+}
+
+.accuracy_circle_progress {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 75px);
+    top: calc(50% - 75px);
+    width: 150px;
+    height: 150px;
+    clip: rect(0, 150px, 150px, 75px);
+}
+
+.accuracy_circle_progress .accuracy_circle_progress_fill {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 75px);
+    top: calc(50% - 75px);
+    width: 150px;
+    height: 150px;
+    clip: rect(0, 75px, 150px, 0);
+    background: #6495ED;
+    transform: rotate(60deg);
+}
+
+.gt_50 .accuracy_circle_progress {
+    clip: rect(0, 75px, 150px, 0);
+}
+
+.gt_50 .accuracy_circle_progress .accuracy_circle_progress_fill {
+    clip: rect(0, 150px, 150px, 75px);
+    background: #E5E5E5;
+}
+
+.accuracy_circle_progress_percents {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    left: calc(50% - 130px/2);
+    top: calc(50% - 130px/2);
+    width: 130.4347826087px;
+    height: 130px;
+    background: #fff;
+    text-align: center;
+    display: table;
+}
+
+.accuracy_circle_progress_percents_span {
+    display: block;
+    font-size: 40px;
+    font-weight: bold;
+    color: #8A2BE2;
+}
+
+.accuracy_circle_progress_percents_wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.accuracy_progress_circle {
+    margin: 10px auto 0;
+}
+
+@media (max-width: 820px) {
+    .main_stat_section_boxes {
+        display: block;
+    }
+}

@@ -2,10 +2,10 @@ import './textbook.css';
 import { readWords } from './index';
 
 export const createTextbook = () => {
-    console.log(5);
     const textbook = document.createElement('div');
     textbook.id = 'textbook';
     const header = document.createElement('header');
+    header.classList.add('header-textbook');
     const header_left = document.createElement('div');
     header_left.classList.add('header_left');
     const header_right = document.createElement('div');
@@ -17,21 +17,17 @@ export const createTextbook = () => {
     header.append(header_left);
     header.append(header_right);
 
-    const pagination = [] as HTMLElement[];
-    for (let i = 0; i < 2; i++) {
-        pagination[i] = createPagination();
-    }
+    const pagination = createPagination(Number(localStorage.getItem('page')));
     const textbook_words = document.createElement('div');
     textbook_words.classList.add('textbook_words');
     const textbook_games = createGames();
 
     textbook.append(textbook_games);
-    textbook.append(pagination[0]);
+    textbook.append(pagination as HTMLElement);
     textbook.append(textbook_words);
-    textbook.append(pagination[1]);
 
     const cards = document.createElement('div');
-    const groups = createGroups();
+    const groups = createGroups(Number(localStorage.getItem('group')));
     cards.classList.add('cards');
 
     textbook_words.append(cards);
@@ -41,39 +37,144 @@ export const createTextbook = () => {
     while (main.hasChildNodes()) {
         main.removeChild(main.firstChild as HTMLElement);
     }
-
     (main as HTMLElement).append(header);
     (main as HTMLElement).append(textbook);
-    readWords(1, 1);
+    listenPagination(pagination as HTMLElement);
+    listenGroups(groups as HTMLElement);
+    readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
 };
 
-const createPagination = () => {
-    const pagination = document.createElement('div');
-    pagination.classList.add('pagination');
-
-    const pagination_ul = document.createElement('ul');
-    const pagination_li = [] as HTMLElement[];
-    const pagination_a = [] as HTMLElement[];
-    for (let j = 0; j < 9; j++) {
-        pagination_li[j] = document.createElement('li');
-        pagination_a[j] = document.createElement('a');
-        pagination_li[j].append(pagination_a[j]);
-        pagination_ul.append(pagination_li[j]);
+const createPagination = (activeItem: number) => {
+    let pagination: HTMLElement;
+    if (document.querySelector('.pagination')) {
+        pagination = document.querySelector('.pagination') as HTMLElement;
+        pagination.removeChild(pagination.firstChild as HTMLElement);
+    } else {
+        pagination = document.createElement('div');
+        pagination.classList.add('pagination');
     }
-    pagination_a[0].textContent = '❮';
-    pagination_a[1].textContent = '1';
-    pagination_a[2].textContent = '2';
-    pagination_a[3].textContent = '3';
-    pagination_a[4].textContent = '4';
-    pagination_a[5].textContent = '5';
-    pagination_a[6].textContent = '...';
-    pagination_a[7].textContent = '30';
-    pagination_a[8].textContent = '❯';
-    pagination.append(pagination_ul);
+    const pagination_ul = document.createElement('ul');
+    const paginationNumbers_li = [] as HTMLElement[];
+    const paginationNumbers_a = [] as HTMLElement[];
+    const paginationBorders_li = [] as HTMLElement[];
+    const paginationBorders_a = [] as HTMLElement[];
+    const paginationBreaks_li = [] as HTMLElement[];
+    const paginationBreaks_a = [] as HTMLElement[];
+    for (let j = 0; j < 30; j++) {
+        paginationNumbers_li[j] = document.createElement('li');
+        paginationNumbers_a[j] = document.createElement('a');
+        paginationNumbers_li[j].append(paginationNumbers_a[j]);
+        paginationNumbers_a[j].textContent = `${j + 1}`;
+        paginationNumbers_li[j].classList.add('page-item');
+        paginationNumbers_li[j].classList.add('page');
+    }
+    paginationNumbers_li[activeItem].classList.add('active');
+
+    for (let j = 0; j < 2; j++) {
+        paginationBorders_li[j] = document.createElement('li');
+        paginationBorders_a[j] = document.createElement('a');
+        paginationBorders_li[j].append(paginationBorders_a[j]);
+        paginationBorders_li[j].classList.add('page');
+    }
+    paginationBorders_a[0].textContent = '❮';
+    paginationBorders_li[0].classList.add('page-border-prev');
+    if (!activeItem) paginationBorders_li[0].classList.add('disabled');
+    paginationBorders_a[1].textContent = '❯';
+    paginationBorders_li[1].classList.add('page-border-next');
+    if (activeItem == 29) paginationBorders_li[1].classList.add('disabled');
+
+    for (let j = 0; j < 2; j++) {
+        paginationBreaks_li[j] = document.createElement('li');
+        paginationBreaks_a[j] = document.createElement('a');
+        paginationBreaks_li[j].append(paginationBreaks_a[j]);
+        paginationBreaks_a[j].textContent = '...';
+        paginationBreaks_li[j].classList.add('page');
+    }
+    paginationBreaks_li[0].classList.add('page-break-back');
+    paginationBreaks_li[1].classList.add('page-break-next');
+
+    pagination?.append(pagination_ul);
+    appendPagination(pagination_ul, paginationNumbers_li, paginationBorders_li, paginationBreaks_li);
     return pagination;
 };
 
-const createGroups = () => {
+const appendPagination = (ul: HTMLElement, numbers: HTMLElement[], borders: HTMLElement[], breaks: HTMLElement[]) => {
+    let i = 0;
+    ul.append(borders[0]);
+    ul.append(numbers[0]);
+    ul.append(numbers[1]);
+    for (i = 0; i < numbers.length && !numbers[i].classList.contains('active'); ) {
+        i++;
+    }
+    if (i >= 0 && i <= 3) {
+        ul.append(numbers[2]);
+        ul.append(numbers[3]);
+        if (i === 3) ul.append(numbers[4]);
+        ul.append(breaks[1]);
+    }
+    if (i >= 4 && i <= 25) {
+        ul.append(breaks[0]);
+        ul.append(numbers[i - 1]);
+        ul.append(numbers[i]);
+        ul.append(numbers[i + 1]);
+        ul.append(breaks[1]);
+    }
+    if (i >= 26 && i <= 29) {
+        ul.append(breaks[0]);
+        if (i === 26) ul.append(numbers[25]);
+        ul.append(numbers[26]);
+        ul.append(numbers[27]);
+    }
+    ul.append(numbers[28]);
+    ul.append(numbers[29]);
+    ul.append(borders[1]);
+};
+
+const listenPagination = (pag: HTMLElement) => {
+    pag.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).classList.contains('page') || (e.target as HTMLElement).tagName == 'A') {
+            const active = Array.from(pag.querySelectorAll('.page')).find((el) => el.classList.contains('active'));
+            const activeNumber = Number(active?.textContent) - 1;
+            if (
+                !(
+                    (activeNumber == 0 && (e.target as HTMLElement).textContent == '❮') ||
+                    (activeNumber == 29 && (e.target as HTMLElement).textContent == '❯')
+                )
+            ) {
+                active?.classList.remove('active');
+                let activeNumberNew;
+                if (Number((e.target as HTMLElement).textContent)) {
+                    activeNumberNew = Number((e.target as HTMLElement).textContent) - 1;
+                } else
+                    switch ((e.target as HTMLElement).textContent) {
+                        case '❮': {
+                            activeNumberNew = activeNumber - 1;
+                            break;
+                        }
+                        case '❯': {
+                            activeNumberNew = activeNumber + 1;
+                            break;
+                        }
+                        case '...': {
+                            if (
+                                (e.target as HTMLElement).classList.contains('page-break-back') ||
+                                ((e.target as HTMLElement).parentNode as HTMLElement).classList.contains(
+                                    'page-break-back'
+                                )
+                            )
+                                activeNumberNew = activeNumber - 3;
+                            else activeNumberNew = activeNumber + 3;
+                        }
+                    }
+                pag = createPagination(activeNumberNew as number);
+                localStorage.setItem('page', activeNumberNew?.toString() as string);
+                readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
+            }
+        }
+    });
+};
+
+const createGroups = (activeItem: number) => {
     const groups = document.createElement('div');
     groups.classList.add('groups');
 
@@ -91,9 +192,21 @@ const createGroups = () => {
         button[i].textContent = `${i + 1}`;
         groups_buttons.append(button[i]);
     }
-    button[1].classList.add('active');
+    button[activeItem].classList.add('active');
 
     return groups;
+};
+
+const listenGroups = (groups: HTMLElement) => {
+    groups.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).tagName == 'BUTTON') {
+            const active = Array.from(groups.querySelectorAll('button')).find((el) => el.classList.contains('active'));
+            active?.classList.remove('active');
+            (e.target as HTMLElement).classList.add('active');
+            localStorage.setItem('group', (Number((e.target as HTMLElement).textContent) - 1).toString());
+            readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
+        }
+    });
 };
 
 const createGames = () => {
@@ -103,6 +216,10 @@ const createGames = () => {
 
     const a_link1 = document.createElement('a');
     const a_link2 = document.createElement('a');
+
+    a_link1.href = '#savannah';
+    a_link2.href = '#sprint';
+
     textbook_games.append(a_link1);
     textbook_games.append(a_link2);
     const textbook_game1 = document.createElement('div');

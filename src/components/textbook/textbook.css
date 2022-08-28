@@ -61,7 +61,6 @@ header {
 }
 
 .SVGIcon {
-  fill: currentColor;
   width: 1em;
   height: 1em;
   display: inline-block;
@@ -136,12 +135,24 @@ header {
   box-shadow: rgb(0 0 0 / 20%) 0px 0px 10px;
   user-select: none;
   transition: color 0.3s ease 0s;
+}
+
+.pagination li:not(.disabled) {
   cursor: pointer;
 }
 
-.pagination li:hover {
+.pagination li:not(.disabled):hover, .pagination li.active {
   border: 2px solid rgb(242, 166, 99);
+}
+
+.pagination li:hover a, .pagination li.active a
+{
   color: rgb(242, 166, 99);
+}
+
+.pagination li.disabled a
+{
+color: rgb(196, 196, 196);
 }
 
 .pagination a {
@@ -199,7 +210,6 @@ header {
 }
 
 .card_audio {
-  fill: currentColor;
   width: 1em;
   height: 1em;
   display: inline-block;

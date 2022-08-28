@@ -114,7 +114,7 @@ function burgerMenu() {
     links.forEach((el) => {
         el.addEventListener('click', () => {
             burger_menu_main?.classList.remove('burger_menu_active');
-            body.style.overflow = 'visible';
+            body.style.overflowY = 'visible';
             body.style.paddingRight = '0';
         });
     });
@@ -123,10 +123,10 @@ function burgerMenu() {
     function toggleMenu() {
         burger_menu_main?.classList.toggle('burger_menu_active');
         if (burger_menu_main?.classList.contains('burger_menu_active')) {
-            body.style.overflow = 'hidden';
+            body.style.overflowY = 'hidden';
             body.style.paddingRight = '17px';
         } else {
-            body.style.overflow = 'visible';
+            body.style.overflowY = 'visible';
             body.style.paddingRight = '0';
         }
     }

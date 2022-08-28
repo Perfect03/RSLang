@@ -9,7 +9,6 @@ export const dataStorage: IDataStorage = {
 
 export const setAudioChallengeRightAnswers = () => {
     dataStorage.audiochallenge__right__answers += 1;
-    whichRoundInGameAudio();
 };
 
 export const whichRoundInGameAudio = () => {

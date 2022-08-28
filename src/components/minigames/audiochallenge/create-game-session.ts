@@ -73,8 +73,8 @@ const addListenerToSkipBtn = () => {
     skip_btn.addEventListener('click', function () {
         dataStorage.audiochallenge__round__words = [];
         createRoundGameAudio(dataStorage.audiochallenge__session__words);
+        addPlayListenerToReplayBtn(event?.target as HTMLButtonElement);
         putWordsInGameAudio(dataStorage.audiochallenge__round__words);
         changeNextForIdkBtn();
-        addPlayListenerToReplayBtn(event?.target as HTMLButtonElement);
     });
 };

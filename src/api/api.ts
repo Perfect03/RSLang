@@ -22,7 +22,7 @@ const requestForWordById = async (id: string) => {
         const response = await axios.get(`${baseUrl}words/${id}`);
         return response.data;
     } catch (error) {
-        console.error(error);
+        console.log(error);
         return [];
     }
 };

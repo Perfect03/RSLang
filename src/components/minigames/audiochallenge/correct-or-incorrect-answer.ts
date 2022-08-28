@@ -3,14 +3,13 @@ import { dataStorage, setAudioChallengeRightAnswers, whichRoundInGameAudio } fro
 export const addListenersToWordsBtn = (button: HTMLButtonElement) => {
     const replay_btn = document.querySelector('.replay_btn') as HTMLButtonElement;
     button.addEventListener('click', function () {
+        whichRoundInGameAudio();
         if (button.dataset.id === replay_btn.dataset.id) {
             setAudioChallengeRightAnswers();
-            whichRoundInGameAudio();
             deleteCorrectWord(button.dataset.id as string);
             changeIdkForNexBtn();
             playSoundCorrectChoice();
         } else {
-            whichRoundInGameAudio();
             playSoundInCorrectChoice();
         }
     });

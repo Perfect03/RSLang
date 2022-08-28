@@ -9,26 +9,31 @@ const routes = {
     home: {
         template: createMain,
         title: 'RSLang',
+        name: 'Main',
         description: 'This is the home page',
     },
     textbook: {
         template: createTextbook,
         title: 'Textbook',
+        name: 'Textbook',
         description: 'This is the textbook page',
     },
     statistics: {
         template: createStatistics,
         title: 'Statistics',
+        name: 'Statistics',
         description: 'This is the statistics page',
     },
     dictionary: {
         template: createDictionary,
         title: 'Dictionary',
+        name: 'Dictionary',
         description: 'This is the dictionary page',
     },
     minigames: {
         template: createMinigames,
         title: 'Minigames',
+        name: 'Minigames',
         description: 'This is the minigames page',
     },
 };

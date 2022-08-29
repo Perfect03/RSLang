@@ -4,8 +4,9 @@ import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/statistics';
 import { createDictionary } from '../dictionary/dictionary';
 import { createMinigames } from '../minigames/minigames';
+import { header_content_page_name } from '../header/header';
 
-const routes = {
+export const routes = {
     home: {
         template: createMain,
         title: 'RSLang',
@@ -51,6 +52,7 @@ export const locationHandler = async (): Promise<void> => {
     //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
     route.template();
+    header_content_page_name.textContent = route.name;
     //(<HTMLElement>document.getElementById('content')).innerHTML = html;
     //const listeners = new Listen();
     //location === 'garage' ? listeners.ListenGarage() : listeners.ListenWinners();

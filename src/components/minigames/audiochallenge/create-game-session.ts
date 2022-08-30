@@ -1,13 +1,13 @@
 import { baseUrl, getWordById, getWords } from '../../../api/api';
 import { IWord, IWords } from '../../../interfaces & types/words';
 import { getRandomInt } from '../../utils/helpers';
-import { dataStorage } from '../../utils/storage';
-import { addListenersToWordsBtn, changeNextForIdkBtn } from './correct-or-incorrect-answer';
+import { dataStorage, setAudioChallengeCurrentWord, whichRoundInGameAudio } from '../../utils/storage';
+import { addListenersToWordsBtn, changeNextForIdkBtn, disableWordsButton } from './correct-or-incorrect-answer';
 
-export const createGameAudio = async () => {
-    const level = 0;
+export const createGameAudio = async (level: number) => {
     const session_words: IWords = [];
-
+    addListenersToWordsBtn();
+    addPlayListenerToReplayBtn();
     const readWords = async (page: number, group: number) => {
         const cards = await getWords(page, group);
         renderWords(cards);
@@ -22,8 +22,8 @@ export const createGameAudio = async () => {
 
     await readWords(getRandomInt(29), level);
     createRoundGameAudio(session_words);
-    addListenerToSkipBtn();
     putWordsInGameAudio(dataStorage.audiochallenge__round__words);
+    addListenerToSkipBtn();
 };
 
 const createRoundGameAudio = (cards: IWords) => {
@@ -34,47 +34,47 @@ const createRoundGameAudio = (cards: IWords) => {
     }
 };
 
-const putWordsInGameAudio = (cards: IWords) => {
+const putWordsInGameAudio = async (cards: IWords) => {
     const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
     for (let i = 0; i < 4; i++) {
         words_div[i].textContent = cards[i].wordTranslate;
         words_div[i].dataset.id = cards[i].id;
-        addListenersToWordsBtn(words_div[i]);
     }
-    addWordToReplayBtn();
-};
-
-const addWordToReplayBtn = () => {
-    const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
     const random_index = getRandomInt(4);
-    const replay_btn = document.querySelector('.replay_btn') as HTMLButtonElement;
-
-    replay_btn.dataset.id = words_div[random_index].dataset.id;
-
-    addPlayListenerToReplayBtn(replay_btn);
+    const word = await getWordById(words_div[random_index].dataset.id as string);
+    setAudioChallengeCurrentWord(word);
+    setCurrentWordAudioAndImage();
 };
 
-const addPlayListenerToReplayBtn = async (button: HTMLButtonElement) => {
-    const word = await getWordById(button.dataset.id as string);
+const addPlayListenerToReplayBtn = () => {
+    const replay_btn = document.querySelector('.replay_btn') as HTMLButtonElement;
     const audio = document.querySelector('.word_audio') as HTMLAudioElement;
-    const word_image = document.querySelector('.word_image') as HTMLImageElement;
-
-    audio.src = `${baseUrl}${word.audio}`;
-    word_image.src = `${baseUrl}${word.image}`;
-
-    button.addEventListener('click', function () {
+    replay_btn.addEventListener('click', function () {
         audio.play();
     });
 };
 
-const addListenerToSkipBtn = () => {
+export const addListenerToSkipBtn = () => {
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
 
     skip_btn.addEventListener('click', function () {
         dataStorage.audiochallenge__round__words = [];
         createRoundGameAudio(dataStorage.audiochallenge__session__words);
-        addPlayListenerToReplayBtn(event?.target as HTMLButtonElement);
         putWordsInGameAudio(dataStorage.audiochallenge__round__words);
         changeNextForIdkBtn();
+        whichRoundInGameAudio();
+        disableWordsButton(false);
+        if (dataStorage.audiochallenge__num__of__round === 11) {
+            console.log('Out of rounds');
+            console.log(dataStorage);
+        }
     });
+};
+
+export const setCurrentWordAudioAndImage = () => {
+    const audio = document.querySelector('.word_audio') as HTMLAudioElement;
+    audio.src = `${baseUrl}${dataStorage.audiochallenge__current__word.audio}`;
+
+    const word_image = document.querySelector('.word_image') as HTMLImageElement;
+    word_image.src = `${baseUrl}${dataStorage.audiochallenge__current__word.image}`;
 };

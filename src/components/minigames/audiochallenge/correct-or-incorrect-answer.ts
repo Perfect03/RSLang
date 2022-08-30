@@ -1,17 +1,20 @@
-import { dataStorage, setAudioChallengeRightAnswers, whichRoundInGameAudio } from '../../utils/storage';
+import { dataStorage, setAudioChallengeRightAnswers, setAudioChallengeWrongAnswers } from '../../utils/storage';
 
-export const addListenersToWordsBtn = (button: HTMLButtonElement) => {
-    const replay_btn = document.querySelector('.replay_btn') as HTMLButtonElement;
-    button.addEventListener('click', function () {
-        whichRoundInGameAudio();
-        if (button.dataset.id === replay_btn.dataset.id) {
-            setAudioChallengeRightAnswers();
-            deleteCorrectWord(button.dataset.id as string);
-            changeIdkForNexBtn();
-            playSoundCorrectChoice();
-        } else {
-            playSoundInCorrectChoice();
-        }
+export const addListenersToWordsBtn = () => {
+    const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
+    words_div.forEach((el) => {
+        el.addEventListener('click', function () {
+            disableWordsButton(true);
+            if (el.dataset.id === dataStorage.audiochallenge__current__word.id) {
+                setAudioChallengeRightAnswers(dataStorage.audiochallenge__current__word);
+                deleteCorrectWord(el.dataset.id as string);
+                changeIdkForNextBtn();
+                playSoundCorrectChoice();
+            } else {
+                setAudioChallengeWrongAnswers(dataStorage.audiochallenge__current__word);
+                playSoundInCorrectChoice();
+            }
+        });
     });
 };
 
@@ -41,7 +44,7 @@ const deleteCorrectWord = (wordId: string) => {
     }
 };
 
-const changeIdkForNexBtn = () => {
+const changeIdkForNextBtn = () => {
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
     skip_btn.innerText = 'Next';
     skip_btn.style.background = 'linear-gradient(rgb(82, 205, 228) 15%, rgb(191, 232, 142) 100%)';
@@ -53,4 +56,11 @@ export const changeNextForIdkBtn = () => {
     skip_btn.innerText = 'Skip';
     skip_btn.style.background = 'linear-gradient(rgb(247, 90, 109) 15%, rgb(219, 137, 200) 100%)';
     word_image.style.display = 'None';
+};
+
+export const disableWordsButton = (condition: boolean) => {
+    const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
+    words_div.forEach((el) => {
+        el.disabled = condition;
+    });
 };

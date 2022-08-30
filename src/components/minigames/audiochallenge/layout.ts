@@ -1,5 +1,5 @@
 import { deleteChildsOfMain } from '../../utils/delete-main-childs';
-import { dataStorage } from '../../utils/storage';
+import { createStatsPopUp } from './statistics-popup';
 
 export const createLayoutAudioChallenge = () => {
     console.log('AudioChallenge Layout');
@@ -42,7 +42,7 @@ export const createLayoutAudioChallenge = () => {
     deleteChildsOfMain();
 
     word_image.style.display = 'none';
-    progress_bar.innerText = `${dataStorage.audiochallenge__right__answers}/20`;
+    progress_bar.innerText = `0/10`;
 
     main.appendChild(audiochallenge_section);
     audiochallenge_section.appendChild(audiochallenge_wrapper);
@@ -69,4 +69,8 @@ export const createLayoutAudioChallenge = () => {
         word_div.classList.add(`word_div`);
         words_wrapper.appendChild(word_div);
     }
+    createStatsPopUp();
+    replay_btn_container.style.display = 'none';
+    words_wrapper.style.display = 'none';
+    skip_btn_container.style.display = 'none';
 };

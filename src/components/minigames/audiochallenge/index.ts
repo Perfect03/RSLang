@@ -6,4 +6,4 @@ import './assets/incorrect.mp3';
 import './assets/volume.png';
 
 createLayoutAudioChallenge();
-createGameAudio();
+createGameAudio(0);

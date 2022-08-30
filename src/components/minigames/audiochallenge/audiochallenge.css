@@ -124,6 +124,57 @@
     margin: 10px;
 }
 
+.stats_container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats_header {
+    height: 10%;
+    width: 100%;
+}
+
+.correct_answers_container {
+    height: 45%;
+    width: 100%;
+}
+
+.correct_answers {
+    width: 100%;
+    height: 100%;
+}
+
+.incorrect_answers_container {
+    height: 45%;
+    width: 100%;
+}
+
+.incorret_answers {
+    width: 100%;
+    height: 100%;
+}
+
+.correct_answers {
+    display: flex;
+    flex-direction: column;
+}
+
+.incorrect_answers {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.answer_div {
+    display: flex;
+    flex-direction: row;
+}
+
 @media (max-width: 740px) {
     .audiochallenge_game_container {
         height: 60vh;

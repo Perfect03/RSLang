@@ -1,4 +1,3 @@
-//import { signFunction } from '../../components/popup/signup';
 import { UserInfo } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
 

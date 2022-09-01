@@ -1,9 +1,9 @@
 .boxes_stat {
-    width: 300px;
+    width: 285px;
     height: 200px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-    margin: 25px;
+    margin: 30px;
 }
 
 .main_stat {

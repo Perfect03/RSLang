@@ -1,6 +1,10 @@
 import { deleteChildsOfMain } from '../../utils/delete-main-childs';
 import { createGameAudio } from './create-game-session';
 import { createLayoutAudioChallenge } from './layout';
+import './audiochallenge.css';
+import './assets/volume.png';
+import './assets/correct.mp3';
+import './assets/incorrect.mp3';
 
 export const audiochallengeLevelPage = () => {
     deleteChildsOfMain();

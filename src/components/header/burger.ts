@@ -52,7 +52,7 @@ export const createBurger = () => {
     burger_menu_link_audiochalenge.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_audiochalenge);
     burger_menu_link_audiochalenge.textContent = 'Audio Challenge';
-    burger_menu_link_audiochalenge.href = '#page-4';
+    burger_menu_link_audiochalenge.href = '#audioChallenge';
 
     const burger_menu_img_audiochalenge = document.createElement('img');
     burger_menu_img_audiochalenge.classList.add('burger_menu_img');

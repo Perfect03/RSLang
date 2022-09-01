@@ -3,7 +3,7 @@ import { createMain } from '../main/render';
 import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/statistics';
 import { createDictionary } from '../dictionary/dictionary';
-import { createMinigames } from '../minigames/minigames';
+import { audiochallengeLevelPage } from '../minigames/audiochallenge/audiochallenge-level';
 import { header_content_page_name } from '../header/header';
 
 export const routes = {
@@ -31,8 +31,8 @@ export const routes = {
         name: 'Dictionary',
         description: 'This is the dictionary page',
     },
-    minigames: {
-        template: createMinigames,
+    audioChallenge: {
+        template: audiochallengeLevelPage,
         title: 'Minigames',
         name: 'Minigames',
         description: 'This is the minigames page',

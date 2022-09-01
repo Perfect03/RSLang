@@ -3,3 +3,8 @@ export interface UserInfo {
     email: string;
     password: string;
 }
+
+export interface UserResponse {
+    email: string;
+    password: string;
+}

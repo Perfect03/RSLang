@@ -1,3 +1,5 @@
+import { UserResponse } from '../../interfaces & types/authorization';
+
 export const createLogin = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
     const popup_login = document.createElement('div');
@@ -69,5 +71,6 @@ export function loginFunction() {
     (document.querySelector('.login_email') as HTMLInputElement).value = '';
     (document.querySelector('.login_pass') as HTMLInputElement).value = '';
 
-    console.log(login_email, login_pass);
+    const UsersResponse: UserResponse = { email: login_email, password: login_pass };
+    return UsersResponse;
 }

@@ -3,7 +3,7 @@ import { createMain } from '../main/render';
 import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/statistics';
 import { createDictionary } from '../dictionary/dictionary';
-import { createMinigames } from '../minigames/minigames';
+import { createLayoutSprint } from '../minigames/sprint/layout';
 
 const routes = {
     home: {
@@ -26,9 +26,14 @@ const routes = {
         title: 'Dictionary',
         description: 'This is the dictionary page',
     },
-    minigames: {
-        template: createMinigames,
+    /*audioChallange: {
+        template: createLayoutAudioChallange,
         title: 'Minigames',
+        description: 'This is the minigames page',
+    },*/
+    sprint: {
+        template: createLayoutSprint,
+        title: 'Sprint',
         description: 'This is the minigames page',
     },
 };
@@ -45,7 +50,7 @@ export const locationHandler = async (): Promise<void> => {
     //state.view = location;
     //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
-    route.template();
+    route.template(0);
     //(<HTMLElement>document.getElementById('content')).innerHTML = html;
     //const listeners = new Listen();
     //location === 'garage' ? listeners.ListenGarage() : listeners.ListenWinners();

@@ -26,17 +26,16 @@ export const createStatsPopUp = () => {
     incorrect_answers_container.classList.add('incorrect_answers_container');
     incorrect_answers.classList.add('incorrect_answers');
     buttons_div.classList.add('buttons_div');
-    // repeat_btn.classList.add('repeat_btn');
     mainpage_btn.classList.add('mainpage_btn');
 
     stats_header.innerText = `Ваш результат: ${dataStorage.audiochallenge__round__right__answers.length}/10`;
     correct_answers_title.innerText = `Верные ответы: ${dataStorage.audiochallenge__round__right__answers.length}`;
     incorrect_answers_title.innerText = `Неверные ответы: ${dataStorage.audiochallenge__round__wrong__answers.length}`;
-    // repeat_btn.innerText = 'Сыграть еще раз';
+
     mainpage_btn.innerText = 'Выйти на главную страницу';
 
-    mainpage_a.href='#home';
-    mainpage_btn.style.cursor='pointer';
+    mainpage_a.href = '#home';
+    mainpage_btn.style.cursor = 'pointer';
 
     container.appendChild(stats_container);
     stats_container.appendChild(stats_header);
@@ -47,7 +46,6 @@ export const createStatsPopUp = () => {
     incorrect_answers_container.appendChild(incorrect_answers_title);
     incorrect_answers_container.appendChild(incorrect_answers);
     stats_container.appendChild(buttons_div);
-    // buttons_div.appendChild(repeat_btn);
     buttons_div.appendChild(mainpage_a);
     mainpage_a.appendChild(mainpage_btn);
 

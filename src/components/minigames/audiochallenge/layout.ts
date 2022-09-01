@@ -39,7 +39,7 @@ export const createLayoutAudioChallenge = () => {
     skip_btn.classList.add('skip_btn');
     skip_btn.textContent = 'Skip';
 
-    close_a.href='#home';
+    close_a.href = '#home';
 
     deleteChildsOfMain();
 
@@ -54,7 +54,7 @@ export const createLayoutAudioChallenge = () => {
     audiochallenge_header.appendChild(close_a);
 
     close_a.appendChild(close_btn);
-    close_btn.style.cursor='pointer';
+    close_btn.style.cursor = 'pointer';
 
     audiochallenge_wrapper.appendChild(audiochallenge_game_container);
 

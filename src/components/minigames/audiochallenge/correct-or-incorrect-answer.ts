@@ -1,4 +1,6 @@
 import { dataStorage, setAudioChallengeRightAnswers, setAudioChallengeWrongAnswers } from '../../utils/storage';
+import './assets/correct.mp3';
+import './assets/incorrect.mp3';
 
 export const addListenersToWordsBtn = () => {
     const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
@@ -10,19 +12,16 @@ export const addListenersToWordsBtn = () => {
                 deleteCorrectWord(el.dataset.id as string);
                 changeIdkForNextBtn();
                 playSoundCorrectChoice();
-                console.log(el.innerText);
             } else {
                 setAudioChallengeWrongAnswers(dataStorage.audiochallenge__current__word);
                 changeIdkForNextBtn();
                 playSoundInCorrectChoice();
-                console.log(el.innerText);
             }
         });
     });
 };
 
 export const playSoundCorrectChoice = () => {
-    console.log('Correct!');
     const word_image = document.querySelector('.word_image') as HTMLImageElement;
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
 
@@ -34,7 +33,6 @@ export const playSoundCorrectChoice = () => {
 };
 
 export const playSoundInCorrectChoice = () => {
-    console.log('Incorrect!');
     const word_image = document.querySelector('.word_image') as HTMLImageElement;
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
 

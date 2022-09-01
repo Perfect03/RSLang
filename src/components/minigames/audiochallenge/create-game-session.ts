@@ -7,6 +7,7 @@ import { addListenersToWordsBtn, changeNextForIdkBtn, disableWordsButton } from 
 import { createStatsPopUp } from './statistics-popup';
 
 export const createGameAudio = async (level: number) => {
+    resetStorageAudiochallenge();
     const session_words: IWords = [];
     addListenersToWordsBtn();
     addPlayListenerToReplayBtn();
@@ -62,18 +63,16 @@ export const addListenerToSkipBtn = () => {
     const skip_btn = document.querySelector('.skip_btn') as HTMLButtonElement;
 
     skip_btn.addEventListener('click', function () {
-        if (dataStorage.audiochallenge__num__of__round <= 10) {
+        whichRoundInGameAudio();
+        if (dataStorage.audiochallenge__num__of__round < 10) {
             dataStorage.audiochallenge__round__words = [];
             createRoundGameAudio(dataStorage.audiochallenge__session__words);
             putWordsInGameAudio(dataStorage.audiochallenge__round__words);
             changeNextForIdkBtn();
-            whichRoundInGameAudio();
             disableWordsButton(false);
         } else {
             createStatsPopUp();
             dataStorage.audiochallenge__num__of__round = 9;
-            whichRoundInGameAudio();
-            console.log(dataStorage);
         }
     });
 };
@@ -88,4 +87,29 @@ export const setCurrentWordAudioAndImage = () => {
 
     const word_image = document.querySelector('.word_image') as HTMLImageElement;
     word_image.src = `${baseUrl}${dataStorage.audiochallenge__current__word.image}`;
+};
+
+const resetStorageAudiochallenge = () => {
+    const emptyWord: IWord = {
+        id: '',
+        group: 0,
+        page: 0,
+        word: '',
+        image: '',
+        audio: '',
+        audioMeaning: '',
+        audioExample: '',
+        textMeaning: '',
+        textExample: '',
+        transcription: '',
+        textExampleTranslate: '',
+        textMeaningTranslate: '',
+        wordTranslate: '',
+    };
+    dataStorage.audiochallenge__num__of__round = 0;
+    dataStorage.audiochallenge__round__right__answers = [];
+    dataStorage.audiochallenge__round__wrong__answers = [];
+    dataStorage.audiochallenge__session__words = [];
+    dataStorage.audiochallenge__round__words = [];
+    dataStorage.audiochallenge__current__word = emptyWord;
 };

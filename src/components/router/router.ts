@@ -2,8 +2,7 @@ import { IPage } from '../../interfaces & types/page';
 import { createMain } from '../main/render';
 import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/statistics';
-import { createDictionary } from '../dictionary/dictionary';
-import { audiochallengeLevelPage } from '../minigames/audiochallenge/audiochallenge-level';
+import { audiochallengeLevelPage } from '../minigames/choose-level';
 import { header_content_page_name } from '../header/header';
 
 export const routes = {
@@ -24,12 +23,6 @@ export const routes = {
         title: 'Statistics',
         name: 'Statistics',
         description: 'This is the statistics page',
-    },
-    dictionary: {
-        template: createDictionary,
-        title: 'Dictionary',
-        name: 'Dictionary',
-        description: 'This is the dictionary page',
     },
     audioChallenge: {
         template: audiochallengeLevelPage,

@@ -1,8 +1,8 @@
-import { deleteChildsOfMain } from '../../utils/delete-main-childs';
-import { createGameAudio } from './create-game-session';
-import { createLayoutAudioChallenge } from './layout';
-import './audiochallenge.css';
-import './assets/volume.png';
+import { deleteChildsOfMain } from '../utils/delete-main-childs';
+import { createGameAudio } from './audiochallenge/create-game-session';
+import { createLayoutAudioChallenge } from './audiochallenge/layout';
+import './minigames.css';
+import './audiochallenge/assets/volume.png';
 
 export const audiochallengeLevelPage = () => {
     deleteChildsOfMain();
@@ -18,7 +18,7 @@ export const audiochallengeLevelPage = () => {
     levels_div.classList.add('levels_div');
     levels_title.classList.add('levels_title');
 
-    levels_title.innerText = 'Select the Level';
+    levels_title.innerText = 'Choose the difficulty level:';
 
     main.appendChild(levels_wrapper);
     levels_wrapper.appendChild(levels_title);

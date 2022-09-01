@@ -1,1 +1,1 @@
-export type IPage = 'home' | 'textbook' | 'statistics' | 'dictionary' | 'audioChallenge';
+export type IPage = 'home' | 'textbook' | 'statistics' | 'audioChallenge';

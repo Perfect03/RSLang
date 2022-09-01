@@ -35,18 +35,7 @@ export const createBurger = () => {
     const burger_menu_img_textbook = document.createElement('img');
     burger_menu_img_textbook.classList.add('burger_menu_img');
     burger_menu_link_textbook.append(burger_menu_img_textbook);
-    burger_menu_img_textbook.src = 'components/header/header-assets/textbook.png';
-
-    const burger_menu_link_dictionary = document.createElement('a');
-    burger_menu_link_dictionary.classList.add('burger_menu_link');
-    burger_menu_nav.append(burger_menu_link_dictionary);
-    burger_menu_link_dictionary.textContent = 'Dictionary';
-    burger_menu_link_dictionary.href = '#page-3';
-
-    const burger_menu_img_dictionary = document.createElement('img');
-    burger_menu_img_dictionary.classList.add('burger_menu_img');
-    burger_menu_link_dictionary.append(burger_menu_img_dictionary);
-    burger_menu_img_dictionary.src = 'components/header/header-assets/dictionary.png';
+    burger_menu_img_textbook.src = 'components/header/header-assets/dictionary.png';
 
     const burger_menu_link_audiochalenge = document.createElement('a');
     burger_menu_link_audiochalenge.classList.add('burger_menu_link');

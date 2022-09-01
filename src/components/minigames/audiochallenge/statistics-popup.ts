@@ -17,6 +17,7 @@ export const createStatsPopUp = () => {
     const buttons_div = document.createElement('div');
     // const repeat_btn = document.createElement('button');
     const mainpage_btn = document.createElement('button');
+    const mainpage_a = document.createElement('a');
 
     stats_container.classList.add('stats_container');
     stats_header.classList.add('stats_header');
@@ -34,6 +35,9 @@ export const createStatsPopUp = () => {
     // repeat_btn.innerText = 'Сыграть еще раз';
     mainpage_btn.innerText = 'Выйти на главную страницу';
 
+    mainpage_a.href='#home';
+    mainpage_btn.style.cursor='pointer';
+
     container.appendChild(stats_container);
     stats_container.appendChild(stats_header);
     stats_container.appendChild(correct_answers_container);
@@ -44,7 +48,8 @@ export const createStatsPopUp = () => {
     incorrect_answers_container.appendChild(incorrect_answers);
     stats_container.appendChild(buttons_div);
     // buttons_div.appendChild(repeat_btn);
-    buttons_div.appendChild(mainpage_btn);
+    buttons_div.appendChild(mainpage_a);
+    mainpage_a.appendChild(mainpage_btn);
 
     dataStorage.audiochallenge__round__right__answers.forEach((el) => {
         const answer_div = document.createElement('div');

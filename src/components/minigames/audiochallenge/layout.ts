@@ -7,6 +7,7 @@ export const createLayoutAudioChallenge = () => {
     const audiochallenge_wrapper = document.createElement('section');
     const audiochallenge_header = document.createElement('div');
     const progress_bar = document.createElement('div');
+    const close_a = document.createElement('a');
     const close_btn = document.createElement('button');
     const audiochallenge_game_container = document.createElement('div');
     const replay_btn_container = document.createElement('div');
@@ -38,6 +39,8 @@ export const createLayoutAudioChallenge = () => {
     skip_btn.classList.add('skip_btn');
     skip_btn.textContent = 'Skip';
 
+    close_a.href='#home';
+
     deleteChildsOfMain();
 
     word_image.style.display = 'none';
@@ -48,7 +51,10 @@ export const createLayoutAudioChallenge = () => {
 
     audiochallenge_wrapper.appendChild(audiochallenge_header);
     audiochallenge_header.appendChild(progress_bar);
-    audiochallenge_header.appendChild(close_btn);
+    audiochallenge_header.appendChild(close_a);
+
+    close_a.appendChild(close_btn);
+    close_btn.style.cursor='pointer';
 
     audiochallenge_wrapper.appendChild(audiochallenge_game_container);
 

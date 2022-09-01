@@ -1,5 +1,4 @@
 import { deleteChildsOfMain } from '../../utils/delete-main-childs';
-import { createStatsPopUp } from './statistics-popup';
 
 export const createLayoutAudioChallenge = () => {
     console.log('AudioChallenge Layout');
@@ -69,7 +68,13 @@ export const createLayoutAudioChallenge = () => {
         word_div.classList.add(`word_div`);
         words_wrapper.appendChild(word_div);
     }
-    createStatsPopUp();
+};
+
+export const hideGameDiv = () => {
+    const replay_btn_container = document.querySelector('.replay_btn_container') as HTMLDivElement;
+    const words_wrapper = document.querySelector('.words_wrapper') as HTMLDivElement;
+    const skip_btn_container = document.querySelector('.skip_btn_container') as HTMLDivElement;
+
     replay_btn_container.style.display = 'none';
     words_wrapper.style.display = 'none';
     skip_btn_container.style.display = 'none';

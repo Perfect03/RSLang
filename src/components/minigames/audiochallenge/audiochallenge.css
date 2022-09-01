@@ -128,6 +128,7 @@
     display: flex;
     width: 100%;
     height: 100%;
+    gap: 15px;
     flex-direction: column;
     align-content: space-around;
     align-items: center;
@@ -135,12 +136,17 @@
 }
 
 .stats_header {
-    height: 10%;
+    height: 9%;
     width: 100%;
 }
 
+.audio_btn {
+    width: 30px;
+    height: 30px;
+}
+
 .correct_answers_container {
-    height: 45%;
+    height: 33%;
     width: 100%;
 }
 
@@ -150,7 +156,7 @@
 }
 
 .incorrect_answers_container {
-    height: 45%;
+    height: 38%;
     width: 100%;
 }
 
@@ -160,19 +166,80 @@
 }
 
 .correct_answers {
+    height: 7em;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .incorrect_answers {
+    height: 7em;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .answer_div {
+    gap: 10px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.buttons_div {
+    display: flex;
+    height: 20%;
+    width: 100%;
+    gap: 50px;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.level_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    
+    width: 100%;
+    height: 80vh;
+    
+}
+
+.levels_div {
+    gap: 4px;
+    display: flex;
+    flex-direction: row;    
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+    width: 80%;
+    height: 15%;
+
+    border: dashed darkmagenta 3px;
+    border-radius: 20px;
+}
+
+.levels_title {
+    font-size: 36px;
+}
+
+.level {
+    width: 16%;
+    height: 95%;
+
+    border: 1px solid chocolate;
+    border-radius: 25%;
+
+    font-size: 2rem;
 }
 
 @media (max-width: 740px) {

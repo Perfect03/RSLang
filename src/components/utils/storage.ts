@@ -2,7 +2,7 @@ import { IDataStorage } from '../../interfaces & types/storage-interface';
 import { IWord } from '../../interfaces & types/words';
 
 export const dataStorage: IDataStorage = {
-    audiochallenge__num__of__round: 0,
+    audiochallenge__num__of__round: 1,
     audiochallenge__round__right__answers: [],
     audiochallenge__round__wrong__answers: [],
     audiochallenge__session__words: [],

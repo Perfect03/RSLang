@@ -1,4 +1,5 @@
 import { UserResponse } from '../../interfaces & types/authorization';
+import { addLoginRequest } from './login-authorization';
 
 export const createLogin = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
@@ -58,18 +59,12 @@ export const createLogin = () => {
             });
         });
     });
-    const loginSave = document.querySelector('.login-save');
-    loginSave?.addEventListener('click', loginFunction);
+    addLoginRequest();
 };
 
 export function loginFunction() {
     const login_email = (document.querySelector('.login_email') as HTMLInputElement).value;
     const login_pass = (document.querySelector('.login_pass') as HTMLInputElement).value;
-
-    (document.querySelector('.popup_login') as HTMLElement).style.display = 'none';
-
-    (document.querySelector('.login_email') as HTMLInputElement).value = '';
-    (document.querySelector('.login_pass') as HTMLInputElement).value = '';
 
     const UsersResponse: UserResponse = { email: login_email, password: login_pass };
     return UsersResponse;

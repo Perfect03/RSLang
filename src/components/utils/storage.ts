@@ -3,11 +3,11 @@ import { IWord } from '../../interfaces & types/words';
 
 export const dataStorage: IDataStorage = {
     audiochallenge__num__of__round: 1,
-    audiochallenge__round__right__answers: [],
-    audiochallenge__round__wrong__answers: [],
+    game__round__right__answers: [],
+    game__round__wrong__answers: [],
     audiochallenge__session__words: [],
     audiochallenge__round__words: [],
-    audiochallenge__current__word: {
+    game__current__word: {
         id: '',
         group: 0,
         page: 0,
@@ -23,13 +23,19 @@ export const dataStorage: IDataStorage = {
         textMeaningTranslate: '',
         wordTranslate: '',
     },
+    sprint__state: {
+        score: 0,
+        plus: 10,
+        circles: 0,
+        correctness: true,
+    },
 };
 
-export const setAudioChallengeRightAnswers = async (word: IWord) => {
-    dataStorage.audiochallenge__round__right__answers.push(word);
+export const setRightAnswers = async (word: IWord) => {
+    dataStorage.game__round__right__answers.push(word);
 };
-export const setAudioChallengeWrongAnswers = async (word: IWord) => {
-    dataStorage.audiochallenge__round__wrong__answers.push(word);
+export const setWrongAnswers = async (word: IWord) => {
+    dataStorage.game__round__wrong__answers.push(word);
 };
 
 export const whichRoundInGameAudio = () => {
@@ -38,6 +44,6 @@ export const whichRoundInGameAudio = () => {
     progress_bar.textContent = `${dataStorage.audiochallenge__num__of__round.toString()}/10`;
 };
 
-export const setAudioChallengeCurrentWord = (word: IWord) => {
-    dataStorage.audiochallenge__current__word = word;
+export const setCurrentWord = (word: IWord) => {
+    dataStorage.game__current__word = word;
 };

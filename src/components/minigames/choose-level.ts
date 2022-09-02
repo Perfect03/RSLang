@@ -1,10 +1,11 @@
 import { deleteChildsOfMain } from '../utils/delete-main-childs';
 import { createGameAudio } from './audiochallenge/create-game-session';
 import { createLayoutAudioChallenge } from './audiochallenge/layout';
+import { createLayoutSprint } from './sprint/layout';
 import './minigames.css';
-import './audiochallenge/assets/volume.png';
+import './assets/volume.png';
 
-export const audiochallengeLevelPage = () => {
+export const chooseLevelPage = (game: string) => {
     deleteChildsOfMain();
     const header_title = document.querySelector('.header_content_page_name') as HTMLHeadingElement;
     header_title.innerText = 'AudioChallenge';
@@ -35,8 +36,11 @@ export const audiochallengeLevelPage = () => {
         levels_div.appendChild(level);
 
         level.addEventListener('click', function () {
-            createLayoutAudioChallenge();
-            createGameAudio(Number(level.dataset.level));
+            if (game == 'sprint') createLayoutSprint(Number(level.dataset.level));
+            else {
+                createLayoutAudioChallenge();
+                createGameAudio(Number(level.dataset.level));
+            }
         });
     }
 };

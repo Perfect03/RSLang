@@ -1,9 +1,4 @@
-import {
-    dataStorage,
-    setAudioChallengeRightAnswers,
-    setAudioChallengeWrongAnswers,
-    whichRoundInGameAudio,
-} from '../../utils/storage';
+import { dataStorage, setRightAnswers, setWrongAnswers, whichRoundInGameAudio } from '../../utils/storage';
 import {
     changeIdkForNextBtn,
     changeNextForIdkBtn,
@@ -13,7 +8,7 @@ import {
     playSoundInCorrectChoice,
 } from './correct-or-incorrect-answer';
 import { createRoundGameAudio, putWordsInGameAudio } from './create-game-session';
-import { createStatsPopUp } from './statistics-popup';
+import { createStatsPopUp } from '../statistics-popup';
 
 export const addKeyBoardToGame = () => {
     document.addEventListener('keydown', function (event) {
@@ -40,14 +35,14 @@ export const addKeyBoardToGame = () => {
 const choiceWithKeyboard = (id: string) => {
     disableWordsButton(true);
     const word_div = document.getElementById(id) as HTMLDivElement;
-    setAudioChallengeWrongAnswers;
-    if (word_div.dataset.id === dataStorage.audiochallenge__current__word.id) {
-        setAudioChallengeRightAnswers(dataStorage.audiochallenge__current__word);
+    setWrongAnswers;
+    if (word_div.dataset.id === dataStorage.game__current__word.id) {
+        setRightAnswers(dataStorage.game__current__word);
         deleteCorrectWord(word_div.dataset.id as string);
         changeIdkForNextBtn();
         playSoundCorrectChoice();
     } else {
-        setAudioChallengeWrongAnswers(dataStorage.audiochallenge__current__word);
+        setWrongAnswers(dataStorage.game__current__word);
         changeIdkForNextBtn();
         playSoundInCorrectChoice();
     }

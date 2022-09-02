@@ -52,7 +52,7 @@ export const createBurger = () => {
     burger_menu_link_sprint.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_sprint);
     burger_menu_link_sprint.textContent = 'Sprint';
-    burger_menu_link_sprint.href = '#page-4';
+    burger_menu_link_sprint.href = '#sprint';
 
     const burger_menu_img_sprint = document.createElement('img');
     burger_menu_img_sprint.classList.add('burger_menu_img');

@@ -5,7 +5,7 @@ import { createStatistics } from '../statistics/statistics';
 import { chooseLevelPage } from '../minigames/choose-level';
 import { header_content_page_name } from '../header/header';
 
-const routes = {
+export const routes = {
     home: {
         template: createMain,
         title: 'RSLang',

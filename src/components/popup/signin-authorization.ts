@@ -1,5 +1,12 @@
 import { createUser } from '../../api/authorization/signin';
-import { signFunction } from '../../components/popup/signup';
+import { signFunction } from './signup';
 
-const user = signFunction();
-createUser(user);
+export let userTest = {};
+
+export const addSignUpListener = () => {
+    const signSave = document.querySelector('.sign-save') as HTMLButtonElement;
+    signSave.addEventListener('click', function () {
+        userTest = signFunction();
+        createUser(signFunction());
+    });
+};

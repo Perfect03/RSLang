@@ -1,4 +1,5 @@
 import { UserInfo } from '../../interfaces & types/authorization';
+import { addSignUpListener } from './signin-authorization';
 
 export const createSignIn = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
@@ -56,8 +57,7 @@ export const createSignIn = () => {
             });
         });
     });
-    const signSave = document.querySelector('.sign-save');
-    signSave?.addEventListener('click', signFunction);
+    addSignUpListener();
 };
 
 export const signFunction = () => {

@@ -12,5 +12,5 @@ export const createUser = async (user: UserInfo) => {
     });
     const content = await rawResponse.json();
 
-    console.log(content);
+    console.log('createUser:', content);
 };

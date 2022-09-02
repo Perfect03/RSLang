@@ -2,33 +2,32 @@ import { IPage } from '../../interfaces & types/page';
 import { createMain } from '../main/render';
 import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/statistics';
-import { createDictionary } from '../dictionary/dictionary';
-import { createMinigames } from '../minigames/minigames';
+import { audiochallengeLevelPage } from '../minigames/choose-level';
+import { header_content_page_name } from '../header/header';
 
-const routes = {
+export const routes = {
     home: {
         template: createMain,
         title: 'RSLang',
+        name: 'Main',
         description: 'This is the home page',
     },
     textbook: {
         template: createTextbook,
         title: 'Textbook',
+        name: 'Textbook',
         description: 'This is the textbook page',
     },
     statistics: {
         template: createStatistics,
         title: 'Statistics',
+        name: 'Statistics',
         description: 'This is the statistics page',
     },
-    dictionary: {
-        template: createDictionary,
-        title: 'Dictionary',
-        description: 'This is the dictionary page',
-    },
-    minigames: {
-        template: createMinigames,
+    audioChallenge: {
+        template: audiochallengeLevelPage,
         title: 'Minigames',
+        name: 'Minigames',
         description: 'This is the minigames page',
     },
 };
@@ -46,6 +45,7 @@ export const locationHandler = async (): Promise<void> => {
     //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
     route.template();
+    header_content_page_name.textContent = route.name;
     //(<HTMLElement>document.getElementById('content')).innerHTML = html;
     //const listeners = new Listen();
     //location === 'garage' ? listeners.ListenGarage() : listeners.ListenWinners();

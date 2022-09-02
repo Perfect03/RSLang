@@ -1,21 +1,11 @@
 import './textbook.css';
-import { readWords } from './index';
+import { readWords, renderWords } from './index';
+import { difficultWords } from './storage';
+import { IWord } from '../../interfaces & types/words';
 
 export const createTextbook = () => {
     const textbook = document.createElement('div');
     textbook.id = 'textbook';
-    const header = document.createElement('header');
-    header.classList.add('header-textbook');
-    const header_left = document.createElement('div');
-    header_left.classList.add('header_left');
-    const header_right = document.createElement('div');
-    header_right.classList.add('header_right');
-    const h1 = document.createElement('h1');
-    h1.textContent = 'TextBook';
-
-    header_left.append(h1);
-    header.append(header_left);
-    header.append(header_right);
 
     const pagination = createPagination(Number(localStorage.getItem('page')));
     const textbook_words = document.createElement('div');
@@ -37,7 +27,6 @@ export const createTextbook = () => {
     while (main.hasChildNodes()) {
         main.removeChild(main.firstChild as HTMLElement);
     }
-    (main as HTMLElement).append(header);
     (main as HTMLElement).append(textbook);
     listenPagination(pagination as HTMLElement);
     listenGroups(groups as HTMLElement);
@@ -180,14 +169,14 @@ const createGroups = (activeItem: number) => {
 
     const groups_title = document.createElement('h6');
     groups_title.classList.add('groups_title');
-    groups_title.textContent = 'Groups';
+    groups_title.textContent = 'Degree of difficulty:';
     const groups_buttons = document.createElement('div');
     groups_buttons.classList.add('groups_buttons');
     groups.append(groups_title);
     groups.append(groups_buttons);
 
     const button = [] as HTMLElement[];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
         button[i] = document.createElement('button');
         button[i].textContent = `${i + 1}`;
         groups_buttons.append(button[i]);
@@ -204,9 +193,19 @@ const listenGroups = (groups: HTMLElement) => {
             active?.classList.remove('active');
             (e.target as HTMLElement).classList.add('active');
             localStorage.setItem('group', (Number((e.target as HTMLElement).textContent) - 1).toString());
-            readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
+            if (Number((e.target as HTMLElement).textContent) - 1 == 6) renderWords(difficultWords);
+            else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
         }
     });
+};
+
+export const difficultWord = (word: IWord) => {
+    difficultWords.push(word);
+    localStorage.setItem('difficultWords', `${difficultWords.join()}`);
+};
+
+export const deleteWord = (word: IWord) => {
+    difficultWords.push(word);
 };
 
 const createGames = () => {
@@ -217,7 +216,7 @@ const createGames = () => {
     const a_link1 = document.createElement('a');
     const a_link2 = document.createElement('a');
 
-    a_link1.href = '#savannah';
+    a_link1.href = '#audioChallenge';
     a_link2.href = '#sprint';
 
     textbook_games.append(a_link1);
@@ -236,10 +235,10 @@ const createGames = () => {
     textbook_game2.append(game_title2);
     textbook_game1.classList.add('textbook_game');
     textbook_game2.classList.add('textbook_game');
-    game_title1.textContent = 'Savannah';
+    game_title1.textContent = 'Audio Challenge';
     game_title2.textContent = 'Sprint';
-    game_img1.setAttribute('src', 'components/textbook/textbook-assets/savannah.png');
-    game_img2.setAttribute('src', 'components/textbook/textbook-assets/sprint.png');
+    game_img1.setAttribute('src', 'components/textbook/textbook-assets/headphones.png');
+    game_img2.setAttribute('src', 'components/textbook/textbook-assets/running.png');
     game_img1.setAttribute('alt', 'img');
     game_img2.setAttribute('alt', 'img');
 

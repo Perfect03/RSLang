@@ -34,9 +34,14 @@ export const createFirstSection = () => {
     main_section_one_content_p.textContent =
         'Memorizing English words can be fun and challenging. Play games, listen to pronunciation, improve your knowledge. With our app, learning is a joy.';
 
+    const main_section_one_content_button_a = document.createElement('a');
+    main_section_one_content_button_a.classList.add('main_section_one_content_button_a');
+    main_section_one_content.appendChild(main_section_one_content_button_a);
+    main_section_one_content_button_a.href = '#textbook';
+
     const main_section_one_content_button = document.createElement('button');
     main_section_one_content_button.classList.add('main_section_one_content_button', 'main_page_button', 'custom-btn');
-    main_section_one_content.appendChild(main_section_one_content_button);
+    main_section_one_content_button_a.appendChild(main_section_one_content_button);
     main_section_one_content_button.textContent = "LET'S GO";
 
     const main_section_one_img = document.createElement('img');

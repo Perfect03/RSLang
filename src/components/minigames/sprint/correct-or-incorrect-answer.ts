@@ -1,11 +1,10 @@
-import { dataStorage } from './state';
-import { printWords } from './layout';
+import { dataStorage, setRightAnswers, setWrongAnswers } from '../../utils/storage';
 
 export const checkAnswer = (e: MouseEvent) => {
     let result;
     if (
-        ((e.target as HTMLElement).textContent === 'right' && dataStorage.correctness) ||
-        ((e.target as HTMLElement).textContent === 'wrong' && !dataStorage.correctness)
+        ((e.target as HTMLElement).textContent === 'right' && dataStorage.sprint__state.correctness) ||
+        ((e.target as HTMLElement).textContent === 'wrong' && !dataStorage.sprint__state.correctness)
     )
         result = true;
     else result = false;
@@ -14,23 +13,31 @@ export const checkAnswer = (e: MouseEvent) => {
 
 export const changeResult = (res: boolean) => {
     if (res) {
-        dataStorage.score += dataStorage.plus;
-        if (dataStorage.circles < 3) dataStorage.circles++;
+        setRightAnswers(dataStorage.game__current__word);
+        const audio = new Audio('components/minigames/assets/correct.mp3');
+        audio.play();
+        dataStorage.sprint__state.score += dataStorage.sprint__state.plus;
+        if (dataStorage.sprint__state.circles < 3) dataStorage.sprint__state.circles++;
         else {
-            dataStorage.circles = 0;
-            dataStorage.plus += 10;
+            dataStorage.sprint__state.circles = 0;
+            dataStorage.sprint__state.plus += 10;
         }
     } else {
-        dataStorage.circles = 0;
-        dataStorage.plus = 10;
+        setWrongAnswers(dataStorage.game__current__word);
+        const audio = new Audio('components/minigames/assets/incorrect.mp3');
+        audio.play();
+        dataStorage.sprint__state.circles = 0;
+        dataStorage.sprint__state.plus = 10;
     }
-    drawResult(res);
+    drawResult();
 };
 
-export const drawResult = (res: boolean) => {
-    (document.querySelector('.points_score') as HTMLElement).textContent = dataStorage.score.toString();
-    drawCircles(dataStorage.circles);
-    (document.querySelector('.points_plus') as HTMLElement).textContent = `+${dataStorage.plus.toString()} points`;
+export const drawResult = () => {
+    (document.querySelector('.points_score') as HTMLElement).textContent = dataStorage.sprint__state.score.toString();
+    drawCircles(dataStorage.sprint__state.circles);
+    (document.querySelector(
+        '.points_plus'
+    ) as HTMLElement).textContent = `+${dataStorage.sprint__state.plus.toString()} points`;
 };
 
 export const drawCircles = (n: number) => {

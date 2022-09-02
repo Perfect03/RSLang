@@ -1,3 +1,5 @@
+export const header_content_page_name = document.createElement('h1');
+
 export const createHeader = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
     const header = document.createElement('header');
@@ -23,7 +25,6 @@ export const createHeader = () => {
     header_content_page.classList.add('header_content_page');
     header_content.appendChild(header_content_page);
 
-    const header_content_page_name = document.createElement('h1');
     header_content_page_name.classList.add('header_content_page_name');
     header_content_page.appendChild(header_content_page_name);
     header_content_page_name.textContent = 'Main';
@@ -65,4 +66,6 @@ export const createHeader = () => {
     header_content_login_button.classList.add('main_page_button', 'custom-btn', 'open_pop_login');
     header_content_login.appendChild(header_content_login_button);
     header_content_login_button.textContent = 'LOGIN';
+
+    return header_content_page_name;
 };

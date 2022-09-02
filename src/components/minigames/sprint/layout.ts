@@ -1,12 +1,14 @@
 import { checkAnswer } from './correct-or-incorrect-answer';
 import { getWords } from '../../../api/api';
 import { IWord } from '../../../interfaces & types/words';
-import { dataStorage } from './state';
+import { dataStorage, setCurrentWord } from '../../utils/storage';
+import { createStatsPopUp } from '../statistics-popup';
 
 import './sprint.css';
 
 export const createLayoutSprint = (level: number) => {
-    const sprint = document.createElement('div');
+    const sprint = document.createElement('section');
+    sprint.classList.add('game_container');
     sprint.id = 'sprint';
     const game = document.createElement('div');
     game.classList.add('game');
@@ -72,17 +74,23 @@ export const createLayoutSprint = (level: number) => {
     button_right.append(button_right_span);
     button_wrong.append(button_wrong_span);
 
-    const accuracy_circle_progress_percents = document.createElement('div');
-    const accuracy_circle_progress_percents_wrapper = document.createElement('div');
-    const accuracy_circle_progress_percents_span = document.createElement('span');
-    accuracy_circle_progress_percents.classList.add('accuracy_circle_progress_percents');
-    accuracy_circle_progress_percents_wrapper.classList.add('accuracy_circle_progress_percents_wrapper');
-    accuracy_circle_progress_percents_span.classList.add('accuracy_circle_progress_percents_span');
-    accuracy_circle_progress_percents_span.textContent = '60';
+    const progress_percents = document.createElement('div');
+    const progress_percents_wrapper = document.createElement('div');
+    const progress_percents_span = document.createElement('span');
+    progress_percents.classList.add('progress_percents');
+    progress_percents_wrapper.classList.add('progress_percents_wrapper');
+    progress_percents_span.classList.add('progress_percents_span');
+    progress_percents_span.textContent = '60';
 
-    seconds.append(accuracy_circle_progress_percents);
-    accuracy_circle_progress_percents.append(accuracy_circle_progress_percents_wrapper);
-    accuracy_circle_progress_percents_wrapper.append(accuracy_circle_progress_percents_span);
+    let timer = setTimeout(function tick() {
+        progress_percents_span.textContent = (Number(progress_percents_span.textContent) - 1).toString();
+        if (Number(progress_percents_span.textContent)) timer = setTimeout(tick, 1000);
+        else createStatsPopUp();
+    }, 1000);
+
+    seconds.append(progress_percents);
+    progress_percents.append(progress_percents_wrapper);
+    progress_percents_wrapper.append(progress_percents_span);
     sprint.append(game);
     const main = document.querySelector('main') as HTMLElement;
     while (main.hasChildNodes()) {
@@ -90,33 +98,37 @@ export const createLayoutSprint = (level: number) => {
     }
     (main as HTMLElement).append(sprint);
 
-    printWords(level);
+    printWord(level);
 
     [button_right, button_wrong].forEach((el) => {
         el.addEventListener('click', (e) => {
             checkAnswer(e);
-            printWords(level);
+            printWord(level);
         });
     });
 };
 
-export const printWords = async (level: number) => {
+export const printWord = async (level: number) => {
     const rusDOM = document.querySelector('.word_russian');
     const engDOM = document.querySelector('.word_english');
     const rusWords = [];
     const engWords = [];
 
     const page = Math.random() % 30;
-    rusWords.push(...(await getWords(page, level)).map((el) => el.wordTranslate));
-    engWords.push(...(await getWords(page, level)).map((el) => el.word));
 
-    const b = Math.floor(Math.random() * 2);
     const i = Math.floor(Math.random() * 20);
+    const b = Math.floor(Math.random() * 2);
     const j = b ? i : getRandomNotEqual(i);
-    (rusDOM as HTMLElement).textContent = rusWords[i];
-    (engDOM as HTMLElement).textContent = engWords[j];
 
-    dataStorage.correctness = Boolean(b);
+    const words = await getWords(page, level - 1);
+    const currentEngWord = words[i];
+    const currentRusWord = words[j];
+
+    (engDOM as HTMLElement).textContent = currentEngWord.word;
+    (rusDOM as HTMLElement).textContent = currentRusWord.wordTranslate;
+
+    setCurrentWord(currentEngWord);
+    dataStorage.sprint__state.correctness = Boolean(b);
 };
 
 const getRandomNotEqual = (i: number) => {

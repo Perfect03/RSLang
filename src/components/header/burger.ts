@@ -102,7 +102,7 @@ function burgerMenu() {
 
     links.forEach((el) => {
         el.addEventListener('click', () => {
-            burger_menu_main?.classList.remove('burger_menu_active');
+            (burger_menu_main as HTMLElement).classList.remove('burger_menu_active');
             body.style.overflowY = 'visible';
             body.style.paddingRight = '0';
         });
@@ -110,8 +110,8 @@ function burgerMenu() {
     overlay?.addEventListener('click', () => toggleMenu());
 
     function toggleMenu() {
-        burger_menu_main?.classList.toggle('burger_menu_active');
-        if (burger_menu_main?.classList.contains('burger_menu_active')) {
+        (burger_menu_main as HTMLElement).classList.toggle('burger_menu_active');
+        if ((burger_menu_main as HTMLElement).classList.contains('burger_menu_active')) {
             body.style.overflowY = 'hidden';
             body.style.paddingRight = '17px';
         } else {

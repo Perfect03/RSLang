@@ -1,3 +1,5 @@
+import { UserInfo } from '../../interfaces & types/authorization';
+
 export const createSignIn = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
     const popup_registration = document.createElement('div');
@@ -22,21 +24,18 @@ export const createSignIn = () => {
     popup_registration_wind_form.appendChild(popup_registration_wind_form_name);
     popup_registration_wind_form_name.type = 'name';
     popup_registration_wind_form_name.placeholder = 'Name';
-    popup_registration_wind_form_name.onchange = signFunction;
 
     const popup_registration_wind_form_email = document.createElement('input');
     popup_registration_wind_form_email.classList.add('popup_input', 'sign_email');
     popup_registration_wind_form.appendChild(popup_registration_wind_form_email);
     popup_registration_wind_form_email.type = 'email';
     popup_registration_wind_form_email.placeholder = 'E-mail';
-    popup_registration_wind_form_email.onchange = signFunction;
 
     const popup_registration_wind_form_pass = document.createElement('input');
     popup_registration_wind_form_pass.classList.add('popup_input', 'sign_pass');
     popup_registration_wind_form.appendChild(popup_registration_wind_form_pass);
     popup_registration_wind_form_pass.type = 'password';
     popup_registration_wind_form_pass.placeholder = 'Password';
-    popup_registration_wind_form_pass.onchange = signFunction;
 
     const popup_registration_wind_form_btn = document.createElement('a');
     popup_registration_wind_form_btn.classList.add('main_page_button', 'custom-btn', 'login-btn', 'sign-save');
@@ -44,25 +43,24 @@ export const createSignIn = () => {
     popup_registration_wind_form_btn.href = '#';
     popup_registration_wind_form_btn.textContent = 'SIGN UP';
 
-    const buttonSign = document.querySelector('.open_pop_sign');
     const popupS = document.querySelector('.popup_registration');
+    document.querySelectorAll('.open_pop_sign').forEach((item) => {
+        item.addEventListener('click', () => {
+            (document.querySelector('.popup_login') as HTMLElement).style.display = 'none';
+            (document.querySelector('.popup_registration') as HTMLElement).style.display = 'flex';
 
-    buttonSign?.addEventListener('click', () => {
-        (document.querySelector('.popup_login') as HTMLElement).style.display = 'none';
-        (document.querySelector('.popup_registration') as HTMLElement).style.display = 'flex';
-
-        popupS?.addEventListener('click', (e) => {
-            if (e.target === popupS) {
-                (document.querySelector('.popup_registration') as HTMLElement).style.display = 'none';
-            }
+            popupS?.addEventListener('click', (e) => {
+                if (e.target === popupS) {
+                    (document.querySelector('.popup_registration') as HTMLElement).style.display = 'none';
+                }
+            });
         });
     });
-
     const signSave = document.querySelector('.sign-save');
     signSave?.addEventListener('click', signFunction);
 };
 
-function signFunction() {
+export const signFunction = () => {
     const sign_name = (document.querySelector('.sign_name') as HTMLInputElement).value;
     const sign_email = (document.querySelector('.sign_email') as HTMLInputElement).value;
     const sign_pass = (document.querySelector('.sign_pass') as HTMLInputElement).value;
@@ -72,6 +70,6 @@ function signFunction() {
     (document.querySelector('.sign_name') as HTMLInputElement).value = '';
     (document.querySelector('.sign_email') as HTMLInputElement).value = '';
     (document.querySelector('.sign_pass') as HTMLInputElement).value = '';
-
-    console.log(sign_name, sign_email, sign_pass);
-}
+    const UsersInfo: UserInfo = { name: sign_name, email: sign_email, password: sign_pass };
+    return UsersInfo;
+};

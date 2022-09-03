@@ -1,0 +1,74 @@
+.main {
+    min-height: calc(91vh - 65px);
+    padding-left: 60px;
+    max-width: 100%;
+}
+
+.level_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    background-image: url('./audiochallenge/assets/levelsBack.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 80vh;
+}
+
+.levels_div {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 680px;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+
+.levels_title {
+    font-size: 36px;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    margin: 5px;
+    text-align: center;
+}
+
+.level {
+    width: 90px;
+    height: 90px;
+    font-size: 2rem;
+    border-radius: 10%;
+    cursor: pointer;
+    box-shadow: rgb(15 10 38 / 0.5) 0px 0px 10px;
+}
+
+.level:nth-child(1) {
+    background-color: #c7adf2;
+}
+
+.level:nth-child(2) {
+    background-color: #bb68f6;
+}
+
+.level:nth-child(3) {
+    background-color: #8764da;
+}
+
+.level:nth-child(4) {
+    background-color: #7e247e;
+}
+
+.level:nth-child(5) {
+    background-color: #4a2352;
+}
+
+.level:nth-child(6) {
+    background-color: #27052c;
+    color: #373c40;
+}
+
+.level:hover {
+    box-shadow: rgba(aliceblue, 0.74) 0px 0px 10px;
+}

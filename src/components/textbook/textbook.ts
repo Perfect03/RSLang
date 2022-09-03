@@ -216,7 +216,7 @@ const createGames = () => {
     const a_link1 = document.createElement('a');
     const a_link2 = document.createElement('a');
 
-    a_link1.href = '#audiochallenge';
+    a_link1.href = '#audioChallenge';
     a_link2.href = '#sprint';
 
     textbook_games.append(a_link1);

@@ -19,7 +19,7 @@ export const createSecondSection = () => {
 
     const main_section_two_textbook_img = document.createElement('img');
     main_section_two_textbook_img.classList.add('main_section_two_images');
-    main_section_two_textbook_img.src = 'components/main/main-assets/textbook.jpg';
+    main_section_two_textbook_img.src = 'components/main/main-assets/dictionary.jpg';
     main_section_two_textbook.append(main_section_two_textbook_img);
 
     const main_section_two_textbook_h1 = document.createElement('h1');
@@ -34,27 +34,6 @@ export const createSecondSection = () => {
         'The electronic textbook consists of six sections. Each section has 30 pages of 20 words. The translation of the word, the thematic image, as well as the pronunciation of both the word separately and as part of the phrase are presented.';
 
     main_section_two_box.append(main_section_two_textbook);
-
-    //Dictionary
-    const main_section_two_dictionary = document.createElement('div');
-    main_section_two_dictionary.classList.add('main_section_two_dictionary', 'advantages_cards');
-    main_section_two_box.append(main_section_two_dictionary);
-
-    const main_section_two_dictionary_img = document.createElement('img');
-    main_section_two_dictionary_img.classList.add('main_section_two_images');
-    main_section_two_dictionary_img.src = 'components/main/main-assets/dictionary.jpg';
-    main_section_two_dictionary.append(main_section_two_dictionary_img);
-
-    const main_section_two_dictionary_h1 = document.createElement('h1');
-    main_section_two_dictionary_h1.classList.add('main_section_two_headers');
-    main_section_two_dictionary.append(main_section_two_dictionary_h1);
-    main_section_two_dictionary_h1.textContent = 'Dictionary';
-
-    const main_section_two_dictionary_p = document.createElement('p');
-    main_section_two_dictionary_p.classList.add('main_section_two_p');
-    main_section_two_dictionary.append(main_section_two_dictionary_p);
-    main_section_two_dictionary_p.textContent =
-        'The dictionary contains lists of studied words, words that do not need to be learned, as well as those that cause difficulties. The dictionary reflects statistics for each section and student progress.';
 
     //Games
     const main_section_two_games = document.createElement('div');

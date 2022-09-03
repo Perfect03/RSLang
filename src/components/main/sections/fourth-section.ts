@@ -1,3 +1,6 @@
+export const main_section_four_button_login = document.createElement('button');
+export const main_section_four_button_signup = document.createElement('button');
+
 export const createFourthSection = () => {
     const main = document.querySelector('main') as HTMLElement;
     const main_section_four = document.createElement('section');
@@ -24,13 +27,21 @@ export const createFourthSection = () => {
     main_section_four_content.append(main_section_four_button_box);
 
     //buttons
-    const main_section_four_button_login = document.createElement('button');
-    main_section_four_button_login.classList.add('main_page_button', 'custom-btn', 'section_four_button_login');
+    main_section_four_button_login.classList.add(
+        'main_page_button',
+        'custom-btn',
+        'section_four_button_login',
+        'open_pop_login'
+    );
     main_section_four_button_box.append(main_section_four_button_login);
     main_section_four_button_login.textContent = 'LOGIN';
 
-    const main_section_four_button_signup = document.createElement('button');
-    main_section_four_button_signup.classList.add('main_page_button', 'custom-btn', 'section_four_button_signup');
+    main_section_four_button_signup.classList.add(
+        'main_page_button',
+        'custom-btn',
+        'section_four_button_signup',
+        'open_pop_sign'
+    );
     main_section_four_button_box.append(main_section_four_button_signup);
     main_section_four_button_signup.textContent = 'SIGN UP';
 

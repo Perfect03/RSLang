@@ -119,7 +119,7 @@ header {
   transition: 0.4s;
 }
 
-.game img {
+#textbook .game img {
   width: 32px;
   height: 32px;
   margin-right: 8px;

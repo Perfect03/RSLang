@@ -170,11 +170,11 @@ export const renderCard = (card: IWord) => {
     card_content_bottom3.append(buttonsLeft);
     card_content_bottom3.append(buttonsRight);
 
-    difficultButton.addEventListener('click', (e) => {
+    difficultButton.addEventListener('click', () => {
         difficultWord(card);
     });
 
-    deleteButton.addEventListener('click', (e) => {
+    deleteButton.addEventListener('click', () => {
         deleteWord(card);
     });
 

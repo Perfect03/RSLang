@@ -1,6 +1,5 @@
 import { checkAnswer } from './correct-or-incorrect-answer';
 import { getWords } from '../../../api/api';
-import { IWord } from '../../../interfaces & types/words';
 import { dataStorage, setCurrentWord } from '../../utils/storage';
 import { createStatsPopUp } from '../statistics-popup';
 
@@ -88,6 +87,8 @@ export const createLayoutSprint = (level: number) => {
         else createStatsPopUp();
     }, 1000);
 
+    console.log(timer);
+
     seconds.append(progress_percents);
     progress_percents.append(progress_percents_wrapper);
     progress_percents_wrapper.append(progress_percents_span);
@@ -111,8 +112,6 @@ export const createLayoutSprint = (level: number) => {
 export const printWord = async (level: number) => {
     const rusDOM = document.querySelector('.word_russian');
     const engDOM = document.querySelector('.word_english');
-    const rusWords = [];
-    const engWords = [];
 
     const page = Math.random() % 30;
 

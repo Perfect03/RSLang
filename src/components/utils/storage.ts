@@ -1,6 +1,6 @@
 import { UserAuthInfo } from '../../interfaces & types/authorization';
 import { IDataStorage } from '../../interfaces & types/storage-interface';
-import { IWord } from '../../interfaces & types/words';
+import { IUsersWords, IWord } from '../../interfaces & types/words';
 
 export const dataStorage: IDataStorage = {
     audiochallenge__num__of__round: 1,
@@ -33,6 +33,11 @@ export const storageUserAccInfo: UserAuthInfo = {
     userId: '',
     name: '',
     email: '',
+};
+
+export const usersWords: IUsersWords = {
+    learnedWords: [],
+    diffictultWords: [],
 };
 
 export const setAudioChallengeRightAnswers = async (word: IWord) => {

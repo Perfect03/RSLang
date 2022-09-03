@@ -1,3 +1,4 @@
+import { immitator } from '../../api/usersWords/usersWords';
 import { storageUserAccInfo } from '../utils/storage';
 
 export const header_content_page_name = document.createElement('h1');
@@ -42,13 +43,11 @@ export const createHeader = () => {
 
     const header_content_user_name = document.createElement('p');
     header_content_user_name.classList.add('header_content_user_name');
-    header_content_user.appendChild(header_content_user_name);
-    header_content_user_name.textContent = storageUserAccInfo.name; //`${login_name}`
+    header_content_user.appendChild(header_content_user_name); //`${login_name}`
 
     const header_content_user_email = document.createElement('p');
     header_content_user_email.classList.add('header_content_user_email');
-    header_content_user.appendChild(header_content_user_email);
-    header_content_user_email.textContent = storageUserAccInfo.email; //`${login_email}`
+    header_content_user.appendChild(header_content_user_email); //`${login_email}`
 
     const header_content_user_img_box = document.createElement('div');
     header_content_user_img_box.classList.add('header_content_user_img_box');
@@ -69,5 +68,6 @@ export const createHeader = () => {
     header_content_login.appendChild(header_content_login_button);
     header_content_login_button.textContent = 'LOGIN';
 
+    immitator();
     return header_content_page_name;
 };

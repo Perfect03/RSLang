@@ -16,3 +16,19 @@ export interface IWord {
 }
 
 export type IWords = IWord[];
+
+export interface IUsersWords {
+    learnedWords: IWord[];
+    diffictultWords: IWord[];
+}
+
+export interface ICreateWord {
+    wordId: string;
+    word: {
+        difficulty: string;
+        optional?: {
+            learned: boolean;
+            option2?: string;
+        };
+    };
+}

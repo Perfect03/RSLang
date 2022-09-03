@@ -10,7 +10,10 @@
     justify-content: center;
     align-items: center;
     gap: 100px;
-    background-color: aliceblue;
+    background-image: url('./audiochallenge/assets/levelsBack.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     height: 80vh;
 }
 

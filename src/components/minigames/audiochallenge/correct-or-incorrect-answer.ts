@@ -12,10 +12,16 @@ export const addListenersToWordsBtn = () => {
                 deleteCorrectWord(el.dataset.id as string);
                 changeIdkForNextBtn();
                 playSoundCorrectChoice();
-            } else {
+                el.style.boxShadow = '0px 0px 10px rgba(42, 232, 99, 0.99)';
+                el.style.color = 'black';
+            } else if (el.dataset.id !== dataStorage.audiochallenge__current__word.id) {
+                el.style.boxShadow = '0px 0px 10px rgba(255, 0, 0, 0.79)';
+                el.style.color = 'black';
+                setAudioChallengeWrongAnswers(dataStorage.audiochallenge__current__word);
                 setWrongAnswers(dataStorage.game__current__word);
                 changeIdkForNextBtn();
                 playSoundInCorrectChoice();
+                showCorrect();
             }
         });
     });
@@ -69,5 +75,15 @@ export const disableWordsButton = (condition: boolean) => {
     const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
     words_div.forEach((el) => {
         el.disabled = condition;
+    });
+};
+
+export const showCorrect = () => {
+    const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
+    words_div.forEach((el) => {
+        if (el.dataset.id === dataStorage.audiochallenge__current__word.id) {
+            el.style.boxShadow = '0px 0px 10px rgba(42, 232, 99, 0.99)';
+            el.style.color = 'black';
+        }
     });
 };

@@ -74,6 +74,10 @@ export const addListenerToSkipBtn = () => {
             createStatsPopUp();
             dataStorage.audiochallenge__num__of__round = 9;
         }
+        const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
+        words_div.forEach((el) => {
+            el.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.15)';
+        });
     });
 };
 

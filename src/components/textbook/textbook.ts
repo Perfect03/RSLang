@@ -1,5 +1,7 @@
 import './textbook.css';
-import { readWords } from './index';
+import { readWords, renderWords } from './index';
+import { difficultWords } from './storage';
+import { IWord } from '../../interfaces & types/words';
 
 export const createTextbook = () => {
     const textbook = document.createElement('div');
@@ -174,7 +176,7 @@ const createGroups = (activeItem: number) => {
     groups.append(groups_buttons);
 
     const button = [] as HTMLElement[];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
         button[i] = document.createElement('button');
         button[i].textContent = `${i + 1}`;
         groups_buttons.append(button[i]);
@@ -191,9 +193,19 @@ const listenGroups = (groups: HTMLElement) => {
             active?.classList.remove('active');
             (e.target as HTMLElement).classList.add('active');
             localStorage.setItem('group', (Number((e.target as HTMLElement).textContent) - 1).toString());
-            readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
+            if (Number((e.target as HTMLElement).textContent) - 1 == 6) renderWords(difficultWords);
+            else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
         }
     });
+};
+
+export const difficultWord = (word: IWord) => {
+    difficultWords.push(word);
+    localStorage.setItem('difficultWords', `${difficultWords.join()}`);
+};
+
+export const deleteWord = (word: IWord) => {
+    difficultWords.push(word);
 };
 
 const createGames = () => {

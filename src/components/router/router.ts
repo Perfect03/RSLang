@@ -2,7 +2,7 @@ import { IPage } from '../../interfaces & types/page';
 import { createMain } from '../main/render';
 import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/statistics';
-import { audiochallengeLevelPage } from '../minigames/choose-level';
+import { chooseLevelPage } from '../minigames/choose-level';
 import { header_content_page_name } from '../header/header';
 
 export const routes = {
@@ -25,9 +25,15 @@ export const routes = {
         description: 'This is the statistics page',
     },
     audioChallenge: {
-        template: audiochallengeLevelPage,
+        template: chooseLevelPage,
         title: 'Minigames',
-        name: 'Minigames',
+        name: 'Audio challenge',
+        description: 'This is the minigames page',
+    },
+    sprint: {
+        template: chooseLevelPage,
+        title: 'Sprint',
+        name: 'Sprint',
         description: 'This is the minigames page',
     },
 };
@@ -44,7 +50,7 @@ export const locationHandler = async (): Promise<void> => {
     //state.view = location;
     //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
-    route.template();
+    route.template(`${location}`);
     header_content_page_name.textContent = route.name;
     //(<HTMLElement>document.getElementById('content')).innerHTML = html;
     //const listeners = new Listen();

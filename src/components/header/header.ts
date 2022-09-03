@@ -48,7 +48,7 @@ export const createHeader = () => {
     const header_content_user_email = document.createElement('p');
     header_content_user_email.classList.add('header_content_user_email');
     header_content_user.appendChild(header_content_user_email);
-    header_content_user_email.textContent = 'jondoe@gmail.com'; //`${login_email}`
+    header_content_user_email.textContent = storageUserAccInfo.email; //`${login_email}`
 
     const header_content_user_img_box = document.createElement('div');
     header_content_user_img_box.classList.add('header_content_user_img_box');

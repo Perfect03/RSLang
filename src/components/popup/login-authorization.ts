@@ -8,11 +8,11 @@ export const addLoginRequest = () => {
         await loginUser(loginFunction());
         await getUserInfo(storageUserAccInfo.userId);
         console.log(storageUserAccInfo);
-        changeUiForAuthOr();
+        changeUiForAuthUser();
     });
 };
 
-const changeUiForAuthOr = () => {
+const changeUiForAuthUser = () => {
     const header_content_login = document.querySelector('.header_content_login') as HTMLButtonElement;
     const header_content_user_box = document.querySelector('.header_content_user_box') as HTMLButtonElement;
     const header_content_user_name = document.querySelector('.header_content_user_name') as HTMLDivElement;
@@ -23,5 +23,13 @@ const changeUiForAuthOr = () => {
         header_content_user_box.style.display = 'flex';
         header_content_user_name.textContent = storageUserAccInfo.name;
         header_content_user_email.textContent = storageUserAccInfo.email;
-    } 
+    }
+};
+
+export const changeUiForNonAuthUser = () => {
+    const header_content_login = document.querySelector('.header_content_login') as HTMLButtonElement;
+    const header_content_user_box = document.querySelector('.header_content_user_box') as HTMLButtonElement;
+
+    header_content_login.style.display = 'flex';
+    header_content_user_box.style.display = 'none';
 };

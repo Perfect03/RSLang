@@ -76,6 +76,7 @@ export const createLayoutSprint = (level: number) => {
     const progress_percents = document.createElement('div');
     const progress_percents_wrapper = document.createElement('div');
     const progress_percents_span = document.createElement('span');
+
     progress_percents.classList.add('progress_percents');
     progress_percents_wrapper.classList.add('progress_percents_wrapper');
     progress_percents_span.classList.add('progress_percents_span');
@@ -89,9 +90,10 @@ export const createLayoutSprint = (level: number) => {
 
     console.log(timer);
 
+    seconds.append(progress_percents_span);
     seconds.append(progress_percents);
     progress_percents.append(progress_percents_wrapper);
-    progress_percents_wrapper.append(progress_percents_span);
+
     sprint.append(game);
     const main = document.querySelector('main') as HTMLElement;
     while (main.hasChildNodes()) {

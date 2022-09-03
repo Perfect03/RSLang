@@ -1,3 +1,4 @@
+import { UserAuthInfo } from '../../interfaces & types/authorization';
 import { IDataStorage } from '../../interfaces & types/storage-interface';
 import { IWord } from '../../interfaces & types/words';
 
@@ -23,6 +24,15 @@ export const dataStorage: IDataStorage = {
         textMeaningTranslate: '',
         wordTranslate: '',
     },
+};
+
+export const storageUserAccInfo: UserAuthInfo = {
+    message: '',
+    token: '',
+    refreshToken: '',
+    userId: '',
+    name: '',
+    email: '',
 };
 
 export const setAudioChallengeRightAnswers = async (word: IWord) => {

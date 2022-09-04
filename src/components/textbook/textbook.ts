@@ -1,7 +1,9 @@
 import './textbook.css';
-import { readWords, renderWords } from './index';
-import { difficultWords } from './storage';
-import { IWord } from '../../interfaces & types/words';
+import { readWords } from './index';
+import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
+// import { usersWords } from '../utils/storage';
+import { createUserWord } from '../../api/usersWords/usersWords';
+// import { getWords } from '../../api/api';
 
 export const createTextbook = () => {
     localStorage.setItem('pageGames', localStorage.getItem('page') as string);
@@ -198,19 +200,28 @@ const listenGroups = (groups: HTMLElement) => {
             (e.target as HTMLElement).classList.add('active');
             localStorage.setItem('group', (Number((e.target as HTMLElement).textContent) - 1).toString());
             localStorage.setItem('groupGames', (Number((e.target as HTMLElement).textContent) - 1).toString());
-            if (Number((e.target as HTMLElement).textContent) - 1 == 6) renderWords(difficultWords);
+            if (Number((e.target as HTMLElement).textContent) - 1 == 6) console.log('renderWords(сложные слова)');
             else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
         }
     });
 };
 
 export const difficultWord = (word: IWord) => {
-    difficultWords.push(word);
-    localStorage.setItem('difficultWords', `${difficultWords.join()}`);
+    console.log('difficult word', word);
+    const wordWithId: IWordIsDiffOrLearn = {
+        wordId: word.id,
+        word: {
+            difficulty: 'hard',
+            optional: {
+                learned: false,
+            },
+        },
+    };
+    createUserWord(wordWithId);
 };
 
 export const deleteWord = (word: IWord) => {
-    difficultWords.push(word);
+    console.log('delete word', word);
 };
 
 const createGames = () => {

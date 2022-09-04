@@ -87,7 +87,7 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
         if (Number(progress_percents_span.textContent)) timer = setTimeout(tick, 1000);
         else createStatsPopUp();
     }, 1000);
-
+    console.log('timer', timer);
 
     seconds.append(progress_percents_span);
     seconds.append(progress_percents);

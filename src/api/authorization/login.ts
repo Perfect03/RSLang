@@ -1,6 +1,7 @@
-import { storageUserAccInfo } from '../../components/utils/storage';
+import { storageUserAccInfo, storageUsersWords } from '../../components/utils/storage';
 import { UserResponse } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
+import { getAllUserWords } from '../usersWords/usersWords';
 
 export const loginUser = async (user: UserResponse) => {
     const rawResponse = await fetch(`${baseUrl}signin`, {
@@ -30,4 +31,7 @@ export const getUserInfo = async (userId: string) => {
     });
     const content = await rawResponse.json();
     storageUserAccInfo.email = content.email;
+
+    getAllUserWords();
+    console.log('Все слова', storageUsersWords);
 };

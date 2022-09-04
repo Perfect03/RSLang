@@ -126,7 +126,7 @@ export const renderCard = (card: IWord) => {
     buttonsLeft.classList.add('card_buttons');
 
     buttonsRight.classList.add('card_buttons');
-    const difficultButton = document.createElement('button');
+    const difficultButton = document.createElement('button') as HTMLButtonElement;
     const difficultButton_text = document.createElement('span');
     const deleteButton = document.createElement('button');
     const deleteButton_text = document.createElement('span');

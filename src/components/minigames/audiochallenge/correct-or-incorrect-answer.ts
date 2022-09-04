@@ -18,7 +18,6 @@ export const addListenersToWordsBtn = () => {
                 el.style.boxShadow = '0px 0px 10px rgba(255, 0, 0, 0.79)';
                 el.style.color = 'black';
                 setWrongAnswers(dataStorage.game__current__word);
-                setWrongAnswers(dataStorage.game__current__word);
                 changeIdkForNextBtn();
                 playSoundInCorrectChoice();
                 showCorrect();

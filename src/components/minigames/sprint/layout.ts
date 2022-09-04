@@ -88,7 +88,6 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
         else createStatsPopUp();
     }, 1000);
 
-
     seconds.append(progress_percents_span);
     seconds.append(progress_percents);
     progress_percents.append(progress_percents_wrapper);

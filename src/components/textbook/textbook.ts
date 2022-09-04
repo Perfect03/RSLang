@@ -3,6 +3,9 @@ import { readWords, renderWords } from './index';
 import { difficultWords } from './storage';
 import { IWord } from '../../interfaces & types/words';
 
+const textbook_words = document.createElement('div');
+const cards = document.createElement('div');
+
 export const createTextbook = () => {
     localStorage.setItem('pageGames', localStorage.getItem('page') as string);
     localStorage.setItem('groupGames', localStorage.getItem('group') as string);
@@ -11,7 +14,6 @@ export const createTextbook = () => {
     textbook.id = 'textbook';
 
     const pagination = createPagination(Number(localStorage.getItem('page')));
-    const textbook_words = document.createElement('div');
     textbook_words.classList.add('textbook_words');
     const textbook_games = createGames();
 
@@ -19,7 +21,6 @@ export const createTextbook = () => {
     textbook.append(pagination as HTMLElement);
     textbook.append(textbook_words);
 
-    const cards = document.createElement('div');
     const groups = createGroups(Number(localStorage.getItem('group')));
     cards.classList.add('cards');
 
@@ -183,6 +184,7 @@ const createGroups = (activeItem: number) => {
     for (let i = 0; i < 7; i++) {
         button[i] = document.createElement('button');
         button[i].textContent = `${i + 1}`;
+        button[i].classList.add(`${'group' + i}`);
         groups_buttons.append(button[i]);
     }
     button[activeItem].classList.add('active');
@@ -190,8 +192,39 @@ const createGroups = (activeItem: number) => {
     return groups;
 };
 
+const empty_card = document.createElement('div');
+empty_card.classList.add('empty_card', 'card');
+empty_card.textContent = 'There is nothing here yet.';
+
+const changeStyleGroup = () => {
+    document.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).classList.contains('group0')) {
+            textbook_words.style.background = 'linear-gradient(to right,#c7adf240, 50%, #fafcfc)';
+        } else if ((e.target as HTMLElement).classList.contains('group1')) {
+            textbook_words.style.background = 'linear-gradient(to right,#bb68f67a, 50%, #fafcfc)';
+        } else if ((e.target as HTMLElement).classList.contains('group2')) {
+            textbook_words.style.background = 'linear-gradient(to right,rgba(135, 100, 218, 0.5), 50%, #fafcfc)';
+        } else if ((e.target as HTMLElement).classList.contains('group3')) {
+            textbook_words.style.background = 'linear-gradient(to right,#7e247e73, 50%, #fafcfc)';
+        } else if ((e.target as HTMLElement).classList.contains('group4')) {
+            textbook_words.style.background = 'linear-gradient(to right,#4a235296, 50%, #fafcfc)';
+        } else if ((e.target as HTMLElement).classList.contains('group5')) {
+            textbook_words.style.background = 'linear-gradient(to right,#27052ca3, 50%, #fafcfc)';
+        } else if ((e.target as HTMLElement).classList.contains('group6')) {
+            textbook_words.style.backgroundImage = `url('components/textbook/textbook-assets/difwords.png')`;
+            textbook_words.style.backgroundRepeat = 'no-repeat';
+            textbook_words.style.backgroundPosition = 'center center';
+            textbook_words.style.backgroundSize = 'cover';
+            if (!cards.childNodes.length) {
+                cards.append(empty_card);
+            }
+        }
+    });
+};
+
 const listenGroups = (groups: HTMLElement) => {
     groups.addEventListener('click', (e) => {
+        changeStyleGroup();
         if ((e.target as HTMLElement).tagName == 'BUTTON') {
             const active = Array.from(groups.querySelectorAll('button')).find((el) => el.classList.contains('active'));
             active?.classList.remove('active');

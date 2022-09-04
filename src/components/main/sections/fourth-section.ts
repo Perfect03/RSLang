@@ -19,7 +19,7 @@ export const createFourthSection = () => {
     const main_section_four_content_p = document.createElement('p');
     main_section_four_content_p.classList.add('main_section_four_content_p');
     main_section_four_content_p.textContent =
-        'If you want to see statistics for all time and have access to the dictionary, please login or sign up first.';
+        'Some of the magic features of our app are not available to users with whom we are not familiar. If you want to access them, please log in or register first.';
     main_section_four_content.append(main_section_four_content_p);
     //div
     const main_section_four_button_box = document.createElement('div');

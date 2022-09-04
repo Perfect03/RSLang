@@ -44,6 +44,10 @@
     box-shadow: rgb(15 10 38 / 0.5) 0px 0px 10px;
 }
 
+.level:hover {
+    box-shadow: rgba(aliceblue, 0.74) 0px 0px 10px;
+}
+
 .level:nth-child(1) {
     background-color: #c7adf2;
 }
@@ -69,6 +73,3 @@
     color: #373c40;
 }
 
-.level:hover {
-    box-shadow: rgba(aliceblue, 0.74) 0px 0px 10px;
-}

@@ -5,7 +5,7 @@ import { createStatsPopUp } from '../statistics-popup';
 
 import './sprint.css';
 
-export const createLayoutSprint = (level: number) => {
+export const createLayoutSprint = (level: string, page: string | null = null) => {
     const sprint = document.createElement('section');
     sprint.classList.add('game_container');
     sprint.id = 'sprint';
@@ -87,7 +87,6 @@ export const createLayoutSprint = (level: number) => {
         else createStatsPopUp();
     }, 1000);
 
-    console.log(timer);
 
     seconds.append(progress_percents);
     progress_percents.append(progress_percents_wrapper);
@@ -99,27 +98,27 @@ export const createLayoutSprint = (level: number) => {
     }
     (main as HTMLElement).append(sprint);
 
-    printWord(level);
+    printWord(Number(level), page);
 
     [button_right, button_wrong].forEach((el) => {
         el.addEventListener('click', (e) => {
             checkAnswer(e);
-            printWord(level);
+            printWord(Number(level), page);
         });
     });
 };
 
-export const printWord = async (level: number) => {
+export const printWord = async (level: number, page: string | null) => {
     const rusDOM = document.querySelector('.word_russian');
     const engDOM = document.querySelector('.word_english');
-
-    const page = Math.random() % 30;
+    //const page = Math.random() % 30;
 
     const i = Math.floor(Math.random() * 20);
     const b = Math.floor(Math.random() * 2);
     const j = b ? i : getRandomNotEqual(i);
 
-    const words = await getWords(page, level - 1);
+    const words = await getWords(page ? Number(page) : Math.floor(Math.random() * 30), level);
+    console.log(page ? Number(page) : Math.floor(Math.random() * 30), level);
     const currentEngWord = words[i];
     const currentRusWord = words[j];
 

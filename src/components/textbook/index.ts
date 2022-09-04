@@ -6,9 +6,6 @@ import { difficultWord, deleteWord } from './textbook';
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
 
-localStorage.setItem('page', '0');
-localStorage.setItem('group', '0');
-
 export const readWords = async (page: number, group: number) => {
     const cards = await getWords(page, group);
     renderWords(cards);

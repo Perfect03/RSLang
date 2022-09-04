@@ -2,12 +2,25 @@ import { deleteChildsOfMain } from '../utils/delete-main-childs';
 import { createGameAudio } from './audiochallenge/create-game-session';
 import { createLayoutAudioChallenge } from './audiochallenge/layout';
 import { createLayoutSprint } from './sprint/layout';
+import { IWord } from '../../interfaces & types/words'
 import './minigames.css';
 import './assets/volume.png';
 
 export const chooseLevelPage = (game: string) => {
     deleteChildsOfMain();
-    const header_title = document.querySelector('.header_content_page_name') as HTMLHeadingElement;
+
+    const group = localStorage.getItem('groupGames');
+    const page = localStorage.getItem('pageGames');
+    console.log(group, page);
+    if (group && page) {
+        if (game == 'sprint') createLayoutSprint(group, page);
+            else {
+                createLayoutAudioChallenge();
+                createGameAudio(group, page);
+            }
+    }
+    else {
+        const header_title = document.querySelector('.header_content_page_name') as HTMLHeadingElement;
     header_title.innerText = 'AudioChallenge';
     const main = document.querySelector('main') as HTMLDivElement;
 
@@ -36,11 +49,17 @@ export const chooseLevelPage = (game: string) => {
         levels_div.appendChild(level);
 
         level.addEventListener('click', function () {
-            if (game == 'sprint') createLayoutSprint(Number(level.dataset.level));
+            if (game == 'sprint') createLayoutSprint((Number(level.dataset.level)-1).toString());
             else {
                 createLayoutAudioChallenge();
-                createGameAudio(Number(level.dataset.level));
+                createGameAudio((Number(level.dataset.level)-1).toString());
             }
         });
     }
+    }
+
 };
+
+export const enterLevel = (game: string) => {
+
+}

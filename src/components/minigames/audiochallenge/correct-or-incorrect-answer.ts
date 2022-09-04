@@ -1,4 +1,4 @@
-import { dataStorage, setRightAnswers, setWrongAnswers } from '../../utils/storage';
+import { dataStorage, setAudioChallengeRightAnswers, setAudioChallengeWrongAnswers } from '../../utils/storage';
 import '../assets/correct.mp3';
 import '../assets/incorrect.mp3';
 
@@ -8,7 +8,8 @@ export const addListenersToWordsBtn = () => {
         el.addEventListener('click', function () {
             disableWordsButton(true);
             if (el.dataset.id === dataStorage.game__current__word.id) {
-                setRightAnswers(dataStorage.game__current__word);
+                setAudioChallengeRightAnswers(dataStorage.game__current__word);
+                dataStorage.audiochallenge__words__in__row++;
                 deleteCorrectWord(el.dataset.id as string);
                 changeIdkForNextBtn();
                 playSoundCorrectChoice();
@@ -17,7 +18,8 @@ export const addListenersToWordsBtn = () => {
             } else if (el.dataset.id !== dataStorage.game__current__word.id) {
                 el.style.boxShadow = '0px 0px 10px rgba(255, 0, 0, 0.79)';
                 el.style.color = 'black';
-                setWrongAnswers(dataStorage.game__current__word);
+                setAudioChallengeWrongAnswers(dataStorage.game__current__word);
+                dataStorage.audiochallenge__words__in__row = 0;
                 changeIdkForNextBtn();
                 playSoundInCorrectChoice();
                 showCorrect();

@@ -2,6 +2,7 @@ import { deleteChildsOfMain } from '../utils/delete-main-childs';
 import { createGameAudio } from './audiochallenge/create-game-session';
 import { createLayoutAudioChallenge } from './audiochallenge/layout';
 import { createLayoutSprint } from './sprint/layout';
+import { IWord } from '../../interfaces & types/words';
 import './minigames.css';
 import './assets/volume.png';
 
@@ -10,7 +11,6 @@ export const chooseLevelPage = (game: string) => {
 
     const group = localStorage.getItem('groupGames');
     const page = localStorage.getItem('pageGames');
-    console.log(group, page);
     if (group && page) {
         if (game == 'sprint') createLayoutSprint(group, page);
         else {
@@ -55,8 +55,4 @@ export const chooseLevelPage = (game: string) => {
             });
         }
     }
-};
-
-export const enterLevel = (game: string) => {
-    console.log('eslint game error', game);
 };

@@ -5,6 +5,7 @@ import { difficultWord, learnWord } from './textbook';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
+import './textbook-assets/difwords.png';
 
 export const readWords = async (page: number, group: number) => {
     const cards = await getWords(page, group);

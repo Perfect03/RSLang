@@ -1,7 +1,7 @@
 import { IPage } from '../../interfaces & types/page';
 import { createMain } from '../main/render';
 import { createTextbook } from '../textbook/textbook';
-import { createStatistics } from '../statistics/statistics';
+import { createStatistics } from '../statistics/layout';
 import { chooseLevelPage } from '../minigames/choose-level';
 import { header_content_page_name } from '../header/header';
 

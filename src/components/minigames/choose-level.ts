@@ -10,7 +10,6 @@ export const chooseLevelPage = (game: string) => {
 
     const group = localStorage.getItem('groupGames');
     const page = localStorage.getItem('pageGames');
-    console.log(group, page);
     if (group && page) {
         if (game == 'sprint') createLayoutSprint(group, page);
         else {

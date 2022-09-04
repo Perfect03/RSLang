@@ -1,6 +1,3 @@
-import { immitator } from '../../api/usersWords/usersWords';
-import { storageUserAccInfo } from '../utils/storage';
-
 export const header_content_page_name = document.createElement('h1');
 
 export const createHeader = () => {
@@ -68,6 +65,5 @@ export const createHeader = () => {
     header_content_login.appendChild(header_content_login_button);
     header_content_login_button.textContent = 'LOGIN';
 
-    immitator();
     return header_content_page_name;
 };

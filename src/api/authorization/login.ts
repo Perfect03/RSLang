@@ -1,6 +1,7 @@
 import { storageUserAccInfo, storageUsersWords } from '../../components/utils/storage';
 import { UserResponse } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
+import { getUserStatistics, sendUserStatisitcs } from '../statistics/userStatistics';
 import { getAllUserWords } from '../usersWords/usersWords';
 
 export const loginUser = async (user: UserResponse) => {
@@ -19,6 +20,9 @@ export const loginUser = async (user: UserResponse) => {
     storageUserAccInfo.refreshToken = content.refreshToken;
     storageUserAccInfo.userId = content.userId;
     storageUserAccInfo.name = content.name;
+
+    await sendUserStatisitcs();
+    await getUserStatistics();
 };
 
 export const getUserInfo = async (userId: string) => {

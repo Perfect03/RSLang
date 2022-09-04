@@ -1,13 +1,14 @@
 import { UserAuthInfo } from '../../interfaces & types/authorization';
 import { IDataStorage } from '../../interfaces & types/storage-interface';
-import { IUsersWords, IWord } from '../../interfaces & types/words';
+import { IStorageUserWords, ItempStorageUsersWords, IWord } from '../../interfaces & types/words';
 
 export const dataStorage: IDataStorage = {
     audiochallenge__num__of__round: 1,
-    game__round__right__answers: [],
-    game__round__wrong__answers: [],
+    audiochallenge__round__right__answers: [],
+    audiochallenge__round__wrong__answers: [],
     audiochallenge__session__words: [],
     audiochallenge__round__words: [],
+    audiochallenge__words__in__row: 0,
     game__current__word: {
         id: '',
         group: 0,
@@ -30,6 +31,14 @@ export const dataStorage: IDataStorage = {
         circles: 0,
         correctness: true,
     },
+    sprint__round__right__answers: [],
+    sprint__round__wrong__answers: [],
+    sprint__words__in__row: 0,
+
+    audiochallenge__right__answers: [],
+    audiochallenge__wrong__answers: [],
+    sprint__right__answers: [],
+    sprint__wrong__answers: [],
 };
 
 export const storageUserAccInfo: UserAuthInfo = {
@@ -41,20 +50,29 @@ export const storageUserAccInfo: UserAuthInfo = {
     email: '',
 };
 
-export const usersWords: IUsersWords = {
+export const tempStorageUsersWords: ItempStorageUsersWords = {
     learnedWords: [],
-    diffictultWords: [],
+    hardWords: [],
 };
-/*
+
 export const setAudioChallengeRightAnswers = async (word: IWord) => {
     dataStorage.audiochallenge__round__right__answers.push(word);
-}*/
+}
 
 export const setRightAnswers = async (word: IWord) => {
     dataStorage.game__round__right__answers.push(word);
 };
-export const setWrongAnswers = async (word: IWord) => {
-    dataStorage.game__round__wrong__answers.push(word);
+
+export const setSprintRightAnswers = async (word: IWord) => {
+    dataStorage.sprint__round__right__answers.push(word);
+};
+
+export const setAudioChallengeWrongAnswers = async (word: IWord) => {
+    dataStorage.audiochallenge__round__wrong__answers.push(word);
+};
+
+export const setSprintWrongAnswers = async (word: IWord) => {
+    dataStorage.sprint__round__wrong__answers.push(word);
 };
 
 export const whichRoundInGameAudio = () => {

@@ -12,7 +12,6 @@ export const createGameAudio = async (level: string, page: string | null = null)
     addListenersToWordsBtn();
     addPlayListenerToReplayBtn();
     const readWords = async (page: number, group: number) => {
-        console.log(page, group);
         const cards = await getWords(page, group);
         renderWords(cards);
     };
@@ -72,7 +71,7 @@ export const addListenerToSkipBtn = () => {
             changeNextForIdkBtn();
             disableWordsButton(false);
         } else {
-            createStatsPopUp();
+            createStatsPopUp('audioChallenge');
             dataStorage.audiochallenge__num__of__round = 9;
         }
         const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
@@ -112,8 +111,8 @@ const resetStorageAudiochallenge = () => {
         wordTranslate: '',
     };
     dataStorage.audiochallenge__num__of__round = 0;
-    dataStorage.game__round__right__answers = [];
-    dataStorage.game__round__wrong__answers = [];
+    dataStorage.audiochallenge__round__right__answers = [];
+    dataStorage.audiochallenge__round__wrong__answers = [];
     dataStorage.audiochallenge__session__words = [];
     dataStorage.audiochallenge__round__words = [];
     dataStorage.game__current__word = emptyWord;

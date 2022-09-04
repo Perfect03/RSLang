@@ -13,8 +13,6 @@ const createUserWord = async ({ wordId, word }: ICreateWord) => {
         body: JSON.stringify(word),
     });
     const content = await rawResponse.json();
-
-    console.log('post:', content);
 };
 
 const getUserWord = async (wordId: string) => {

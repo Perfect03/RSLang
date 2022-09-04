@@ -9,6 +9,7 @@ export const addListenersToWordsBtn = () => {
             disableWordsButton(true);
             if (el.dataset.id === dataStorage.game__current__word.id) {
                 setAudioChallengeRightAnswers(dataStorage.game__current__word);
+                dataStorage.audiochallenge__words__in__row++;
                 deleteCorrectWord(el.dataset.id as string);
                 changeIdkForNextBtn();
                 playSoundCorrectChoice();
@@ -18,6 +19,7 @@ export const addListenersToWordsBtn = () => {
                 el.style.boxShadow = '0px 0px 10px rgba(255, 0, 0, 0.79)';
                 el.style.color = 'black';
                 setAudioChallengeWrongAnswers(dataStorage.game__current__word);
+                dataStorage.audiochallenge__words__in__row=0;
                 changeIdkForNextBtn();
                 playSoundInCorrectChoice();
                 showCorrect();

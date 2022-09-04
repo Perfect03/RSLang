@@ -34,6 +34,11 @@ export const dataStorage: IDataStorage = {
     sprint__round__right__answers: [],
     sprint__round__wrong__answers: [],
     sprint__words__in__row: 0,
+
+    audiochallenge__right__answers: [],
+    audiochallenge__wrong__answers: [],
+    sprint__right__answers: [],
+    sprint__wrong__answers: [],
 };
 
 export const storageUserAccInfo: UserAuthInfo = {

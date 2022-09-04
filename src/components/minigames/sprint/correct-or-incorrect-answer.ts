@@ -14,6 +14,7 @@ export const checkAnswer = (e: MouseEvent) => {
 export const changeResult = (res: boolean) => {
     if (res) {
         setSprintRightAnswers(dataStorage.game__current__word);
+        dataStorage.sprint__words__in__row++;
         const audio = new Audio('components/minigames/assets/correct.mp3');
         audio.play();
         dataStorage.sprint__state.score += dataStorage.sprint__state.plus;
@@ -24,6 +25,7 @@ export const changeResult = (res: boolean) => {
         }
     } else {
         setSprintWrongAnswers(dataStorage.game__current__word);
+        dataStorage.sprint__words__in__row = 0;
         const audio = new Audio('components/minigames/assets/incorrect.mp3');
         audio.play();
         dataStorage.sprint__state.circles = 0;

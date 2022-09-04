@@ -1,7 +1,7 @@
 import { getWords } from '../../api/api';
 import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
-import { difficultWord, deleteWord } from './textbook';
+import { difficultWord, learnWord } from './textbook';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
@@ -172,7 +172,7 @@ export const renderCard = (card: IWord) => {
     });
 
     deleteButton.addEventListener('click', () => {
-        deleteWord(card);
+        learnWord(card);
     });
 
     word.textContent = card.word;

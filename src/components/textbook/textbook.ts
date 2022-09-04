@@ -220,8 +220,18 @@ export const difficultWord = (word: IWord) => {
     createUserWord(wordWithId);
 };
 
-export const deleteWord = (word: IWord) => {
+export const learnWord = (word: IWord) => {
     console.log('delete word', word);
+    const wordWithId: IWordIsDiffOrLearn = {
+        wordId: word.id,
+        word: {
+            difficulty: 'easy',
+            optional: {
+                learned: true,
+            },
+        },
+    };
+    createUserWord(wordWithId);
 };
 
 const createGames = () => {

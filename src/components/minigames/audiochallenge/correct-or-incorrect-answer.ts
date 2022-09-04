@@ -19,7 +19,7 @@ export const addListenersToWordsBtn = () => {
                 el.style.boxShadow = '0px 0px 10px rgba(255, 0, 0, 0.79)';
                 el.style.color = 'black';
                 setAudioChallengeWrongAnswers(dataStorage.game__current__word);
-                dataStorage.audiochallenge__words__in__row=0;
+                dataStorage.audiochallenge__words__in__row = 0;
                 changeIdkForNextBtn();
                 playSoundInCorrectChoice();
                 showCorrect();

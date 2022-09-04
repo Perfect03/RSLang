@@ -6,12 +6,13 @@ import { addKeyBoardToGame } from './choose-with-keyboard';
 import { addListenersToWordsBtn, changeNextForIdkBtn, disableWordsButton } from './correct-or-incorrect-answer';
 import { createStatsPopUp } from '../statistics-popup';
 
-export const createGameAudio = async (level: number) => {
+export const createGameAudio = async (level: string, page: string | null = null) => {
     resetStorageAudiochallenge();
     const session_words: IWords = [];
     addListenersToWordsBtn();
     addPlayListenerToReplayBtn();
     const readWords = async (page: number, group: number) => {
+        console.log(page, group);
         const cards = await getWords(page, group);
         renderWords(cards);
     };
@@ -23,7 +24,7 @@ export const createGameAudio = async (level: number) => {
         }
     };
 
-    await readWords(getRandomInt(29), level);
+    await readWords(page ? Number(page) : getRandomInt(29), Number(level));
     createRoundGameAudio(session_words);
     putWordsInGameAudio(dataStorage.audiochallenge__round__words);
     addListenerToSkipBtn();

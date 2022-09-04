@@ -5,6 +5,8 @@ import { createSecondSection } from './sections/second-section';
 import { createThirdSection } from './sections/third-section';
 
 export const createMain = () => {
+    localStorage.removeItem('groupGames');
+    localStorage.removeItem('pageGames');
     createFirstSection();
     createSecondSection();
     createThirdSection();

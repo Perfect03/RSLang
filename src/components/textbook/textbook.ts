@@ -4,6 +4,9 @@ import { difficultWords } from './storage';
 import { IWord } from '../../interfaces & types/words';
 
 export const createTextbook = () => {
+    localStorage.setItem('pageGames', localStorage.getItem('page') as string);
+    localStorage.setItem('groupGames', localStorage.getItem('group') as string);
+
     const textbook = document.createElement('div');
     textbook.id = 'textbook';
 
@@ -157,6 +160,7 @@ const listenPagination = (pag: HTMLElement) => {
                     }
                 pag = createPagination(activeNumberNew as number);
                 localStorage.setItem('page', activeNumberNew?.toString() as string);
+                localStorage.setItem('pageGames', activeNumberNew?.toString() as string);
                 readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
             }
         }
@@ -193,6 +197,7 @@ const listenGroups = (groups: HTMLElement) => {
             active?.classList.remove('active');
             (e.target as HTMLElement).classList.add('active');
             localStorage.setItem('group', (Number((e.target as HTMLElement).textContent) - 1).toString());
+            localStorage.setItem('groupGames', (Number((e.target as HTMLElement).textContent) - 1).toString());
             if (Number((e.target as HTMLElement).textContent) - 1 == 6) renderWords(difficultWords);
             else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
         }

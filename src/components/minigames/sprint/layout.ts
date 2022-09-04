@@ -12,13 +12,22 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
     const game = document.createElement('div');
     game.classList.add('game');
 
+    const close_a = document.createElement('a');
+    const close_btn = document.createElement('button');
     const points = document.createElement('div');
     const word = document.createElement('div');
     const seconds = document.createElement('div');
+
+    close_a.href = '#home';
+    close_btn.classList.add('close_btn');
     points.classList.add('points');
     word.classList.add('word');
     seconds.classList.add('seconds');
 
+    close_a.classList.add('close_a');
+    close_a.append(close_btn);
+
+    game.append(close_a);
     game.append(points);
     game.append(word);
     game.append(seconds);
@@ -85,7 +94,7 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
     let timer = setTimeout(function tick() {
         progress_percents_span.textContent = (Number(progress_percents_span.textContent) - 1).toString();
         if (Number(progress_percents_span.textContent)) timer = setTimeout(tick, 1000);
-        else createStatsPopUp();
+        else createStatsPopUp('sprint');
     }, 1000);
 
     seconds.append(progress_percents_span);
@@ -107,6 +116,14 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
             printWord(Number(level), page);
         });
     });
+
+    [...Array.from(document.querySelectorAll('.burger_menu_link')), document.querySelector('.close-a')].forEach(
+        (el) => {
+            (el as HTMLElement).addEventListener('click', () => {
+                clearTimeout(timer);
+            });
+        }
+    );
 };
 
 export const printWord = async (level: number, page: string | null) => {
@@ -119,7 +136,6 @@ export const printWord = async (level: number, page: string | null) => {
     const j = b ? i : getRandomNotEqual(i);
 
     const words = await getWords(page ? Number(page) : Math.floor(Math.random() * 30), level);
-    console.log(page ? Number(page) : Math.floor(Math.random() * 30), level);
     const currentEngWord = words[i];
     const currentRusWord = words[j];
 

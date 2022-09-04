@@ -45,9 +45,10 @@ export const usersWords: IUsersWords = {
     learnedWords: [],
     diffictultWords: [],
 };
-
+/*
 export const setAudioChallengeRightAnswers = async (word: IWord) => {
     dataStorage.audiochallenge__round__right__answers.push(word);
+}*/
     
 export const setRightAnswers = async (word: IWord) => {
     dataStorage.game__round__right__answers.push(word);

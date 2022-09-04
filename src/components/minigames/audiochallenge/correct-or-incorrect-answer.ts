@@ -1,21 +1,27 @@
-import { dataStorage, setAudioChallengeRightAnswers, setAudioChallengeWrongAnswers } from '../../utils/storage';
-import './assets/correct.mp3';
-import './assets/incorrect.mp3';
+import { dataStorage, setRightAnswers, setWrongAnswers } from '../../utils/storage';
+import '../assets/correct.mp3';
+import '../assets/incorrect.mp3';
 
 export const addListenersToWordsBtn = () => {
     const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
     words_div.forEach((el) => {
         el.addEventListener('click', function () {
             disableWordsButton(true);
-            if (el.dataset.id === dataStorage.audiochallenge__current__word.id) {
-                setAudioChallengeRightAnswers(dataStorage.audiochallenge__current__word);
+            if (el.dataset.id === dataStorage.game__current__word.id) {
+                setRightAnswers(dataStorage.game__current__word);
                 deleteCorrectWord(el.dataset.id as string);
                 changeIdkForNextBtn();
                 playSoundCorrectChoice();
-            } else {
+                el.style.boxShadow = '0px 0px 10px rgba(42, 232, 99, 0.99)';
+                el.style.color = 'black';
+            } else if (el.dataset.id !== dataStorage.audiochallenge__current__word.id) {
+                el.style.boxShadow = '0px 0px 10px rgba(255, 0, 0, 0.79)';
+                el.style.color = 'black';
                 setAudioChallengeWrongAnswers(dataStorage.audiochallenge__current__word);
+                setWrongAnswers(dataStorage.game__current__word);
                 changeIdkForNextBtn();
                 playSoundInCorrectChoice();
+                showCorrect();
             }
         });
     });
@@ -28,7 +34,7 @@ export const playSoundCorrectChoice = () => {
     if (skip_btn.innerText === 'Next') {
         word_image.style.display = 'block';
     }
-    const audio = new Audio('components/minigames/audiochallenge/assets/correct.mp3');
+    const audio = new Audio('components/minigames/assets/correct.mp3');
     audio.play();
 };
 
@@ -39,7 +45,7 @@ export const playSoundInCorrectChoice = () => {
     if (skip_btn.innerText === 'Next') {
         word_image.style.display = 'block';
     }
-    const audio = new Audio('components/minigames/audiochallenge/assets/incorrect.mp3');
+    const audio = new Audio('components/minigames/assets/incorrect.mp3');
     audio.play();
 };
 
@@ -69,5 +75,15 @@ export const disableWordsButton = (condition: boolean) => {
     const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
     words_div.forEach((el) => {
         el.disabled = condition;
+    });
+};
+
+export const showCorrect = () => {
+    const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
+    words_div.forEach((el) => {
+        if (el.dataset.id === dataStorage.audiochallenge__current__word.id) {
+            el.style.boxShadow = '0px 0px 10px rgba(42, 232, 99, 0.99)';
+            el.style.color = 'black';
+        }
     });
 };

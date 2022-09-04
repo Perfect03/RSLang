@@ -4,9 +4,14 @@
     max-width: 100%;
 }
 
-.audiochallenge_container {
+.game_container#audioChallenge {
     background: linear-gradient(335deg, rgb(98, 8, 240) 0%, rgb(135, 28, 241) 35%, rgb(212, 81, 220) 100%);
     height: 70vh;
+    background-image: url('./assets/audioback.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .audiochallenge_wrapper {
@@ -23,7 +28,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 50px;
-    color: wheat;
+    color: #4f3e20;
 }
 
 .close_btn {
@@ -34,7 +39,7 @@
     --aa: 1px;
 
     /* anti-aliasing */
-    --color: wheat;
+    --color: #4f3e20;;
     border-radius: 3px;
     background:
         linear-gradient(45deg, transparent calc(50% - var(--weight) - var(--aa)), var(--color) calc(50% - var(--weight)), var(--color) calc(50% + var(--weight)), transparent calc(50% + var(--weight) + var(--aa))),
@@ -43,12 +48,12 @@
     transition: 0.5s;
 }
 
-.audiochallenge_game_container {
+#audioChallenge .game {
     display: flex;
     flex-direction: column;
     height: 50vh;
     width: 70vw;
-    background: #ffffffde;
+    background: rgba(255, 255, 255, 0.57);
     border-radius: 2%;
     align-items: center;
 }
@@ -141,6 +146,10 @@
     margin: 5px;
 }
 
+#sprint .stats_header {
+    display: none;
+}
+
 .audio_btn {
     width: 30px;
     height: 30px;
@@ -212,7 +221,7 @@
 }
 
 @media (max-width: 740px) {
-    .audiochallenge_game_container {
+    #audioChallenge .game {
         height: 60vh;
     }
 
@@ -243,5 +252,9 @@
 @media (max-width: 432px) {
     .incorrect_answers_container {
         font-size: 12px;
+    }
+
+    .word_image {
+        max-height: 155px;
       }
 }

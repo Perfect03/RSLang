@@ -1,12 +1,12 @@
-import { baseUrl } from '../../../api/api';
-import { dataStorage } from '../../utils/storage';
-import { hideGameDiv } from './layout';
-import './audiochallenge.css';
+import { baseUrl } from '../../api/api';
+import { dataStorage } from '../utils/storage';
+import { hideGameDiv } from './audiochallenge/layout';
+import './audiochallenge/audiochallenge.css';
 
 export const createStatsPopUp = () => {
     hideGameDiv();
 
-    const container = document.querySelector('.audiochallenge_game_container') as HTMLDivElement;
+    const container = document.querySelector('.game') as HTMLDivElement;
     const stats_container = document.createElement('div');
     const stats_header = document.createElement('div');
     const correct_answers_container = document.createElement('div');
@@ -34,9 +34,9 @@ export const createStatsPopUp = () => {
     // repeat_btn.classList.add('repeat_btn');
     mainpage_btn.classList.add('mainpage_btn', 'main_page_button', 'custom-btn');
 
-    stats_header.innerText = `Your score: ${dataStorage.audiochallenge__round__right__answers.length}/10`;
-    correct_answers_title.innerText = `Correct answers: ${dataStorage.audiochallenge__round__right__answers.length}`;
-    incorrect_answers_title.innerText = `Incorrect answers: ${dataStorage.audiochallenge__round__wrong__answers.length}`;
+    stats_header.innerText = `Your score: ${dataStorage.game__round__right__answers.length}/10`;
+    correct_answers_title.innerText = `Correct answers: ${dataStorage.game__round__right__answers.length}`;
+    incorrect_answers_title.innerText = `Incorrect answers: ${dataStorage.game__round__wrong__answers.length}`;
     // repeat_btn.innerText = 'Сыграть еще раз';
     mainpage_btn.innerText = 'Back to main';
 
@@ -57,7 +57,7 @@ export const createStatsPopUp = () => {
     buttons_div.appendChild(mainpage_a);
     mainpage_a.appendChild(mainpage_btn);
 
-    dataStorage.audiochallenge__round__right__answers.forEach((el) => {
+    dataStorage.game__round__right__answers.forEach((el) => {
         const answer_div = document.createElement('div');
         const audio_div = document.createElement('div');
         const audio = document.createElement('audio');
@@ -72,7 +72,7 @@ export const createStatsPopUp = () => {
         ru_word.classList.add('ru_word');
         audio_btn.classList.add('audio_btn');
         audio_btn_img.classList.add('audio_btn_img');
-        audio_btn_img.src = 'components/minigames/audiochallenge/assets/volume.png';
+        audio_btn_img.src = 'components/minigames/assets/volume.png';
 
         eng_word.innerText = `  ${el.word}`;
         ru_word.innerText = ` - ${el.wordTranslate}`;
@@ -91,7 +91,7 @@ export const createStatsPopUp = () => {
         });
     });
 
-    dataStorage.audiochallenge__round__wrong__answers.forEach((el) => {
+    dataStorage.game__round__wrong__answers.forEach((el) => {
         const answer_div = document.createElement('div');
         const audio_div = document.createElement('div');
         const audio = document.createElement('audio');
@@ -106,7 +106,7 @@ export const createStatsPopUp = () => {
         ru_word.classList.add('ru_word');
         audio_btn.classList.add('audio_btn');
         audio_btn_img.classList.add('audio_btn_img');
-        audio_btn_img.src = 'components/minigames/audiochallenge/assets/volume.png';
+        audio_btn_img.src = 'components/minigames/assets/volume.png';
 
         eng_word.innerText = ` ${el.word}`;
         ru_word.innerText = ` - ${el.wordTranslate}`;

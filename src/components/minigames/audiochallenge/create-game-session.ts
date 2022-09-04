@@ -1,10 +1,10 @@
 import { baseUrl, getWordById, getWords } from '../../../api/api';
 import { IWord, IWords } from '../../../interfaces & types/words';
 import { getRandomInt } from '../../utils/helpers';
-import { dataStorage, setAudioChallengeCurrentWord, whichRoundInGameAudio } from '../../utils/storage';
+import { dataStorage, setCurrentWord, whichRoundInGameAudio } from '../../utils/storage';
 import { addKeyBoardToGame } from './choose-with-keyboard';
 import { addListenersToWordsBtn, changeNextForIdkBtn, disableWordsButton } from './correct-or-incorrect-answer';
-import { createStatsPopUp } from './statistics-popup';
+import { createStatsPopUp } from '../statistics-popup';
 
 export const createGameAudio = async (level: number) => {
     resetStorageAudiochallenge();
@@ -47,7 +47,7 @@ export const putWordsInGameAudio = async (cards: IWords) => {
     }
     const random_index = getRandomInt(4);
     const word = await getWordById(words_div[random_index].dataset.id as string);
-    setAudioChallengeCurrentWord(word);
+    setCurrentWord(word);
     setCurrentWordAudioAndImage();
 };
 
@@ -74,19 +74,23 @@ export const addListenerToSkipBtn = () => {
             createStatsPopUp();
             dataStorage.audiochallenge__num__of__round = 9;
         }
+        const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
+        words_div.forEach((el) => {
+            el.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.15)';
+        });
     });
 };
 
 export const setCurrentWordAudioAndImage = () => {
     const audio = document.querySelector('.word_audio') as HTMLAudioElement;
-    audio.src = `${baseUrl}${dataStorage.audiochallenge__current__word.audio}`;
+    audio.src = `${baseUrl}${dataStorage.game__current__word.audio}`;
 
     if (dataStorage.audiochallenge__num__of__round < 11) {
         audio.play();
     }
 
     const word_image = document.querySelector('.word_image') as HTMLImageElement;
-    word_image.src = `${baseUrl}${dataStorage.audiochallenge__current__word.image}`;
+    word_image.src = `${baseUrl}${dataStorage.game__current__word.image}`;
 };
 
 const resetStorageAudiochallenge = () => {
@@ -107,9 +111,9 @@ const resetStorageAudiochallenge = () => {
         wordTranslate: '',
     };
     dataStorage.audiochallenge__num__of__round = 0;
-    dataStorage.audiochallenge__round__right__answers = [];
-    dataStorage.audiochallenge__round__wrong__answers = [];
+    dataStorage.game__round__right__answers = [];
+    dataStorage.game__round__wrong__answers = [];
     dataStorage.audiochallenge__session__words = [];
     dataStorage.audiochallenge__round__words = [];
-    dataStorage.audiochallenge__current__word = emptyWord;
+    dataStorage.game__current__word = emptyWord;
 };

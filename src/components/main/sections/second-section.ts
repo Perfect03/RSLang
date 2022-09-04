@@ -31,7 +31,7 @@ export const createSecondSection = () => {
     main_section_two_textbook_p.classList.add('main_section_two_p');
     main_section_two_textbook.append(main_section_two_textbook_p);
     main_section_two_textbook_p.textContent =
-        'The electronic textbook consists of six sections. Each section has 30 pages of 20 words. The translation of the word, the thematic image, as well as the pronunciation of both the word separately and as part of the phrase are presented.';
+        'The electronic textbook consists of six sections, 30 pages each, containing 20 words. That`s 3,600 new words! You can hear the pronunciation, see the translation and examples of usage. Increase your vocabulary! And in section 7, you can save particularly difficult words.';
 
     main_section_two_box.append(main_section_two_textbook);
 
@@ -54,7 +54,7 @@ export const createSecondSection = () => {
     main_section_two_games_p.classList.add('main_section_two_p');
     main_section_two_games.append(main_section_two_games_p);
     main_section_two_games_p.textContent =
-        'For learning words and reinforcing memorization, the application has 4 games: Savannah, Sprint, Audio Chalenge and Imaginarium, which will help you to "pump" your vocabulary in a playful way';
+        'If you`re bored just looking at word cards, we`ve put together some awesome word study and memorization games called Sprint and Audio Chalenge. Learning doesn`t have to be boring!';
 
     //Statistic
     const main_section_two_statistics = document.createElement('div');
@@ -75,5 +75,5 @@ export const createSecondSection = () => {
     main_section_two_statistics_p.classList.add('main_section_two_p');
     main_section_two_statistics.append(main_section_two_statistics_p);
     main_section_two_statistics_p.textContent =
-        'All the progress of training can be viewed in statistics, where data for the current day, as well as for the entire training period, are presented. The information is presented both in the form of a table and graphs, which is very convenient.';
+        'This section will give you an idea of the statistics available for the day as well as for the entire training period. It`s always easier to move forward when you can see the goal.';
 };

@@ -1,3 +1,4 @@
+import { storageUserAccInfo } from '../../components/utils/storage';
 import { UserResponse } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
 
@@ -12,5 +13,21 @@ export const loginUser = async (user: UserResponse) => {
     });
     const content = await rawResponse.json();
 
-    console.log(content);
+    storageUserAccInfo.message = content.message;
+    storageUserAccInfo.token = content.token;
+    storageUserAccInfo.refreshToken = content.refreshToken;
+    storageUserAccInfo.userId = content.userId;
+    storageUserAccInfo.name = content.name;
+};
+
+export const getUserInfo = async (userId: string) => {
+    const rawResponse = await fetch(`${baseUrl}users/${userId}`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${storageUserAccInfo.token}`,
+            Accept: 'application/json',
+        },
+    });
+    const content = await rawResponse.json();
+    storageUserAccInfo.email = content.email;
 };

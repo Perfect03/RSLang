@@ -40,13 +40,11 @@ export const createHeader = () => {
 
     const header_content_user_name = document.createElement('p');
     header_content_user_name.classList.add('header_content_user_name');
-    header_content_user.appendChild(header_content_user_name);
-    header_content_user_name.textContent = 'Jone Doe'; //`${login_name}`
+    header_content_user.appendChild(header_content_user_name); //`${login_name}`
 
     const header_content_user_email = document.createElement('p');
     header_content_user_email.classList.add('header_content_user_email');
-    header_content_user.appendChild(header_content_user_email);
-    header_content_user_email.textContent = 'jondoe@gmail.com'; //`${login_email}`
+    header_content_user.appendChild(header_content_user_email); //`${login_email}`
 
     const header_content_user_img_box = document.createElement('div');
     header_content_user_img_box.classList.add('header_content_user_img_box');

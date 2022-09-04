@@ -1,4 +1,5 @@
 import { UserInfo } from '../../interfaces & types/authorization';
+import { addSignUpListener } from './signin-authorization';
 
 export const createSignIn = () => {
     const body = document.querySelector('body') as HTMLBodyElement;
@@ -56,8 +57,7 @@ export const createSignIn = () => {
             });
         });
     });
-    const signSave = document.querySelector('.sign-save');
-    signSave?.addEventListener('click', signFunction);
+    addSignUpListener();
 };
 
 export const signFunction = () => {
@@ -67,9 +67,6 @@ export const signFunction = () => {
 
     (document.querySelector('.popup_registration') as HTMLElement).style.display = 'none';
 
-    (document.querySelector('.sign_name') as HTMLInputElement).value = '';
-    (document.querySelector('.sign_email') as HTMLInputElement).value = '';
-    (document.querySelector('.sign_pass') as HTMLInputElement).value = '';
     const UsersInfo: UserInfo = { name: sign_name, email: sign_email, password: sign_pass };
     return UsersInfo;
 };

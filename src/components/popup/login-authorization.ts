@@ -7,7 +7,6 @@ export const addLoginRequest = () => {
     loginSave.addEventListener('click', async function () {
         await loginUser(loginFunction());
         await getUserInfo(storageUserAccInfo.userId);
-        console.log(storageUserAccInfo);
         changeUiForAuthUser();
     });
 };

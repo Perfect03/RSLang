@@ -1,4 +1,9 @@
-import { dataStorage, setRightAnswers, setWrongAnswers, whichRoundInGameAudio } from '../../utils/storage';
+import {
+    dataStorage,
+    setAudioChallengeRightAnswers,
+    setAudioChallengeWrongAnswers,
+    whichRoundInGameAudio,
+} from '../../utils/storage';
 import {
     changeIdkForNextBtn,
     changeNextForIdkBtn,
@@ -35,14 +40,14 @@ export const addKeyBoardToGame = () => {
 const choiceWithKeyboard = (id: string) => {
     disableWordsButton(true);
     const word_div = document.getElementById(id) as HTMLDivElement;
-    setWrongAnswers;
+    setAudioChallengeWrongAnswers;
     if (word_div.dataset.id === dataStorage.game__current__word.id) {
-        setRightAnswers(dataStorage.game__current__word);
+        setAudioChallengeRightAnswers(dataStorage.game__current__word);
         deleteCorrectWord(word_div.dataset.id as string);
         changeIdkForNextBtn();
         playSoundCorrectChoice();
     } else {
-        setWrongAnswers(dataStorage.game__current__word);
+        setAudioChallengeWrongAnswers(dataStorage.game__current__word);
         changeIdkForNextBtn();
         playSoundInCorrectChoice();
     }
@@ -56,7 +61,7 @@ const skipWithSpace = () => {
     whichRoundInGameAudio();
     disableWordsButton(false);
     if (dataStorage.audiochallenge__num__of__round === 11) {
-        createStatsPopUp();
+        createStatsPopUp('audioChallenge');
         dataStorage.audiochallenge__num__of__round = 9;
         whichRoundInGameAudio();
     }

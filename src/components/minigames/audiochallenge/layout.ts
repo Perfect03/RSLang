@@ -1,7 +1,6 @@
 import { deleteChildsOfMain } from '../../utils/delete-main-childs';
 
 export const createLayoutAudioChallenge = () => {
-    console.log('AudioChallenge Layout');
     const main = document.querySelector('main') as HTMLElement;
     const audiochallenge_section = document.createElement('section');
     const audiochallenge_wrapper = document.createElement('section');

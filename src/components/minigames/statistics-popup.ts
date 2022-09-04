@@ -1,9 +1,10 @@
 import { baseUrl } from '../../api/api';
 import { dataStorage } from '../utils/storage';
 import { hideGameDiv } from './audiochallenge/layout';
+import { IGame } from '../../interfaces & types/game';
 import './audiochallenge/audiochallenge.css';
 
-export const createStatsPopUp = () => {
+export const createStatsPopUp = (game: IGame) => {
     hideGameDiv();
 
     const container = document.querySelector('.game') as HTMLDivElement;
@@ -34,9 +35,18 @@ export const createStatsPopUp = () => {
     // repeat_btn.classList.add('repeat_btn');
     mainpage_btn.classList.add('mainpage_btn', 'main_page_button', 'custom-btn');
 
-    stats_header.innerText = `Your score: ${dataStorage.game__round__right__answers.length}/10`;
-    correct_answers_title.innerText = `Correct answers: ${dataStorage.game__round__right__answers.length}`;
-    incorrect_answers_title.innerText = `Incorrect answers: ${dataStorage.game__round__wrong__answers.length}`;
+    const right =
+        game == 'audioChallenge'
+            ? dataStorage.audiochallenge__round__right__answers
+            : dataStorage.sprint__round__right__answers;
+    stats_header.innerText = `Your score: ${right.length} / 10`;
+    correct_answers_title.innerText = `Correct answers: ${right.length}`;
+
+    const wrong =
+        game == 'audioChallenge'
+            ? dataStorage.audiochallenge__round__wrong__answers
+            : dataStorage.sprint__round__wrong__answers;
+    incorrect_answers_title.innerText = `Incorrect answers: ${wrong.length}`;
     // repeat_btn.innerText = 'Сыграть еще раз';
     mainpage_btn.innerText = 'Back to main';
 
@@ -57,7 +67,7 @@ export const createStatsPopUp = () => {
     buttons_div.appendChild(mainpage_a);
     mainpage_a.appendChild(mainpage_btn);
 
-    dataStorage.game__round__right__answers.forEach((el) => {
+    right.forEach((el) => {
         const answer_div = document.createElement('div');
         const audio_div = document.createElement('div');
         const audio = document.createElement('audio');
@@ -91,7 +101,7 @@ export const createStatsPopUp = () => {
         });
     });
 
-    dataStorage.game__round__wrong__answers.forEach((el) => {
+    wrong.forEach((el) => {
         const answer_div = document.createElement('div');
         const audio_div = document.createElement('div');
         const audio = document.createElement('audio');

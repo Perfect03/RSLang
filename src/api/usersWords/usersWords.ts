@@ -19,16 +19,16 @@ const createUserWord = async ({ wordId, word }: ICreateWord) => {
 
 const getUserWord = async (wordId: string) => {
     const rawResponse = await fetch(`${baseUrl}users/${storageUserAccInfo.userId}/words/${wordId}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${storageUserAccInfo.token}`,
-        'Accept': 'application/json',
-      }
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${storageUserAccInfo.token}`,
+            Accept: 'application/json',
+        },
     });
     const content = await rawResponse.json();
-  
+
     console.log('get', content);
-  };
+};
 
 export const immitator = () => {
     const header = document.querySelector('.header_content_page') as HTMLDivElement;
@@ -45,7 +45,7 @@ export const immitator = () => {
             difficulty: 'weak',
             optional: {
                 learned: true,
-            }
+            },
         },
     };
     button.addEventListener('click', function () {

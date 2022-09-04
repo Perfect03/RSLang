@@ -12,13 +12,22 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
     const game = document.createElement('div');
     game.classList.add('game');
 
+    const close_a = document.createElement('a');
+    const close_btn = document.createElement('button');
     const points = document.createElement('div');
     const word = document.createElement('div');
     const seconds = document.createElement('div');
+
+    close_a.href = '#home';
+    close_btn.classList.add('close_btn');
     points.classList.add('points');
     word.classList.add('word');
     seconds.classList.add('seconds');
 
+    close_a.classList.add('close_a');
+    close_a.append(close_btn);
+
+    game.append(close_a);
     game.append(points);
     game.append(word);
     game.append(seconds);
@@ -88,7 +97,6 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
         else createStatsPopUp();
     }, 1000);
 
-
     seconds.append(progress_percents_span);
     seconds.append(progress_percents);
     progress_percents.append(progress_percents_wrapper);
@@ -108,6 +116,14 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
             printWord(Number(level), page);
         });
     });
+
+    [...Array.from(document.querySelectorAll('.burger_menu_link')), document.querySelector('.close-a')].forEach(
+        (el) => {
+            (el as HTMLElement).addEventListener('click', () => {
+                clearTimeout(timer);
+            });
+        }
+    );
 };
 
 export const printWord = async (level: number, page: string | null) => {

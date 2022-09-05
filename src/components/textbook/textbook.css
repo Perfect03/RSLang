@@ -168,6 +168,11 @@ header {
   box-shadow: rgb(15 10 38 / 70%) 0px 0px 10px;
 }
 
+.pagination li.active.learned {
+  box-shadow: linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252)) 0px 0px 10px;
+  background: linear-gradient(rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252));
+}
+
 .pagination li:hover a,
 .pagination li.active a {
   color: #dd36d8;
@@ -352,6 +357,11 @@ main {
 
 .groups button.active {
   box-shadow: rgb(15 10 38 / 70%) 0px 0px 10px;
+}
+
+.groups button.active.learned {
+  box-shadow: linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252)) 0px 0px 10px;
+  background: linear-gradient(rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252));
 }
 
 .card_content_bottom3 {

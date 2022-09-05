@@ -1,9 +1,9 @@
 import './textbook.css';
-import { readWords } from './index';
+import { readWords, renderWords } from './index';
 import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
 // import { usersWords } from '../utils/storage';
 import { createUserWord } from '../../api/usersWords/usersWords';
-// import { getWords } from '../../api/api';
+import { storageUsersWords } from '../utils/storage';
 
 const textbook_words = document.createElement('div');
 const cards = document.createElement('div');
@@ -224,6 +224,30 @@ const changeStyleGroup = () => {
     });
 };
 
+export const checkLearnedWords = () => {
+    let learned = 0;
+    document.querySelectorAll('.card').forEach((el) => {
+        if (
+            (el as HTMLElement).style.background ==
+            'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))'
+        )
+            learned++;
+    });
+    if (learned == document.querySelectorAll('.card').length) {
+        (document.querySelector('.textbook_words') as HTMLElement).style.background =
+            'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))';
+        (document.querySelector('.page-item.active') as HTMLElement).classList.add('learned');
+        (document.querySelector('button.active') as HTMLElement).classList.add('learned');
+        (document.querySelector('.textbook_games') as HTMLElement).style.display = 'none';
+    } else {
+        (document.querySelector('.textbook_words') as HTMLElement).style.background = '';
+        (document.querySelector('.page-item.active') as HTMLElement).classList.remove('learned');
+        (document.querySelector('button.active') as HTMLElement).classList.remove('learned');
+        (document.querySelector('.textbook_games') as HTMLElement).style.display = 'flex';
+        changeStyleGroup();
+    }
+};
+
 const listenGroups = (groups: HTMLElement) => {
     groups.addEventListener('click', (e) => {
         changeStyleGroup();
@@ -233,13 +257,16 @@ const listenGroups = (groups: HTMLElement) => {
             (e.target as HTMLElement).classList.add('active');
             localStorage.setItem('group', (Number((e.target as HTMLElement).textContent) - 1).toString());
             localStorage.setItem('groupGames', (Number((e.target as HTMLElement).textContent) - 1).toString());
-            if (Number((e.target as HTMLElement).textContent) - 1 == 6) console.log('renderWords(сложные слова)');
-            else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
+            if (Number((e.target as HTMLElement).textContent) - 1 == 6) {
+                renderWords(storageUsersWords.hardWords);
+            } else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
         }
     });
 };
 
 export const difficultWord = (word: IWord) => {
+    storageUsersWords.hardWords.push(word);
+    console.log(storageUsersWords.hardWords);
     console.log('difficult word', word);
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
@@ -254,6 +281,12 @@ export const difficultWord = (word: IWord) => {
 };
 
 export const learnWord = (word: IWord) => {
+    storageUsersWords.learnedWords.push(word);
+    storageUsersWords.hardWords = storageUsersWords.hardWords.filter(function (f) {
+        return f !== word;
+    });
+    console.log(storageUsersWords.learnedWords);
+    console.log(storageUsersWords.hardWords);
     console.log('delete word', word);
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,

@@ -1,7 +1,8 @@
 import { getWords } from '../../api/api';
 import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
-import { difficultWord, learnWord } from './textbook';
+import { difficultWord, learnWord, checkLearnedWords } from './textbook';
+import { storageUsersWords } from '../utils/storage';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
@@ -18,6 +19,7 @@ export const renderWords = (cards: IWord[]) => {
         cardsDOM.removeChild(cardsDOM.firstChild as HTMLElement);
     }
     for (let i = 0; i < 20; i++) cardsDOM.appendChild(renderCard(cards[i]));
+    checkLearnedWords();
 };
 
 const createAudio = (card: IWord) => {
@@ -147,7 +149,7 @@ export const renderCard = (card: IWord) => {
     incorrectAnswers.append(incorrectAnswers_text);
 
     difficultButton_text.textContent = 'difficult';
-    deleteButton_text.textContent = 'delete';
+    deleteButton_text.textContent = 'learned';
     correctAnswers_text.textContent = '0';
     incorrectAnswers_text.textContent = '0';
 
@@ -168,14 +170,6 @@ export const renderCard = (card: IWord) => {
     card_content_bottom3.append(buttonsLeft);
     card_content_bottom3.append(buttonsRight);
 
-    difficultButton.addEventListener('click', () => {
-        difficultWord(card);
-    });
-
-    deleteButton.addEventListener('click', () => {
-        learnWord(card);
-    });
-
     word.textContent = card.word;
     wordTranslate.textContent = card.wordTranslate;
     transcription.textContent = card.transcription;
@@ -186,6 +180,26 @@ export const renderCard = (card: IWord) => {
     textMeaningTranslate.textContent = card.textMeaningTranslate;
     newCard.dataset.id = card.id;
     newCard.dataset.difficulty = 'easy';
+    if (storageUsersWords.hardWords.some((el) => el.word == card.word)) {
+        newCard.style.background = 'linear-gradient(to right, rgba(255, 0, 0, 0.45), 50%, rgb(250, 252, 252))';
+        newCard.dataset.difficulty = 'hard';
+    } else
+        difficultButton.addEventListener('click', () => {
+            difficultWord(card);
+            newCard.style.background = 'linear-gradient(to right, rgba(255, 0, 0, 0.45), 50%, rgb(250, 252, 252))';
+            newCard.dataset.difficulty = 'hard';
+            checkLearnedWords();
+        });
+
+    if (storageUsersWords.learnedWords.some((el) => el.word == card.word)) {
+        newCard.style.background = 'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))';
+    } else
+        deleteButton.addEventListener('click', () => {
+            learnWord(card);
+            newCard.style.background = 'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))';
+            newCard.dataset.difficulty = 'easy';
+            checkLearnedWords();
+        });
 
     return newCard;
 };

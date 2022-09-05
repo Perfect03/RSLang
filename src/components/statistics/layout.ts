@@ -1,6 +1,7 @@
 import './stat.css';
 import './assets/audio.png';
 import './assets/sprint.png';
+import { storageUserStatistic } from '../utils/storage';
 
 export const createStatistics = () => {
     const deleteChildsOfMain = () => {
@@ -49,7 +50,7 @@ export const createStatistics = () => {
     const main_stat_words_box_h3 = document.createElement('h3');
     main_stat_words_box_h3.classList.add('main_stat_words_box_h3');
     main_stat_words_box.append(main_stat_words_box_h3);
-    main_stat_words_box_h3.textContent = '0';
+    main_stat_words_box_h3.textContent = storageUserStatistic.learnedWords.toString();
 
     const main_stat_words_box_p = document.createElement('p');
     main_stat_words_box_p.classList.add('main_stat_words_box_p');
@@ -68,7 +69,7 @@ export const createStatistics = () => {
     const accuracy_progress_circle = document.createElement('div');
     accuracy_progress_circle.classList.add('accuracy_progress_circle');
     main_stat_accuracy.append(accuracy_progress_circle);
-    accuracy_progress_circle.dataset.percent = '0';
+    accuracy_progress_circle.dataset.percent = storageUserStatistic.optional.common__accuracy.toString();
 
     const accuracy_circle_progress = document.createElement('div');
     accuracy_circle_progress.classList.add('accuracy_circle_progress');
@@ -120,7 +121,7 @@ export const createStatistics = () => {
     const main_sprint_stat_words_num = document.createElement('span');
     main_sprint_stat_words_num.classList.add('main_sprint_stat_words_num');
     main_stat_sprint_stat_words.append(main_sprint_stat_words_num);
-    main_sprint_stat_words_num.textContent = '0';
+    main_sprint_stat_words_num.textContent = storageUserStatistic.optional.sprint__words.toString();
 
     const main_sprint_stat_words_words = document.createElement('span');
     main_sprint_stat_words_words.classList.add('main_sprint_stat_words_words', 'stat_points');
@@ -134,7 +135,7 @@ export const createStatistics = () => {
     const main_sprint_stat_accuracy_num = document.createElement('span');
     main_sprint_stat_accuracy_num.classList.add('main_sprint_stat_accuracy_num');
     main_stat_sprint_stat_accuracy.append(main_sprint_stat_accuracy_num);
-    main_sprint_stat_accuracy_num.textContent = '0 %';
+    main_sprint_stat_accuracy_num.textContent = `${storageUserStatistic.optional.sprint__accuracy} %`;
 
     const main_sprint_stat_accuracy_accuracy = document.createElement('span');
     main_sprint_stat_accuracy_accuracy.classList.add('main_sprint_stat_accuracy_accuracy', 'stat_points');
@@ -148,7 +149,7 @@ export const createStatistics = () => {
     const main_sprint_stat_row_num = document.createElement('span');
     main_sprint_stat_row_num.classList.add('main_sprint_stat_row_num');
     main_stat_sprint_stat_row.append(main_sprint_stat_row_num);
-    main_sprint_stat_row_num.textContent = '0';
+    main_sprint_stat_row_num.textContent = storageUserStatistic.optional.sprint__in_a_row.toString();
 
     const main_sprint_stat_row_row = document.createElement('span');
     main_sprint_stat_row_row.classList.add('main_sprint_stat_row_row', 'stat_points');
@@ -184,7 +185,7 @@ export const createStatistics = () => {
     const main_audio_stat_words_num = document.createElement('span');
     main_audio_stat_words_num.classList.add('main_audio_stat_words_num');
     main_stat_audio_stat_words.append(main_audio_stat_words_num);
-    main_audio_stat_words_num.textContent = '0';
+    main_audio_stat_words_num.textContent = storageUserStatistic.optional.audiochallenge__words.toString();
 
     const main_audio_stat_words_words = document.createElement('span');
     main_audio_stat_words_words.classList.add('main_audio_stat_words_words', 'stat_points');
@@ -198,7 +199,7 @@ export const createStatistics = () => {
     const main_audio_stat_accuracy_num = document.createElement('span');
     main_audio_stat_accuracy_num.classList.add('main_audio_stat_accuracy_num');
     main_stat_audio_stat_accuracy.append(main_audio_stat_accuracy_num);
-    main_audio_stat_accuracy_num.textContent = '0 %';
+    main_audio_stat_accuracy_num.textContent = `${storageUserStatistic.optional.audiochallenge__accuracy} %`;
 
     const main_audio_stat_accuracy_accuracy = document.createElement('span');
     main_audio_stat_accuracy_accuracy.classList.add('main_audio_stat_accuracy_accuracy', 'stat_points');
@@ -212,7 +213,7 @@ export const createStatistics = () => {
     const main_audio_stat_row_num = document.createElement('span');
     main_audio_stat_row_num.classList.add('main_audio_stat_row_num');
     main_stat_audio_stat_row.append(main_audio_stat_row_num);
-    main_audio_stat_row_num.textContent = '0';
+    main_audio_stat_row_num.textContent = storageUserStatistic.optional.audiochallenge__in_a_row.toString();
 
     const main_audio_stat_row_row = document.createElement('span');
     main_audio_stat_row_row.classList.add('main_audio_stat_row_row', 'stat_points');

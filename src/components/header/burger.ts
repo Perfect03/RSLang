@@ -1,3 +1,4 @@
+import { getUserStatistics } from '../../api/statistics/userStatistics';
 import { changeUiForNonAuthUser } from '../popup/login-authorization';
 import './burger.css';
 
@@ -65,6 +66,10 @@ export const createBurger = () => {
     burger_menu_nav.append(burger_menu_link_statistics);
     burger_menu_link_statistics.textContent = 'Statistics';
     burger_menu_link_statistics.href = '#statistics';
+
+    burger_menu_link_statistics.addEventListener('click', async function () {
+        await getUserStatistics();
+    });
 
     const burger_menu_img_statistics = document.createElement('img');
     burger_menu_img_statistics.classList.add('burger_menu_img');

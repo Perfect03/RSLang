@@ -3,8 +3,6 @@ import { IWord } from '../interfaces & types/words';
 
 export const baseUrl = 'https://rs-lang-team-38.herokuapp.com/';
 
-export let getAllWords;
-
 const requestForWords = async (page: number, group: number): Promise<IWord[]> => {
     try {
         const response = await axios.get(`${baseUrl}words?page=${page}&group=${group}`);
@@ -15,9 +13,8 @@ const requestForWords = async (page: number, group: number): Promise<IWord[]> =>
 };
 
 export const getWords = async (page: number, group: number): Promise<IWord[]> => {
-    getAllWords = await requestForWords(page, group);
+    return await requestForWords(page, group);
 };
-
 
 const requestForWordById = async (id: string) => {
     try {

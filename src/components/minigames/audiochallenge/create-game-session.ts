@@ -5,6 +5,7 @@ import { dataStorage, setCurrentWord, whichRoundInGameAudio } from '../../utils/
 import { addKeyBoardToGame } from './choose-with-keyboard';
 import { addListenersToWordsBtn, changeNextForIdkBtn, disableWordsButton } from './correct-or-incorrect-answer';
 import { createStatsPopUp } from '../statistics-popup';
+import { getUserStatistics, sendUserStatisitcs } from '../../../api/statistics/userStatistics';
 
 export const createGameAudio = async (level: string, page: string | null = null) => {
     resetStorageAudiochallenge();
@@ -73,6 +74,9 @@ export const addListenerToSkipBtn = () => {
         } else {
             createStatsPopUp('audioChallenge');
             dataStorage.audiochallenge__num__of__round = 9;
+
+            sendUserStatisitcs();
+            getUserStatistics();
         }
         const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
         words_div.forEach((el) => {

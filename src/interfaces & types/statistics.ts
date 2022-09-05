@@ -7,10 +7,21 @@ export interface IUserStatistic {
 
 type OptionalStatistics = {
     common__accuracy: number;
-    sprint__words: IWords;
+    sprint__words: number;
+    sprint__right: number;
     sprint__accuracy: number;
     sprint__in_a_row: number;
-    audiochallenge__words: IWords;
+    audiochallenge__words: number;
+    audiochallenge__right: number;
     audiochallenge__accuracy: number;
     audiochallenge__in_a_row: number;
 };
+
+export interface ISprintAndAudioWords {
+    audiochallenge__words__array: IWords;
+    sprint__words__array: IWords;
+}
+
+export interface IGetUserStatistic extends IUserStatistic {
+    id: string;
+}

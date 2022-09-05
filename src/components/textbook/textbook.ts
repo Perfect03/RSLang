@@ -232,6 +232,15 @@ export const checkLearnedWords = () => {
     if(learned==document.querySelectorAll('.card').length) {
         (document.querySelector('.textbook_words') as HTMLElement).style.background='linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))';
         (document.querySelector('.page-item.active') as HTMLElement).classList.add('learned');
+        (document.querySelector('button.active') as HTMLElement).classList.add('learned');
+        (document.querySelector('.textbook_games') as HTMLElement).style.display="none";
+    }
+    else {
+        (document.querySelector('.textbook_words') as HTMLElement).style.background='';
+        (document.querySelector('.page-item.active') as HTMLElement).classList.remove('learned');
+        (document.querySelector('button.active') as HTMLElement).classList.remove('learned');
+        (document.querySelector('.textbook_games') as HTMLElement).style.display="flex";
+        changeStyleGroup();
     }
 }
 

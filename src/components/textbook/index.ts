@@ -188,6 +188,7 @@ export const renderCard = (card: IWord) => {
         difficultWord(card);
         newCard.style.background="red";
         newCard.dataset.difficulty = 'hard';
+        checkLearnedWords();
     });
 
     if (storageUsersWords.learnedWords.some(el => el.word == card.word)) {

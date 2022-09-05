@@ -1,0 +1,58 @@
+{
+    "name": "newsjs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.base.config.js",
+    "scripts": {
+        "dev": "nodemon",
+        "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
+        "build": "webpack --config ./webpack.config.js --env mode=prod",
+        "lint": "eslint . --fix --ext .ts --ignore-path .gitignore ."
+    },
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [],
+    "author": "Aleh Serhiyenia",
+    "license": "ISC",
+    "homepage": "",
+    "devDependencies": {
+        "@types/node": "^18.7.6",
+        "@typescript-eslint/eslint-plugin": "^5.30.3",
+        "@typescript-eslint/parser": "^5.30.3",
+        "clean-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^7.0.0",
+        "css-loader": "^5.1.0",
+        "eslint": "^7.27.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.23.3",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-typescript": "^0.14.0",
+        "eslint-webpack-plugin": "^3.2.0",
+        "file-loader": "^6.2.0",
+        "html-webpack-inline-svg-plugin": "^2.3.0",
+        "html-webpack-plugin": "^5.2.0",
+        "image-minimizer-webpack-plugin": "^3.2.3",
+        "imagemin": "^8.0.1",
+        "imagemin-gifsicle": "^7.0.0",
+        "imagemin-jpegtran": "^7.0.0",
+        "imagemin-optipng": "^8.0.0",
+        "imagemin-svgo": "^10.0.1",
+        "mini-css-extract-plugin": "^2.6.1",
+        "prettier": "2.2.1",
+        "sass": "^1.53.0",
+        "sass-loader": "^13.0.2",
+        "style-loader": "^2.0.0",
+        "ts-loader": "^9.3.1",
+        "typescript": "^4.7.4",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0",
+        "webpack-dev-server": "^3.11.3",
+        "webpack-merge": "^5.7.3"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "typescript-eslint-parser": "^22.0.0"
+    }
+}

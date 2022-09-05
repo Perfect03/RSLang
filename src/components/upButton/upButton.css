@@ -1,0 +1,33 @@
+html,
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    scroll-behavior: smooth;
+}
+
+.up_button {
+    z-index: 9;
+    display: flex;
+    opacity: 0;
+    transition: 0.2s ease;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    bottom: 70px;
+    right: 30px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.up_button.is_visible {
+    opacity: 1;
+}
+
+.up_button_img {
+    width: 60px;
+}

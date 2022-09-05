@@ -10,11 +10,7 @@ export interface IDataStorage {
     sprint__state: ISprintState;
     sprint__round__right__answers: IWords;
     sprint__round__wrong__answers: IWords;
-    audiochallenge__right__answers: IWords;
-    audiochallenge__wrong__answers: IWords;
     audiochallenge__words__in__row: 0;
-    sprint__right__answers: IWords;
-    sprint__wrong__answers: IWords;
     sprint__words__in__row: 0;
 }
 

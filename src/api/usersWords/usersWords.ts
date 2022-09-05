@@ -32,7 +32,6 @@ export const getAllUserWords = async () => {
             Authorization: `Bearer ${storageUserAccInfo.token}`,
             Accept: 'application/json',
         },
-        
     });
     const content: Array<IWordIsDiffOrLearnResponse> = await rawResponse.json();
 

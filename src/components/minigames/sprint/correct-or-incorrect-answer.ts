@@ -1,4 +1,4 @@
-import { dataStorage, setSprintRightAnswers, setSprintWrongAnswers } from '../../utils/storage';
+import { dataStorage, setSprintRightAnswers, setSprintWrongAnswers, setSprintInARow } from '../../utils/storage';
 
 export const checkAnswer = (e: MouseEvent) => {
     let result;
@@ -14,7 +14,7 @@ export const checkAnswer = (e: MouseEvent) => {
 export const changeResult = (res: boolean) => {
     if (res) {
         setSprintRightAnswers(dataStorage.game__current__word);
-        dataStorage.sprint__words__in__row++;
+        setSprintInARow(true);
         const audio = new Audio('components/minigames/assets/correct.mp3');
         audio.play();
         dataStorage.sprint__state.score += dataStorage.sprint__state.plus;
@@ -25,7 +25,7 @@ export const changeResult = (res: boolean) => {
         }
     } else {
         setSprintWrongAnswers(dataStorage.game__current__word);
-        dataStorage.sprint__words__in__row = 0;
+        setSprintInARow(false);
         const audio = new Audio('components/minigames/assets/incorrect.mp3');
         audio.play();
         dataStorage.sprint__state.circles = 0;

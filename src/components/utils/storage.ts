@@ -1,4 +1,5 @@
 import { UserAuthInfo } from '../../interfaces & types/authorization';
+import { IUserStatistic } from '../../interfaces & types/statistics';
 import { IDataStorage } from '../../interfaces & types/storage-interface';
 import { IStorageUserWords, ItempStorageUsersWords, IWord } from '../../interfaces & types/words';
 
@@ -55,9 +56,27 @@ export const tempStorageUsersWords: ItempStorageUsersWords = {
     hardWords: [],
 };
 
+export const storageUsersWords: IStorageUserWords = {
+    learnedWords: [],
+    hardWords: [],
+};
+
+export const storageUserStatistic: IUserStatistic = {
+    learnedWords: 0,
+    optional: {
+        common__accuracy: 0,
+        sprint__words: 0,
+        sprint__accuracy: 0,
+        sprint__in_a_row: 0,
+        audiochallenge__words: 0,
+        audiochallenge__accuracy: 0,
+        audiochallenge__in_a_row: 0,
+    },
+};
+
 export const setAudioChallengeRightAnswers = async (word: IWord) => {
     dataStorage.audiochallenge__round__right__answers.push(word);
-}
+};
 
 export const setRightAnswers = async (word: IWord) => {
     dataStorage.game__round__right__answers.push(word);

@@ -189,6 +189,10 @@
 .correct_answers {
     display: flex;
     flex-direction: column;
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 240px;
 }
 
 .incorrect_answers_container {
@@ -199,6 +203,10 @@
 .incorrect_answers {
     display: flex;
     flex-direction: column;
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 240px;
 }
 
 .answer_div {
@@ -258,6 +266,10 @@
     .word_image {
         max-height: 155px;
     }
+
+    .correct_answers {
+        max-height: 210px;
+      }
 }
 
 @media (max-height: 855px) {

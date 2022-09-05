@@ -4,6 +4,7 @@ import { dataStorage, setCurrentWord } from '../../utils/storage';
 import { createStatsPopUp } from '../statistics-popup';
 
 import './sprint.css';
+import { getUserStatistics, sendUserStatisitcs } from '../../../api/statistics/userStatistics';
 
 export const createLayoutSprint = (level: string, page: string | null = null) => {
     const sprint = document.createElement('section');
@@ -94,7 +95,11 @@ export const createLayoutSprint = (level: string, page: string | null = null) =>
     let timer = setTimeout(function tick() {
         progress_percents_span.textContent = (Number(progress_percents_span.textContent) - 1).toString();
         if (Number(progress_percents_span.textContent)) timer = setTimeout(tick, 1000);
-        else createStatsPopUp('sprint');
+        else {
+            createStatsPopUp('sprint');
+            sendUserStatisitcs();
+            getUserStatistics();
+        }
     }, 1000);
 
     seconds.append(progress_percents_span);

@@ -1,5 +1,5 @@
 import { UserAuthInfo } from '../../interfaces & types/authorization';
-import { IUserStatistic } from '../../interfaces & types/statistics';
+import { ISprintAndAudioWords, IUserStatistic } from '../../interfaces & types/statistics';
 import { IDataStorage } from '../../interfaces & types/storage-interface';
 import { IStorageUserWords, ItempStorageUsersWords, IWord } from '../../interfaces & types/words';
 
@@ -61,29 +61,32 @@ export const storageUserStatistic: IUserStatistic = {
     optional: {
         common__accuracy: 0,
         sprint__words: 0,
-        sprint__words__array: [],
         sprint__right: 0,
         sprint__accuracy: 0,
         sprint__in_a_row: 0,
         audiochallenge__words: 0,
-        audiochallenge__words__array: [],
         audiochallenge__right: 0,
         audiochallenge__accuracy: 0,
         audiochallenge__in_a_row: 0,
     },
 };
 
+export const SprintAndAudioWords: ISprintAndAudioWords = {
+    sprint__words__array: [],
+    audiochallenge__words__array: [],
+};
+
 export const setAudioChallengeRightAnswers = async (word: IWord) => {
     dataStorage.audiochallenge__round__right__answers.push(word);
-    if (storageUserStatistic.optional.audiochallenge__words__array.indexOf(word) < 0) {
-        storageUserStatistic.optional.audiochallenge__words__array.push(word);
+    if (SprintAndAudioWords.audiochallenge__words__array.indexOf(word) < 0) {
+        SprintAndAudioWords.audiochallenge__words__array.push(word);
         storageUserStatistic.optional.audiochallenge__words++;
     }
     storageUserStatistic.optional.audiochallenge__right++;
     storageUserStatistic.optional.audiochallenge__accuracy = Number(
         (
             (storageUserStatistic.optional.audiochallenge__right /
-                storageUserStatistic.optional.audiochallenge__words__array.length) *
+                SprintAndAudioWords.audiochallenge__words__array.length) *
             100
         ).toFixed(2)
     );
@@ -91,29 +94,28 @@ export const setAudioChallengeRightAnswers = async (word: IWord) => {
 
 export const setSprintRightAnswers = async (word: IWord) => {
     dataStorage.sprint__round__right__answers.push(word);
-    if (storageUserStatistic.optional.sprint__words__array.indexOf(word) < 0) {
-        storageUserStatistic.optional.sprint__words__array.push(word);
+    if (SprintAndAudioWords.sprint__words__array.indexOf(word) < 0) {
+        SprintAndAudioWords.sprint__words__array.push(word);
         storageUserStatistic.optional.sprint__words++;
     }
     storageUserStatistic.optional.sprint__right++;
     storageUserStatistic.optional.sprint__accuracy = Number(
-        (
-            (storageUserStatistic.optional.sprint__right / storageUserStatistic.optional.sprint__words__array.length) *
-            100
-        ).toFixed(2)
+        ((storageUserStatistic.optional.sprint__right / SprintAndAudioWords.sprint__words__array.length) * 100).toFixed(
+            2
+        )
     );
 };
 
 export const setAudioChallengeWrongAnswers = async (word: IWord) => {
     dataStorage.audiochallenge__round__wrong__answers.push(word);
-    if (storageUserStatistic.optional.audiochallenge__words__array.indexOf(word) < 0) {
-        storageUserStatistic.optional.audiochallenge__words__array.push(word);
+    if (SprintAndAudioWords.audiochallenge__words__array.indexOf(word) < 0) {
+        SprintAndAudioWords.audiochallenge__words__array.push(word);
         storageUserStatistic.optional.audiochallenge__words++;
     }
     storageUserStatistic.optional.audiochallenge__accuracy = Number(
         (
             (storageUserStatistic.optional.audiochallenge__right /
-                storageUserStatistic.optional.audiochallenge__words__array.length) *
+                SprintAndAudioWords.audiochallenge__words__array.length) *
             100
         ).toFixed(2)
     );
@@ -121,15 +123,14 @@ export const setAudioChallengeWrongAnswers = async (word: IWord) => {
 
 export const setSprintWrongAnswers = async (word: IWord) => {
     dataStorage.sprint__round__wrong__answers.push(word);
-    if (storageUserStatistic.optional.sprint__words__array.indexOf(word) < 0) {
-        storageUserStatistic.optional.sprint__words__array.push(word);
+    if (SprintAndAudioWords.sprint__words__array.indexOf(word) < 0) {
+        SprintAndAudioWords.sprint__words__array.push(word);
         storageUserStatistic.optional.sprint__words++;
     }
     storageUserStatistic.optional.sprint__accuracy = Number(
-        (
-            (storageUserStatistic.optional.sprint__right / storageUserStatistic.optional.sprint__words__array.length) *
-            100
-        ).toFixed(2)
+        ((storageUserStatistic.optional.sprint__right / SprintAndAudioWords.sprint__words__array.length) * 100).toFixed(
+            2
+        )
     );
 };
 

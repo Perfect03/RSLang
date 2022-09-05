@@ -1,4 +1,4 @@
-import { storageUserAccInfo }  from './storage'
+import { storageUserAccInfo } from './storage';
 
 export const deleteChildsOfMain = () => {
     const main = document.querySelector('main') as HTMLElement;

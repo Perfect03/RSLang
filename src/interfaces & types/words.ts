@@ -17,12 +17,12 @@ export interface IWord {
 
 export type IWords = IWord[];
 
-export interface IUsersWords {
-    learnedWords: IWord[];
-    diffictultWords: IWord[];
-}
+export type ItempStorageUsersWords = {
+    learnedWords: IWordIsDiffOrLearnResponse[];
+    hardWords: IWordIsDiffOrLearnResponse[];
+};
 
-export interface ICreateWord {
+export interface IWordIsDiffOrLearn {
     wordId: string;
     word: {
         difficulty: string;
@@ -31,4 +31,18 @@ export interface ICreateWord {
             option2?: string;
         };
     };
+}
+
+export interface IWordIsDiffOrLearnResponse {
+    userId: string;
+    difficulty: string;
+    optional: {
+        learned: boolean;
+    };
+    wordId: string;
+}
+
+export interface IStorageUserWords {
+    hardWords: IWord[];
+    learnedWords: IWord[];
 }

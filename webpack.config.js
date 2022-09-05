@@ -14,18 +14,14 @@ const baseConfig = {
                 test: /\.(s*)css$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
-          {
-            test: /\.ts$/i,
-            use: 'ts-loader',
-            exclude: /node_modules/, 
-
-          },
             {
-                test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-                type: 'asset/resource',
+                test: /\.ts$/i,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf|svg|)$/i,
+                test: /\.(?:ico|gif|png|jpg|jpeg|svg|mp3)$/i,
                 type: 'asset/resource',
             }
         ],
@@ -36,7 +32,7 @@ const baseConfig = {
     output: {
         filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
-        assetModuleFilename: (pathData) =>{
+        assetModuleFilename: (pathData) => {
             const filepath = path.dirname(pathData.filename).split('/').slice(1).join('/');
             return `${filepath}/[name][ext]`;
         },
@@ -58,7 +54,7 @@ module.exports = ({ mode }) => {
     const isProductionMode = mode === 'prod';
     const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
 
-    
+
 
     return merge(baseConfig, envConfig);
 };

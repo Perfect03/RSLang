@@ -13,6 +13,9 @@ import '../main/main-assets/sec4.png';
 import '../main/main-assets/statistic.jpg';
 import '../main/main-assets/textbook.jpg';
 import '../main/main-assets/github.png';
+import '../main/main-assets/bookF.png';
+import '../main/main-assets/gameF.png';
+import '../main/main-assets/statF.png';
 
 createMain();
 listenMenus();

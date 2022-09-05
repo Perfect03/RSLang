@@ -1,6 +1,7 @@
 import { UserAuthInfo } from '../../interfaces & types/authorization';
+import { IUserStatistic } from '../../interfaces & types/statistics';
 import { IDataStorage } from '../../interfaces & types/storage-interface';
-import { IUsersWords, IWord } from '../../interfaces & types/words';
+import { IStorageUserWords, ItempStorageUsersWords, IWord } from '../../interfaces & types/words';
 
 export const dataStorage: IDataStorage = {
     audiochallenge__num__of__round: 1,
@@ -34,11 +35,6 @@ export const dataStorage: IDataStorage = {
     sprint__round__right__answers: [],
     sprint__round__wrong__answers: [],
     sprint__words__in__row: 0,
-
-    audiochallenge__right__answers: [],
-    audiochallenge__wrong__answers: [],
-    sprint__right__answers: [],
-    sprint__wrong__answers: [],
 };
 
 export const storageUserAccInfo: UserAuthInfo = {
@@ -50,25 +46,105 @@ export const storageUserAccInfo: UserAuthInfo = {
     email: '',
 };
 
-export const usersWords: IUsersWords = {
+export const tempStorageUsersWords: ItempStorageUsersWords = {
     learnedWords: [],
-    diffictultWords: [],
+    hardWords: [],
+};
+
+export const storageUsersWords: IStorageUserWords = {
+    learnedWords: [],
+    hardWords: [],
+};
+
+export const storageUserStatistic: IUserStatistic = {
+    learnedWords: 0,
+    optional: {
+        common__accuracy: 0,
+        sprint__words: [],
+        sprint__accuracy: 0,
+        sprint__in_a_row: 0,
+        audiochallenge__words: [],
+        audiochallenge__accuracy: 0,
+        audiochallenge__in_a_row: 0,
+    },
 };
 
 export const setAudioChallengeRightAnswers = async (word: IWord) => {
     dataStorage.audiochallenge__round__right__answers.push(word);
+    if (storageUserStatistic.optional.audiochallenge__words.indexOf(word) >= 0)
+        storageUserStatistic.optional.audiochallenge__words.push(word);
+    storageUserStatistic.optional.audiochallenge__accuracy = Number(
+        (
+            ((Math.round(
+                storageUserStatistic.optional.audiochallenge__accuracy *
+                    storageUserStatistic.optional.audiochallenge__words.length
+            ) +
+                1) /
+                storageUserStatistic.optional.audiochallenge__words.length) *
+            100
+        ).toFixed(2)
+    );
 };
 
 export const setSprintRightAnswers = async (word: IWord) => {
     dataStorage.sprint__round__right__answers.push(word);
+    if (storageUserStatistic.optional.sprint__words.indexOf(word) >= 0)
+        storageUserStatistic.optional.sprint__words.push(word);
+    storageUserStatistic.optional.sprint__accuracy = Number(
+        (
+            ((Math.round(
+                storageUserStatistic.optional.sprint__accuracy * storageUserStatistic.optional.sprint__words.length
+            ) +
+                1) /
+                storageUserStatistic.optional.sprint__words.length) *
+            100
+        ).toFixed(2)
+    );
 };
 
 export const setAudioChallengeWrongAnswers = async (word: IWord) => {
     dataStorage.audiochallenge__round__wrong__answers.push(word);
+    if (storageUserStatistic.optional.audiochallenge__words.indexOf(word) >= 0)
+        storageUserStatistic.optional.audiochallenge__words.push(word);
+    storageUserStatistic.optional.audiochallenge__accuracy = Number(
+        (
+            ((Math.round(
+                storageUserStatistic.optional.audiochallenge__accuracy *
+                    storageUserStatistic.optional.audiochallenge__words.length
+            ) -
+                1) /
+                storageUserStatistic.optional.audiochallenge__words.length) *
+            100
+        ).toFixed(2)
+    );
 };
 
 export const setSprintWrongAnswers = async (word: IWord) => {
     dataStorage.sprint__round__wrong__answers.push(word);
+    if (storageUserStatistic.optional.sprint__words.indexOf(word) >= 0)
+        storageUserStatistic.optional.sprint__words.push(word);
+    storageUserStatistic.optional.sprint__accuracy = Number(
+        (
+            ((Math.round(
+                storageUserStatistic.optional.sprint__accuracy * storageUserStatistic.optional.sprint__words.length
+            ) -
+                1) /
+                storageUserStatistic.optional.sprint__words.length) *
+            100
+        ).toFixed(2)
+    );
+};
+
+export const setAudioChallengeInARow = async (value: boolean) => {
+    value ? dataStorage.audiochallenge__words__in__row++ : (dataStorage.audiochallenge__words__in__row = 0);
+    if (dataStorage.audiochallenge__words__in__row > storageUserStatistic.optional.audiochallenge__in_a_row)
+        storageUserStatistic.optional.audiochallenge__in_a_row++;
+};
+
+export const setSprintInARow = async (value: boolean) => {
+    value ? dataStorage.sprint__words__in__row++ : (dataStorage.sprint__words__in__row = 0);
+    if (dataStorage.sprint__words__in__row > storageUserStatistic.optional.sprint__in_a_row)
+        storageUserStatistic.optional.sprint__in_a_row++;
 };
 
 export const whichRoundInGameAudio = () => {

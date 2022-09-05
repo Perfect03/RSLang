@@ -1,10 +1,11 @@
 import { getWords } from '../../api/api';
 import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
-import { difficultWord, deleteWord } from './textbook';
+import { difficultWord, learnWord } from './textbook';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
+import './textbook-assets/difwords.png';
 
 export const readWords = async (page: number, group: number) => {
     const cards = await getWords(page, group);
@@ -126,7 +127,7 @@ export const renderCard = (card: IWord) => {
     buttonsLeft.classList.add('card_buttons');
 
     buttonsRight.classList.add('card_buttons');
-    const difficultButton = document.createElement('button');
+    const difficultButton = document.createElement('button') as HTMLButtonElement;
     const difficultButton_text = document.createElement('span');
     const deleteButton = document.createElement('button');
     const deleteButton_text = document.createElement('span');
@@ -172,7 +173,7 @@ export const renderCard = (card: IWord) => {
     });
 
     deleteButton.addEventListener('click', () => {
-        deleteWord(card);
+        learnWord(card);
     });
 
     word.textContent = card.word;

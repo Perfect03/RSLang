@@ -1,9 +1,9 @@
-import { storageUserAccInfo } from '../../components/utils/storage';
-import { ICreateWord } from '../../interfaces & types/words';
-import { baseUrl } from '../api';
+import { storageUserAccInfo, storageUsersWords, tempStorageUsersWords } from '../../components/utils/storage';
+import { IWordIsDiffOrLearn, IWordIsDiffOrLearnResponse } from '../../interfaces & types/words';
+import { baseUrl, getWordById } from '../api';
 
-const createUserWord = async ({ wordId, word }: ICreateWord) => {
-    const rawResponse = await fetch(`${baseUrl}users/${storageUserAccInfo.userId}/words/${wordId}`, {
+export const createUserWord = async ({ wordId, word }: IWordIsDiffOrLearn) => {
+    await fetch(`${baseUrl}users/${storageUserAccInfo.userId}/words/${wordId}`, {
         method: 'POST',
         headers: {
             Authorization: `Bearer ${storageUserAccInfo.token}`,
@@ -12,40 +12,52 @@ const createUserWord = async ({ wordId, word }: ICreateWord) => {
         },
         body: JSON.stringify(word),
     });
-    const content = await rawResponse.json();
 };
 
-const getUserWord = async (wordId: string) => {
-    const rawResponse = await fetch(`${baseUrl}users/${storageUserAccInfo.userId}/words/${wordId}`, {
+export const getUserWord = async (wordId: string) => {
+    const word = await fetch(`${baseUrl}users/${storageUserAccInfo.userId}/words/${wordId}`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${storageUserAccInfo.token}`,
             Accept: 'application/json',
         },
     });
-    const content = await rawResponse.json();
+    return word;
 };
 
-export const immitator = () => {
-    const header = document.querySelector('.header_content_page') as HTMLDivElement;
-    const button = document.createElement('button');
-
-    header.appendChild(button);
-    button.style.width = '100px';
-    button.style.height = '50px';
-    button.style.backgroundColor = 'darkmagenta';
-
-    const testWord: ICreateWord = {
-        wordId: '5e9f5ee35eb9e72bc21af4a6',
-        word: {
-            difficulty: 'weak',
-            optional: {
-                learned: true,
-            },
+export const getAllUserWords = async () => {
+    const rawResponse = await fetch(`${baseUrl}users/${storageUserAccInfo.userId}/words/`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${storageUserAccInfo.token}`,
+            Accept: 'application/json',
         },
-    };
-    button.addEventListener('click', function () {
-        createUserWord(testWord);
-        getUserWord(testWord.wordId);
+    });
+    const content: Array<IWordIsDiffOrLearnResponse> = await rawResponse.json();
+
+    await content.forEach((el) => {
+        checkIsWordLearnOrNot(el);
+        checkIsWordHardOrEasy(el);
+    });
+    console.log(tempStorageUsersWords);
+    await convertAllUsersWords();
+};
+
+const checkIsWordHardOrEasy = (word: IWordIsDiffOrLearnResponse) => {
+    if (word.difficulty === 'hard') tempStorageUsersWords.hardWords.push(word);
+};
+
+const checkIsWordLearnOrNot = (word: IWordIsDiffOrLearnResponse) => {
+    if (word.optional.learned === true) tempStorageUsersWords.learnedWords.push(word);
+};
+
+const convertAllUsersWords = async () => {
+    tempStorageUsersWords.learnedWords.forEach(async (el) => {
+        const word = await getWordById(el.wordId);
+        storageUsersWords.learnedWords.push(word);
+    });
+    tempStorageUsersWords.hardWords.forEach(async (el) => {
+        const word = await getWordById(el.wordId);
+        storageUsersWords.hardWords.push(word);
     });
 };

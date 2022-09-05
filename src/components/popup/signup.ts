@@ -1,4 +1,3 @@
-import { UserInfo } from '../../interfaces & types/authorization';
 import { addSignUpListener } from './signin-authorization';
 
 export const createSignIn = () => {
@@ -44,7 +43,21 @@ export const createSignIn = () => {
     popup_registration_wind_form_btn.href = '#';
     popup_registration_wind_form_btn.textContent = 'SIGN UP';
 
+    const popup_hello = document.createElement('div');
+    popup_hello.classList.add('popup_hello', 'popup');
+    body.appendChild(popup_hello);
+
+    const popup_hello_wind = document.createElement('div');
+    popup_hello_wind.classList.add('popup_hello_wind', 'popup_wind');
+    popup_hello.appendChild(popup_hello_wind);
+
+    const popup_hello_wind_h1 = document.createElement('h1');
+    popup_hello_wind_h1.classList.add('main_section_h1', 'popuph1');
+    popup_hello_wind.appendChild(popup_hello_wind_h1);
+    popup_hello_wind_h1.textContent = 'Nice to meet you!';
+
     const popupS = document.querySelector('.popup_registration');
+
     document.querySelectorAll('.open_pop_sign').forEach((item) => {
         item.addEventListener('click', () => {
             (document.querySelector('.popup_login') as HTMLElement).style.display = 'none';
@@ -58,15 +71,4 @@ export const createSignIn = () => {
         });
     });
     addSignUpListener();
-};
-
-export const signFunction = () => {
-    const sign_name = (document.querySelector('.sign_name') as HTMLInputElement).value;
-    const sign_email = (document.querySelector('.sign_email') as HTMLInputElement).value;
-    const sign_pass = (document.querySelector('.sign_pass') as HTMLInputElement).value;
-
-    (document.querySelector('.popup_registration') as HTMLElement).style.display = 'none';
-
-    const UsersInfo: UserInfo = { name: sign_name, email: sign_email, password: sign_pass };
-    return UsersInfo;
 };

@@ -63,9 +63,20 @@ export const createLogin = () => {
 };
 
 export function loginFunction() {
+    console.log('loginFunction');
     const login_email = (document.querySelector('.login_email') as HTMLInputElement).value;
     const login_pass = (document.querySelector('.login_pass') as HTMLInputElement).value;
-
+    const popup_hello = document.querySelector('.popup_hello') as HTMLElement;
+    if (login_email !== '' && login_pass !== '') {
+        (document.querySelector('.popup_login') as HTMLElement).style.display = 'none';
+        popup_hello.style.display = 'flex';
+        setTimeout(function () {
+            (document.querySelector('.popup_hello') as HTMLElement).style.display = 'none';
+        }, 1500);
+    } else {
+        (document.querySelector('.login_email') as HTMLInputElement).placeholder = 'Please enter email';
+        (document.querySelector('.login_pass') as HTMLInputElement).placeholder = 'Please enter password';
+    }
     const UsersResponse: UserResponse = { email: login_email, password: login_pass };
     return UsersResponse;
 }

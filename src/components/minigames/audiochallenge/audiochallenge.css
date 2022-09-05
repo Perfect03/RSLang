@@ -39,7 +39,8 @@
     --aa: 1px;
 
     /* anti-aliasing */
-    --color: #4f3e20;;
+    --color: #4f3e20;
+    ;
     border-radius: 3px;
     background:
         linear-gradient(45deg, transparent calc(50% - var(--weight) - var(--aa)), var(--color) calc(50% - var(--weight)), var(--color) calc(50% + var(--weight)), transparent calc(50% + var(--weight) + var(--aa))),
@@ -234,7 +235,7 @@
     }
 
     .words_wrapper {
-        height: 45%;
+        height: 50%;
         flex-direction: column;
         align-items: center;
     }
@@ -256,5 +257,36 @@
 
     .word_image {
         max-height: 155px;
-      }
+    }
+}
+
+@media (max-height: 855px) {
+    .game_container#audioChallenge {
+        height: 90vh;
+    }
+
+    .audiochallenge_header {
+        height: 50px;
+    }
+
+    #audioChallenge .game {
+        height: 75vh;
+    }
+
+    .skip_btn {
+        height: 40px;
+    }
+
+    .skip_btn_container {
+        height: 30%;
+    }
+
+    .word_div {
+        height: 35px;
+    }
+
+    .word_image {
+        max-width: 120px;
+        margin: 5px;
+    }
 }

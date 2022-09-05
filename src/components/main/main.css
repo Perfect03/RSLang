@@ -251,11 +251,12 @@ body {
 @media (max-width: 580px) {
     .main_section_five_card {
         width: 300px;
-        height: 175px;
+        height: 190px;
     }
 
     .developer_img_box {
         height: 150px;
+        margin: 18px 5px 5px 5px;
     }
 
     .name_dev {

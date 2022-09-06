@@ -173,7 +173,6 @@ const listenPagination = (pag: HTMLElement) => {
 const createGroups = (activeItem: number) => {
     const groups = document.createElement('div');
     groups.classList.add('groups');
-
     const groups_title = document.createElement('h6');
     groups_title.classList.add('groups_title');
     groups_title.textContent = 'Degree of difficulty:';
@@ -249,7 +248,6 @@ export const checkLearnedWords = () => {
 
 const listenGroups = (groups: HTMLElement) => {
     groups.addEventListener('click', (e) => {
-        changeStyleGroup();
         if ((e.target as HTMLElement).tagName == 'BUTTON') {
             const active = Array.from(groups.querySelectorAll('button')).find((el) => el.classList.contains('active'));
             active?.classList.remove('active');

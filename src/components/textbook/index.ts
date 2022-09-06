@@ -181,22 +181,27 @@ export const renderCard = (card: IWord) => {
     newCard.dataset.id = card.id;
     newCard.dataset.difficulty = 'easy';
     if (storageUsersWords.hardWords.some((el) => el.word == card.word)) {
-        newCard.style.background = 'linear-gradient(to right, rgba(255, 0, 0, 0.45), 50%, rgb(250, 252, 252))';
+        newCard.classList.remove('learned_word');
+        newCard.classList.add('hard_word');
         newCard.dataset.difficulty = 'hard';
     } else
         difficultButton.addEventListener('click', () => {
             difficultWord(card);
-            newCard.style.background = 'linear-gradient(to right, rgba(255, 0, 0, 0.45), 50%, rgb(250, 252, 252))';
+            newCard.classList.remove('learned_word');
+            newCard.classList.add('hard_word');
             newCard.dataset.difficulty = 'hard';
             checkLearnedWords();
         });
 
     if (storageUsersWords.learnedWords.some((el) => el.word == card.word)) {
-        newCard.style.background = 'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))';
+        newCard.classList.remove('hard_word');
+        newCard.classList.add('learned_word');
+        newCard.dataset.difficulty = 'easy';
     } else
         deleteButton.addEventListener('click', () => {
             learnWord(card);
-            newCard.style.background = 'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))';
+            newCard.classList.remove('hard_word');
+            newCard.classList.add('learned_word');
             newCard.dataset.difficulty = 'easy';
             checkLearnedWords();
         });

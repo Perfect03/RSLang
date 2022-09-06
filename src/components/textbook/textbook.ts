@@ -5,9 +5,6 @@ import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
 import { createUserWord } from '../../api/usersWords/usersWords';
 import { storageUsersWords } from '../utils/storage';
 
-const textbook_words = document.createElement('div');
-const cards = document.createElement('div');
-
 export const createTextbook = () => {
     localStorage.setItem('pageGames', localStorage.getItem('page') as string);
     localStorage.setItem('groupGames', localStorage.getItem('group') as string);
@@ -16,13 +13,16 @@ export const createTextbook = () => {
     textbook.id = 'textbook';
 
     const pagination = createPagination(Number(localStorage.getItem('page')));
+    const textbook_words = document.createElement('div');
     textbook_words.classList.add('textbook_words');
+    textbook_words.classList.add(`group${Number(localStorage.getItem('group'))}`);
     const textbook_games = createGames();
 
     textbook.append(textbook_games);
     textbook.append(pagination as HTMLElement);
     textbook.append(textbook_words);
-
+    
+    const cards = document.createElement('div');
     const groups = createGroups(Number(localStorage.getItem('group')));
     cards.classList.add('cards');
 
@@ -199,24 +199,44 @@ empty_card.classList.add('empty_card', 'card');
 empty_card.textContent = 'There is nothing here yet.';
 
 const changeStyleGroup = () => {
+  const textbook_words = document.querySelector('.textbook_words') as HTMLElement;
+  const cards = document.querySelector('.cards') as HTMLElement;
     document.addEventListener('click', (e) => {
         if ((e.target as HTMLElement).classList.contains('group0')) {
-            textbook_words.style.background = 'linear-gradient(to right,#c7adf240, 50%, #fafcfc)';
+            for (let i = 0; i < 7; i++) {
+                textbook_words.classList.remove(`group${i}`);
+            }
+            textbook_words.classList.add('group0');
         } else if ((e.target as HTMLElement).classList.contains('group1')) {
-            textbook_words.style.background = 'linear-gradient(to right,#bb68f67a, 50%, #fafcfc)';
+            for (let i = 0; i < 7; i++) {
+                textbook_words.classList.remove(`group${i}`);
+            }
+            textbook_words.classList.add('group1');
         } else if ((e.target as HTMLElement).classList.contains('group2')) {
-            textbook_words.style.background = 'linear-gradient(to right,rgba(135, 100, 218, 0.5), 50%, #fafcfc)';
+            for (let i = 0; i < 7; i++) {
+                textbook_words.classList.remove(`group${i}`);
+            }
+            textbook_words.classList.add('group2');
         } else if ((e.target as HTMLElement).classList.contains('group3')) {
-            textbook_words.style.background = 'linear-gradient(to right,#7e247e73, 50%, #fafcfc)';
+            for (let i = 0; i < 7; i++) {
+                textbook_words.classList.remove(`group${i}`);
+            }
+            textbook_words.classList.add('group3');
         } else if ((e.target as HTMLElement).classList.contains('group4')) {
-            textbook_words.style.background = 'linear-gradient(to right,#4a235296, 50%, #fafcfc)';
+            for (let i = 0; i < 7; i++) {
+                textbook_words.classList.remove(`group${i}`);
+            }
+            textbook_words.classList.add('group4');
         } else if ((e.target as HTMLElement).classList.contains('group5')) {
-            textbook_words.style.background = 'linear-gradient(to right,#27052ca3, 50%, #fafcfc)';
+            for (let i = 0; i < 7; i++) {
+                textbook_words.classList.remove(`group${i}`);
+            }
+            textbook_words.classList.add('group5');
         } else if ((e.target as HTMLElement).classList.contains('group6')) {
-            textbook_words.style.backgroundImage = `url('components/textbook/textbook-assets/difwords.png')`;
-            textbook_words.style.backgroundRepeat = 'no-repeat';
-            textbook_words.style.backgroundPosition = 'center center';
-            textbook_words.style.backgroundSize = 'cover';
+            for (let i = 0; i < 7; i++) {
+                textbook_words.classList.remove(`group${i}`);
+            }
+            textbook_words.classList.add('group6');
             if (!cards.childNodes.length) {
                 cards.append(empty_card);
             }
@@ -227,20 +247,15 @@ const changeStyleGroup = () => {
 export const checkLearnedWords = () => {
     let learned = 0;
     document.querySelectorAll('.card').forEach((el) => {
-        if (
-            (el as HTMLElement).style.background ==
-            'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))'
-        )
-            learned++;
+        if ((el as HTMLElement).classList.contains('learned_word')) learned++;
     });
     if (learned == document.querySelectorAll('.card').length) {
         (document.querySelector('.textbook_words') as HTMLElement).style.background =
-            'linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))';
+            'linear-gradient(to right, rgba(162, 246, 104, 0.48), 50%, rgb(250, 252, 252))';
         (document.querySelector('.page-item.active') as HTMLElement).classList.add('learned');
         (document.querySelector('button.active') as HTMLElement).classList.add('learned');
         (document.querySelector('.textbook_games') as HTMLElement).style.display = 'none';
     } else {
-        (document.querySelector('.textbook_words') as HTMLElement).style.background = '';
         (document.querySelector('.page-item.active') as HTMLElement).classList.remove('learned');
         (document.querySelector('button.active') as HTMLElement).classList.remove('learned');
         (document.querySelector('.textbook_games') as HTMLElement).style.display = 'flex';
@@ -266,8 +281,9 @@ const listenGroups = (groups: HTMLElement) => {
 
 export const difficultWord = (word: IWord) => {
     storageUsersWords.hardWords.push(word);
-    console.log(storageUsersWords.hardWords);
-    console.log('difficult word', word);
+    storageUsersWords.learnedWords = storageUsersWords.learnedWords.filter(function (f) {
+        return f !== word;
+    });
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
         word: {
@@ -285,9 +301,6 @@ export const learnWord = (word: IWord) => {
     storageUsersWords.hardWords = storageUsersWords.hardWords.filter(function (f) {
         return f !== word;
     });
-    console.log(storageUsersWords.learnedWords);
-    console.log(storageUsersWords.hardWords);
-    console.log('delete word', word);
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
         word: {

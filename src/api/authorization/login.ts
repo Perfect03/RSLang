@@ -1,7 +1,7 @@
 import { storageUserAccInfo } from '../../components/utils/storage';
 import { UserResponse } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
-import { getUserStatistics } from '../statistics/userStatistics';
+import { createEmptyStats, getUserStatistics } from '../statistics/userStatistics';
 import { getAllUserWords } from '../usersWords/usersWords';
 
 export const loginUser = async (user: UserResponse) => {
@@ -21,7 +21,11 @@ export const loginUser = async (user: UserResponse) => {
     storageUserAccInfo.userId = content.userId;
     storageUserAccInfo.name = content.name;
 
-    await getUserStatistics();
+    try {
+        await getUserStatistics();
+    } catch {
+        await createEmptyStats();
+    }
 };
 
 export const getUserInfo = async (userId: string) => {

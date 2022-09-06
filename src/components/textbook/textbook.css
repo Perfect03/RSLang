@@ -289,6 +289,50 @@ main {
   background: linear-gradient(to right, #c7adf240, 50%, #fafcfc);
 }
 
+.textbook_words.group0 {
+  background: linear-gradient(to right,#c7adf240, 50%, #fafcfc);
+}
+
+.textbook_words.group1 {
+  background: linear-gradient(to right,#bb68f67a, 50%, #fafcfc);
+}
+
+.textbook_words.group2 {
+  background: linear-gradient(to right,rgba(135, 100, 218, 0.5), 50%, #fafcfc);
+}
+
+.textbook_words.group3 {
+  background: linear-gradient(to right,#7e247e73, 50%, #fafcfc);
+}
+
+.textbook_words.group4 {
+  background: linear-gradient(to right,#4a235296, 50%, #fafcfc);
+}
+
+.textbook_words.group5 {
+  background: linear-gradient(to right,#27052ca3, 50%, #fafcfc);
+}
+
+.textbook_words.group6 {
+  background-image: url('./textbook-assets/difwords.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.card.hard_word {
+  background: linear-gradient(to right, rgba(255, 0, 0, 0.45), 50%, rgb(250, 252, 252));
+}
+
+.card.learned_word {
+  background: linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252));
+}
+
+
+
+.learned_page {
+  background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(162, 246, 104, 0.48), 50%, rgb(250, 252, 252));
+}
 .groups {
   display: flex;
   max-width: 700px;

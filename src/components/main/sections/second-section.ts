@@ -71,7 +71,6 @@ export const createSecondSection = () => {
     const slides = document.querySelectorAll('.advantages_cards');
 
     slides.forEach((slide) => {
-        console.log('1');
         slide.addEventListener('click', () => {
             clearActiveClasses();
             slide.classList.add('active_slide');
@@ -79,7 +78,6 @@ export const createSecondSection = () => {
     });
 
     const clearActiveClasses = () => {
-        console.log('2');
         slides.forEach((slide) => {
             slide.classList.remove('active_slide');
         });

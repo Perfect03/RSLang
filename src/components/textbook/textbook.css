@@ -289,6 +289,10 @@ main {
   background: linear-gradient(to right, #c7adf240, 50%, #fafcfc);
 }
 
+.learned_page {
+  background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(162, 246, 104, 0.48), 50%, rgb(250, 252, 252));
+}
+
 .groups {
   display: flex;
   max-width: 700px;

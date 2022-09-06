@@ -26,7 +26,6 @@ export const getUserStatistics = async () => {
     const stats = await temp.json();
 
     replaceUserStats(stats);
-    console.log('after get', storageUserStatistic);
 };
 
 const replaceUserStats = (stats: IGetUserStatistic) => {

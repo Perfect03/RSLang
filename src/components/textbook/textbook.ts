@@ -5,9 +5,6 @@ import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
 import { createUserWord } from '../../api/usersWords/usersWords';
 import { storageUsersWords } from '../utils/storage';
 
-const textbook_words = document.createElement('div');
-const cards = document.createElement('div');
-
 export const createTextbook = () => {
     localStorage.setItem('pageGames', localStorage.getItem('page') as string);
     localStorage.setItem('groupGames', localStorage.getItem('group') as string);
@@ -16,7 +13,7 @@ export const createTextbook = () => {
     textbook.id = 'textbook';
 
     const pagination = createPagination(Number(localStorage.getItem('page')));
-
+    const textbook_words = document.createElement('div');
     textbook_words.classList.add('textbook_words');
     textbook_words.classList.add(`group${Number(localStorage.getItem('group'))}`);
     const textbook_games = createGames();
@@ -24,7 +21,8 @@ export const createTextbook = () => {
     textbook.append(textbook_games);
     textbook.append(pagination as HTMLElement);
     textbook.append(textbook_words);
-
+    
+    const cards = document.createElement('div');
     const groups = createGroups(Number(localStorage.getItem('group')));
     cards.classList.add('cards');
 
@@ -201,6 +199,8 @@ empty_card.classList.add('empty_card', 'card');
 empty_card.textContent = 'There is nothing here yet.';
 
 const changeStyleGroup = () => {
+  const textbook_words = document.querySelector('.textbook_words');
+  const cards = document.querySelector('.cards');
     document.addEventListener('click', (e) => {
         if ((e.target as HTMLElement).classList.contains('group0')) {
             for (let i = 0; i < 7; i++) {

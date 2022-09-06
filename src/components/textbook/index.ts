@@ -2,7 +2,7 @@ import { getWords } from '../../api/api';
 import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
 import { difficultWord, learnWord, checkLearnedWords } from './textbook';
-import { storageUsersWords } from '../utils/storage'
+import { storageUsersWords } from '../utils/storage';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
@@ -180,26 +180,31 @@ export const renderCard = (card: IWord) => {
     textMeaningTranslate.textContent = card.textMeaningTranslate;
     newCard.dataset.id = card.id;
     newCard.dataset.difficulty = 'easy';
-    if (storageUsersWords.hardWords.some(el => el.word == card.word)) {
-        newCard.style.background="red";
+    if (storageUsersWords.hardWords.some((el) => el.word == card.word)) {
+        newCard.classList.remove('learned_word');
+        newCard.classList.add('hard_word');
         newCard.dataset.difficulty = 'hard';
-    } else 
+    } else
         difficultButton.addEventListener('click', () => {
-        difficultWord(card);
-        newCard.style.background="red";
-        newCard.dataset.difficulty = 'hard';
-        checkLearnedWords();
-    });
+            difficultWord(card);
+            newCard.classList.remove('learned_word');
+            newCard.classList.add('hard_word');
+            newCard.dataset.difficulty = 'hard';
+            checkLearnedWords();
+        });
 
-    if (storageUsersWords.learnedWords.some(el => el.word == card.word)) {
-        newCard.style.background="linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))";
-    } else 
-    deleteButton.addEventListener('click', () => {
-        learnWord(card);
-        newCard.style.background="linear-gradient(to right, rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252))";
+    if (storageUsersWords.learnedWords.some((el) => el.word == card.word)) {
+        newCard.classList.remove('hard_word');
+        newCard.classList.add('learned_word');
         newCard.dataset.difficulty = 'easy';
-        checkLearnedWords();
-    });
+    } else
+        deleteButton.addEventListener('click', () => {
+            learnWord(card);
+            newCard.classList.remove('hard_word');
+            newCard.classList.add('learned_word');
+            newCard.dataset.difficulty = 'easy';
+            checkLearnedWords();
+        });
 
     return newCard;
 };

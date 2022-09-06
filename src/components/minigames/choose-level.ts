@@ -2,7 +2,6 @@ import { deleteChildsOfMain } from '../utils/delete-main-childs';
 import { createGameAudio } from './audiochallenge/create-game-session';
 import { createLayoutAudioChallenge } from './audiochallenge/layout';
 import { createLayoutSprint } from './sprint/layout';
-import { IWord } from '../../interfaces & types/words';
 import './minigames.css';
 import './assets/volume.png';
 

@@ -39,7 +39,6 @@ export const getAllUserWords = async () => {
         checkIsWordLearnOrNot(el);
         checkIsWordHardOrEasy(el);
     });
-    console.log(tempStorageUsersWords);
     await convertAllUsersWords();
 };
 

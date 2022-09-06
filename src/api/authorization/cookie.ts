@@ -2,6 +2,7 @@ import axios from 'axios';
 import { changeUiForAuthUser } from '../../components/popup/login-authorization';
 import { storageUserAccInfo } from '../../components/utils/storage';
 import { baseUrl } from '../api';
+import { getUserStatistics } from '../statistics/userStatistics';
 
 export const setCookie = (cname: string, cvalue: string, exdays?: number) => {
     const d = new Date();
@@ -45,9 +46,11 @@ const getUserByCookie = async (userId: string, token: string) => {
             },
         };
         const response = await axios.get(`${baseUrl}users/${userId}`, config);
-        console.log(response);
+        console.log(response.statusText);
         storageUserAccInfo.name = response.data.name;
         storageUserAccInfo.email = response.data.email;
+        storageUserAccInfo.token = token;
+        storageUserAccInfo.userId = userId;
         storageUserAccInfo.message = 'Authenticated';
     } catch (error) {
         console.error(error);
@@ -57,4 +60,4 @@ const getUserByCookie = async (userId: string, token: string) => {
 export const deleteCookie = (cname1: string, cname2: string) => {
     setCookie(cname1, '');
     setCookie(cname2, '');
-}
+};

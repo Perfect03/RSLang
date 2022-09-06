@@ -199,8 +199,8 @@ empty_card.classList.add('empty_card', 'card');
 empty_card.textContent = 'There is nothing here yet.';
 
 const changeStyleGroup = () => {
-  const textbook_words = document.querySelector('.textbook_words');
-  const cards = document.querySelector('.cards');
+  const textbook_words = document.querySelector('.textbook_words') as HTMLElement;
+  const cards = document.querySelector('.cards') as HTMLElement;
     document.addEventListener('click', (e) => {
         if ((e.target as HTMLElement).classList.contains('group0')) {
             for (let i = 0; i < 7; i++) {

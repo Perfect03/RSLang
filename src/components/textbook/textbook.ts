@@ -3,7 +3,7 @@ import { readWords, renderWords } from './index';
 import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
 // import { usersWords } from '../utils/storage';
 import { createUserWord, getAllUserWords } from '../../api/usersWords/usersWords';
-import { storageUsersWords } from '../utils/storage';
+import { storageUsersWords, storageUserAccInfo } from '../utils/storage';
 
 export const createTextbook = () => {
     localStorage.setItem('pageGames', localStorage.getItem('page') as string);
@@ -183,7 +183,7 @@ const createGroups = (activeItem: number) => {
     groups.append(groups_buttons);
 
     const button = [] as HTMLElement[];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < (storageUserAccInfo.email ? 7 : 6); i++) {
         button[i] = document.createElement('button');
         button[i].textContent = `${i + 1}`;
         button[i].classList.add(`${'group' + i}`);

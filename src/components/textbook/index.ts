@@ -2,8 +2,7 @@ import { getWords } from '../../api/api';
 import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
 import { difficultWord, learnWord, checkLearnedWords } from './textbook';
-import { storageUsersWords } from '../utils/storage';
-import { getAllUserWords } from '../../api/usersWords/usersWords';
+import { storageUsersWords, storageUserAccInfo } from '../utils/storage';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
@@ -131,55 +130,20 @@ export const renderCard = async (card: IWord) => {
     buttonsLeft.classList.add('card_buttons');
 
     buttonsRight.classList.add('card_buttons');
-    const difficultButton = document.createElement('button') as HTMLButtonElement;
+    if(storageUserAccInfo.email) {
+        const difficultButton = document.createElement('button') as HTMLButtonElement;
     const difficultButton_text = document.createElement('span');
     const deleteButton = document.createElement('button');
     const deleteButton_text = document.createElement('span');
-    const correctAnswers = document.createElement('div');
-    const correctAnswers_text = document.createElement('span');
-    const incorrectAnswers = document.createElement('div');
-    const incorrectAnswers_text = document.createElement('span');
-
     difficultButton.classList.add('difficultButton');
     deleteButton.classList.add('deleteButton');
-    correctAnswers.classList.add('correctAnswers');
-    incorrectAnswers.classList.add('incorrectAnswers');
-
     difficultButton.append(difficultButton_text);
     deleteButton.append(deleteButton_text);
-    correctAnswers.append(correctAnswers_text);
-    incorrectAnswers.append(incorrectAnswers_text);
-
     difficultButton_text.textContent = 'difficult';
     deleteButton_text.textContent = 'learned';
-    correctAnswers_text.textContent = '0';
-    incorrectAnswers_text.textContent = '0';
-
     buttonsLeft.append(difficultButton);
     buttonsLeft.append(deleteButton);
-    buttonsRight.append(correctAnswers);
-    buttonsRight.append(incorrectAnswers);
 
-    const textMeaningTranslate = document.createElement('div');
-    const textExampleTranslate = document.createElement('div');
-    textMeaningTranslate.classList.add('textMeaningTranslate');
-    textExampleTranslate.classList.add('textExample');
-
-    card_content_bottom1.append(textMeaning);
-    card_content_bottom1.append(textMeaningTranslate);
-    card_content_bottom2.append(textExample);
-    card_content_bottom2.append(textExampleTranslate);
-    card_content_bottom3.append(buttonsLeft);
-    card_content_bottom3.append(buttonsRight);
-
-    word.textContent = card.word;
-    wordTranslate.textContent = card.wordTranslate;
-    transcription.textContent = card.transcription;
-    image.src = `${baseUrl}${card.image}`;
-    textExample.insertAdjacentHTML('beforeend', card.textExample);
-    textExampleTranslate.textContent = card.textExampleTranslate;
-    textMeaning.insertAdjacentHTML('beforeend', card.textMeaning);
-    textMeaningTranslate.textContent = card.textMeaningTranslate;
     newCard.dataset.id = card.id;
     newCard.dataset.difficulty = 'easy';
 
@@ -208,6 +172,45 @@ export const renderCard = async (card: IWord) => {
             newCard.dataset.difficulty = 'easy';
             checkLearnedWords();
         });
+    }
+    const correctAnswers = document.createElement('div');
+    const correctAnswers_text = document.createElement('span');
+    const incorrectAnswers = document.createElement('div');
+    const incorrectAnswers_text = document.createElement('span');
+
+    correctAnswers.classList.add('correctAnswers');
+    incorrectAnswers.classList.add('incorrectAnswers');
+
+    correctAnswers.append(correctAnswers_text);
+    incorrectAnswers.append(incorrectAnswers_text);
+
+    correctAnswers_text.textContent = '0';
+    incorrectAnswers_text.textContent = '0';
+
+    buttonsRight.append(correctAnswers);
+    buttonsRight.append(incorrectAnswers);
+
+    const textMeaningTranslate = document.createElement('div');
+    const textExampleTranslate = document.createElement('div');
+    textMeaningTranslate.classList.add('textMeaningTranslate');
+    textExampleTranslate.classList.add('textExample');
+
+    card_content_bottom1.append(textMeaning);
+    card_content_bottom1.append(textMeaningTranslate);
+    card_content_bottom2.append(textExample);
+    card_content_bottom2.append(textExampleTranslate);
+    card_content_bottom3.append(buttonsLeft);
+    card_content_bottom3.append(buttonsRight);
+
+    word.textContent = card.word;
+    wordTranslate.textContent = card.wordTranslate;
+    transcription.textContent = card.transcription;
+    image.src = `${baseUrl}${card.image}`;
+    textExample.insertAdjacentHTML('beforeend', card.textExample);
+    textExampleTranslate.textContent = card.textExampleTranslate;
+    textMeaning.insertAdjacentHTML('beforeend', card.textMeaning);
+    textMeaningTranslate.textContent = card.textMeaningTranslate;
+    
 
     return newCard;
 };

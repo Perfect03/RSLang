@@ -4,9 +4,9 @@ import { UserInfo } from '../../interfaces & types/authorization';
 export const addSignUpListener = () => {
     const signSave = document.querySelector('.sign-save') as HTMLElement;
     signSave.addEventListener('click', () => {
-        const sign_name = (document.querySelector('.sign_name') as HTMLInputElement).value;
-        const sign_email = (document.querySelector('.sign_email') as HTMLInputElement).value;
-        const sign_pass = (document.querySelector('.sign_pass') as HTMLInputElement).value;
+        const sign_name = (document.querySelector('.sign_name') as HTMLInputElement).value.toLowerCase();
+        const sign_email = (document.querySelector('.sign_email') as HTMLInputElement).value.toLowerCase();
+        const sign_pass = (document.querySelector('.sign_pass') as HTMLInputElement).value.toLowerCase();
         const popup_hello = document.querySelector('.popup_hello') as HTMLElement;
 
         if (sign_name !== '' && sign_email !== '' && sign_pass !== '') {

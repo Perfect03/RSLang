@@ -1,4 +1,4 @@
-import { storageUserAccInfo } from '../../components/utils/storage';
+import { storageUserAccInfo, storageUsersWords } from '../../components/utils/storage';
 import { UserResponse } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
 import { createEmptyStats, getUserStatistics } from '../statistics/userStatistics';
@@ -23,6 +23,8 @@ export const loginUser = async (user: UserResponse) => {
 
     try {
         await getUserStatistics();
+        getAllUserWords();
+        console.log(storageUsersWords);
     } catch {
         await createEmptyStats();
     }

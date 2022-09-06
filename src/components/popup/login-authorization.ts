@@ -5,9 +5,13 @@ import { loginFunction } from './login';
 export const addLoginRequest = () => {
     const loginSave = document.querySelector('.login-save') as HTMLButtonElement;
     loginSave.addEventListener('click', async function () {
-        await loginUser(loginFunction());
-        await getUserInfo(storageUserAccInfo.userId);
-        changeUiForAuthUser();
+        try {
+            await loginUser(loginFunction());
+            await getUserInfo(storageUserAccInfo.userId);
+            changeUiForAuthUser();
+        } catch (error) {
+            console.log('Пользователь не найден!');
+        }
     });
 };
 

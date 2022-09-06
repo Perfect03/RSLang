@@ -2,7 +2,7 @@ import './textbook.css';
 import { readWords, renderWords } from './index';
 import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
 // import { usersWords } from '../utils/storage';
-import { createUserWord, getAllUserWords } from '../../api/usersWords/usersWords';
+import { axiosCreateUserWord, axiosDeleteWord, axiosGetAllUserWords } from '../../api/usersWords/usersWords';
 import { storageUsersWords } from '../utils/storage';
 
 export const createTextbook = () => {
@@ -288,13 +288,15 @@ export const difficultWord = async (word: IWord) => {
         wordId: word.id,
         word: {
             difficulty: 'hard',
-            optional: {
-                learned: false,
-            },
         },
     };
-    await createUserWord(wordWithId);
-    await getAllUserWords();
+    try {
+        axiosDeleteWord(wordWithId.wordId);
+        await axiosCreateUserWord(wordWithId);
+        axiosGetAllUserWords();
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 export const learnWord = async (word: IWord) => {
@@ -305,15 +307,23 @@ export const learnWord = async (word: IWord) => {
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
         word: {
-            difficulty: 'easy',
-            optional: {
-                learned: true,
-            },
+            difficulty: 'learned',
         },
     };
-    await createUserWord(wordWithId);
-    await getAllUserWords();
+    try {
+        axiosDeleteWord(wordWithId.wordId);
+        await axiosCreateUserWord(wordWithId);
+        axiosGetAllUserWords();
+    } catch (err) {
+        console.log(err);
+    }
 };
+
+// const checkWordIsDiffOrLearn = async (id: string) => {
+//     await axiosGetUserWord(id).then(() => {
+//         axiosDeleteWord(id);
+//     });
+// };
 
 const createGames = () => {
     const textbook_games = document.createElement('div');

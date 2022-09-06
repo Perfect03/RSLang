@@ -3,7 +3,6 @@ import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
 import { difficultWord, learnWord, checkLearnedWords } from './textbook';
 import { storageUsersWords } from '../utils/storage';
-import { getAllUserWords } from '../../api/usersWords/usersWords';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';

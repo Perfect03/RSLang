@@ -1,4 +1,4 @@
-import { createUser } from '../../api/authorization/signin';
+import { alternativeCreateUser } from '../../api/authorization/signin';
 import { UserInfo } from '../../interfaces & types/authorization';
 
 export const addSignUpListener = () => {
@@ -16,7 +16,12 @@ export const addSignUpListener = () => {
                 (document.querySelector('.popup_hello') as HTMLElement).style.display = 'none';
             }, 1500);
             const UsersInfo: UserInfo = { name: sign_name, email: sign_email, password: sign_pass };
-            createUser(UsersInfo);
+            try {
+                // createUser(UsersInfo);
+                alternativeCreateUser(UsersInfo);
+            } catch (error) {
+                console.log('error');
+            }
         } else {
             (document.querySelector('.sign_name') as HTMLInputElement).placeholder = 'Please enter name';
             (document.querySelector('.sign_email') as HTMLInputElement).placeholder = 'Please enter email';

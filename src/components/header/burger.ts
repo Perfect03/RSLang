@@ -1,3 +1,4 @@
+import { deleteCookie } from '../../api/authorization/cookie';
 import { getUserStatistics } from '../../api/statistics/userStatistics';
 import { changeUiForNonAuthUser } from '../popup/login-authorization';
 import './burger.css';
@@ -83,6 +84,7 @@ export const createBurger = () => {
     burger_menu_link_logout.href = '#page-6';
 
     burger_menu_link_logout.addEventListener('click', function () {
+        deleteCookie('userId', 'token');
         changeUiForNonAuthUser();
     });
 

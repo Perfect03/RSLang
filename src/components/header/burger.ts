@@ -1,5 +1,6 @@
 import { getUserStatistics } from '../../api/statistics/userStatistics';
 import { changeUiForNonAuthUser } from '../popup/login-authorization';
+import { createMain } from '../main/render';
 import './burger.css';
 
 export const createBurger = () => {
@@ -80,10 +81,12 @@ export const createBurger = () => {
     burger_menu_link_logout.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_logout);
     burger_menu_link_logout.textContent = 'Log Out';
-    burger_menu_link_logout.href = '#page-6';
+    burger_menu_link_logout.href = '#log-out';
 
     burger_menu_link_logout.addEventListener('click', function () {
         changeUiForNonAuthUser();
+        window.location.hash='';
+        createMain();
     });
 
     const burger_menu_img_logout = document.createElement('img');

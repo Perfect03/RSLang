@@ -43,7 +43,6 @@ const replaceUserStats = (stats: IGetUserStatistic) => {
 };
 
 export const createEmptyStats = async () => {
-    console.log('user info', storageUserAccInfo);
     const emptyUserStatistic: IUserStatistic = {
         learnedWords: 0,
         optional: {

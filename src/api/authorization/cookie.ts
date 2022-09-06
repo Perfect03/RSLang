@@ -3,7 +3,7 @@ import { changeUiForAuthUser } from '../../components/popup/login-authorization'
 import { storageUserAccInfo } from '../../components/utils/storage';
 import { baseUrl } from '../api';
 import { getUserStatistics } from '../statistics/userStatistics';
-console.log(getUserStatistics);
+
 export const setCookie = (cname: string, cvalue: string, exdays?: number) => {
     const d = new Date();
     if (exdays) d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);

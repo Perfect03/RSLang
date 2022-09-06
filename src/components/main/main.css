@@ -159,6 +159,18 @@ body {
 }
 
 /*Третья секция */
+.main_section_three_box {
+    margin: 10px;
+    text-align: center;
+    max-width: 723px;
+}
+
+.main_section_three {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: 0.5px;
+}
 
 /*Четвертая секция */
 .main_section_four_content {
@@ -218,11 +230,13 @@ body {
     margin: 10px;
     display: flex;
     flex-direction: row;
+    border-radius: 10px;
 }
 
 .developer_img_box {
     height: 240px;
-    margin: 5px;
+    margin: 10px 5px 5px 5px;
+    border-radius: 10px;
 }
 
 .main_section_five_card_info {

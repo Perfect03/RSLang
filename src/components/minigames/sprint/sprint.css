@@ -220,3 +220,30 @@ body {
   color: #FFF;
   margin: 15px;
 }
+
+@media (max-height: 855px) {
+  .game_container#sprint {
+    height: 90vh;
+  }
+
+  #sprint .game {
+    gap: 0;
+  }
+  #sprint .close_a {
+    margin-top: 10px;
+  }
+  .points h4 {
+    font-size: 35px;
+    line-height: 0.5;
+  }
+  #sprint .word {
+    margin: 5px 0px;
+    height: 140px;
+  }
+  .word .words {
+    margin: 10px 0px 15px 0px;
+  }
+  .progress_percents_span {
+    margin: 0;
+  }
+}

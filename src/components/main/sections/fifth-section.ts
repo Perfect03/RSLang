@@ -69,7 +69,7 @@ export const createFifthSection = () => {
 
     const main_section_five_card_two_name = document.createElement('h1');
     main_section_five_card_two_name.classList.add('name_dev');
-    main_section_five_card_two_name.textContent = 'Falderian';
+    main_section_five_card_two_name.textContent = 'Nikita Staselovich';
     main_section_five_card_two_info.append(main_section_five_card_two_name);
 
     const main_section_five_card_two_gh_a = document.createElement('a');
@@ -84,7 +84,7 @@ export const createFifthSection = () => {
 
     const main_section_five_card_three_name = document.createElement('h1');
     main_section_five_card_three_name.classList.add('name_dev');
-    main_section_five_card_three_name.textContent = 'AlisaFed';
+    main_section_five_card_three_name.textContent = 'Alisa Fedorova';
     main_section_five_card_three_info.append(main_section_five_card_three_name);
 
     const main_section_five_card_three_gh_a = document.createElement('a');
@@ -115,18 +115,18 @@ export const createFifthSection = () => {
     const main_section_five_card_one_about = document.createElement('p');
     main_section_five_card_one_about.classList.add('about_dev');
     main_section_five_card_one_about.textContent =
-        'Front-end developer, participated in the development of the registration form, the Sprint game and the group selector component';
+        'Team communication, organizing meetings and assignments. Took over development of Textbook. Created roating. And gave us the sprint game. Also did a lot of statistics gathering.';
     main_section_five_card_one_info.append(main_section_five_card_one_about);
 
     const main_section_five_card_two_about = document.createElement('p');
     main_section_five_card_two_about.classList.add('about_dev');
     main_section_five_card_two_about.textContent =
-        'Front-end developer, participated in the development of the registration form, the Sprint game and the group selector component';
+        'Took care of all the backend, including the authorization and registration backend. Developed the audio challenge game. Made the statistics page work.';
     main_section_five_card_two_info.append(main_section_five_card_two_about);
 
     const main_section_five_card_three_about = document.createElement('p');
     main_section_five_card_three_about.classList.add('about_dev');
     main_section_five_card_three_about.textContent =
-        'Front-end developer, participated in the development of the registration form, the Sprint game and the group selector component';
+        'Layout of homepage, statistics, and all the basic elements. Styling of the games. The design of the entire application. Took part in creating the authorization and registration.';
     main_section_five_card_three_info.append(main_section_five_card_three_about);
 };

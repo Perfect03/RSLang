@@ -3,6 +3,7 @@ import { IWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
 import { difficultWord, learnWord, checkLearnedWords } from './textbook';
 import { storageUsersWords } from '../utils/storage';
+import { getAllUserWords } from '../../api/usersWords/usersWords';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
@@ -13,12 +14,13 @@ export const readWords = async (page: number, group: number) => {
     renderWords(cards);
 };
 
-export const renderWords = (cards: IWord[]) => {
+export const renderWords = async (cards: IWord[]) => {
+    console.log(storageUsersWords);
     const cardsDOM = document.querySelector('.cards') as HTMLElement;
     while (cardsDOM.hasChildNodes()) {
         cardsDOM.removeChild(cardsDOM.firstChild as HTMLElement);
     }
-    for (let i = 0; i < 20; i++) cardsDOM.appendChild(renderCard(cards[i]));
+    for (let i = 0; i < 20; i++) cardsDOM.appendChild(await renderCard(cards[i]));
     checkLearnedWords();
 };
 
@@ -70,7 +72,7 @@ const createAudio = (card: IWord) => {
     return [card_audio_icon, card_audio, card_audio_meaning, card_audio_example];
 };
 
-export const renderCard = (card: IWord) => {
+export const renderCard = async (card: IWord) => {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
     const image = document.createElement('img');
@@ -180,6 +182,7 @@ export const renderCard = (card: IWord) => {
     textMeaningTranslate.textContent = card.textMeaningTranslate;
     newCard.dataset.id = card.id;
     newCard.dataset.difficulty = 'easy';
+
     if (storageUsersWords.hardWords.some((el) => el.word == card.word)) {
         newCard.classList.remove('learned_word');
         newCard.classList.add('hard_word');

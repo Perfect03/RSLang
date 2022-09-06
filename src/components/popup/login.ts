@@ -64,8 +64,8 @@ export const createLogin = () => {
 
 export function loginFunction() {
     console.log('loginFunction');
-    const login_email = (document.querySelector('.login_email') as HTMLInputElement).value;
-    const login_pass = (document.querySelector('.login_pass') as HTMLInputElement).value;
+    const login_email = (document.querySelector('.login_email') as HTMLInputElement).value.toLowerCase();
+    const login_pass = (document.querySelector('.login_pass') as HTMLInputElement).value.toLowerCase();
     const popup_hello = document.querySelector('.popup_hello') as HTMLElement;
     if (login_email !== '' && login_pass !== '') {
         (document.querySelector('.popup_login') as HTMLElement).style.display = 'none';

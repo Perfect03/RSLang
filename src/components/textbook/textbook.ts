@@ -2,7 +2,7 @@ import './textbook.css';
 import { readWords, renderWords } from './index';
 import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
 // import { usersWords } from '../utils/storage';
-import { createUserWord } from '../../api/usersWords/usersWords';
+import { createUserWord, getAllUserWords } from '../../api/usersWords/usersWords';
 import { storageUsersWords } from '../utils/storage';
 
 export const createTextbook = () => {
@@ -21,7 +21,7 @@ export const createTextbook = () => {
     textbook.append(textbook_games);
     textbook.append(pagination as HTMLElement);
     textbook.append(textbook_words);
-    
+
     const cards = document.createElement('div');
     const groups = createGroups(Number(localStorage.getItem('group')));
     cards.classList.add('cards');
@@ -199,8 +199,8 @@ empty_card.classList.add('empty_card', 'card');
 empty_card.textContent = 'There is nothing here yet.';
 
 const changeStyleGroup = () => {
-  const textbook_words = document.querySelector('.textbook_words') as HTMLElement;
-  const cards = document.querySelector('.cards') as HTMLElement;
+    const textbook_words = document.querySelector('.textbook_words') as HTMLElement;
+    const cards = document.querySelector('.cards') as HTMLElement;
     document.addEventListener('click', (e) => {
         if ((e.target as HTMLElement).classList.contains('group0')) {
             for (let i = 0; i < 7; i++) {
@@ -279,11 +279,11 @@ const listenGroups = (groups: HTMLElement) => {
     });
 };
 
-export const difficultWord = (word: IWord) => {
-    storageUsersWords.hardWords.push(word);
+export const difficultWord = async (word: IWord) => {
+    /*storageUsersWords.hardWords.push(word);
     storageUsersWords.learnedWords = storageUsersWords.learnedWords.filter(function (f) {
         return f !== word;
-    });
+    });*/
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
         word: {
@@ -293,14 +293,15 @@ export const difficultWord = (word: IWord) => {
             },
         },
     };
-    createUserWord(wordWithId);
+    await createUserWord(wordWithId);
+    await getAllUserWords();
 };
 
-export const learnWord = (word: IWord) => {
-    storageUsersWords.learnedWords.push(word);
+export const learnWord = async (word: IWord) => {
+    /* storageUsersWords.learnedWords.push(word);
     storageUsersWords.hardWords = storageUsersWords.hardWords.filter(function (f) {
         return f !== word;
-    });
+    });*/
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
         word: {
@@ -310,7 +311,8 @@ export const learnWord = (word: IWord) => {
             },
         },
     };
-    createUserWord(wordWithId);
+    await createUserWord(wordWithId);
+    await getAllUserWords();
 };
 
 const createGames = () => {

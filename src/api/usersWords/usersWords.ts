@@ -59,4 +59,5 @@ const convertAllUsersWords = async () => {
         const word = await getWordById(el.wordId);
         storageUsersWords.hardWords.push(word);
     });
+    console.log(storageUsersWords);
 };

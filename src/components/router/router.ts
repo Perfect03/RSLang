@@ -44,7 +44,15 @@ export const listenMenus = () => {
 };
 
 export const locationHandler = async (): Promise<void> => {
-    const location: IPage = <IPage>window.location.hash.replace('#', '');
+    const location: IPage =
+        window.location.hash.replace('#', '') == 'log-out'
+            ? ('home' as IPage)
+            : (window.location.hash.replace('#', '') as IPage);
+    /*if (location.length == 0) {
+        location = '/';
+    }*/
+    //state.view = location;
+    //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
     route.template(`${location}`);
     location === 'audioChallenge' ? addKeyBoardToGame() : deleteKeyBoardToGame();

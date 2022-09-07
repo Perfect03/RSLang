@@ -86,6 +86,7 @@ export const createBurger = () => {
     burger_menu_link_logout.addEventListener('click', function () {
         deleteCookie('userId', 'token');
         changeUiForNonAuthUser();
+        console.log('Clear cookies');
     });
 
     const burger_menu_img_logout = document.createElement('img');

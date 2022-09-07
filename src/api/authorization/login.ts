@@ -1,8 +1,7 @@
-import { storageUserAccInfo, storageUsersWords } from '../../components/utils/storage';
+import { storageUserAccInfo } from '../../components/utils/storage';
 import { UserResponse } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
 import { createEmptyStats, getUserStatistics } from '../statistics/userStatistics';
-import { getAllUserWords } from '../usersWords/usersWords';
 import { setCookie } from './cookie';
 
 export const loginUser = async (user: UserResponse) => {
@@ -27,19 +26,16 @@ export const loginUser = async (user: UserResponse) => {
 
     try {
         await getUserStatistics();
-        getAllUserWords();
-        console.log(storageUsersWords);
     } catch {
         await createEmptyStats();
     }
 };
 
-export const getUserInfo = async (userId: string, token?: string) => {
-    if (!token) token = storageUserAccInfo.token;
+export const getUserInfo = async (userId: string) => {
     const rawResponse = await fetch(`${baseUrl}users/${userId}`, {
         method: 'GET',
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${storageUserAccInfo.token}`,
             Accept: 'application/json',
         },
     });

@@ -2,7 +2,6 @@ import axios from 'axios';
 import { changeUiForAuthUser } from '../../components/popup/login-authorization';
 import { storageUserAccInfo } from '../../components/utils/storage';
 import { baseUrl } from '../api';
-import { getUserStatistics } from '../statistics/userStatistics';
 
 export const setCookie = (cname: string, cvalue: string, exdays?: number) => {
     const d = new Date();

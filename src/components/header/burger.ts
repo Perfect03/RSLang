@@ -87,6 +87,7 @@ export const createBurger = () => {
     burger_menu_link_logout.addEventListener('click', function () {
         deleteCookie('userId', 'token');
         changeUiForNonAuthUser();
+        console.log('Clear cookies');
         window.location.hash = '';
         createMain();
     });

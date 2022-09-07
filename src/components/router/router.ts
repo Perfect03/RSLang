@@ -45,17 +45,18 @@ export const listenMenus = () => {
 
 export const locationHandler = async (): Promise<void> => {
     const location: IPage = <IPage>window.location.hash.replace('#', '');
-    /*if (location.length == 0) {
-        location = '/';
-    }*/
-    //state.view = location;
-    //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
     route.template(`${location}`);
     location === 'audioChallenge' ? addKeyBoardToGame() : deleteKeyBoardToGame();
     header_content_page_name.textContent = route.name;
-    //(<HTMLElement>document.getElementById('content')).innerHTML = html;
-    //const listeners = new Listen();
-    //location === 'garage' ? listeners.ListenGarage() : listeners.ListenWinners();
     document.title = route.title;
+    const footer = document.querySelector('.footer') as HTMLElement;
+    if (
+        header_content_page_name.textContent === 'Audio challenge' ||
+        header_content_page_name.textContent === 'Sprint'
+    ) {
+        footer.style.opacity = '0';
+    } else {
+        footer.style.opacity = '1';
+    }
 };

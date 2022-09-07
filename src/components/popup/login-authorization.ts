@@ -10,7 +10,7 @@ export const addLoginRequest = () => {
             await getUserInfo(storageUserAccInfo.userId);
             changeUiForAuthUser();
         } catch (error) {
-            console.log('Пользователь не найден!');
+            dontKnow();
         }
     });
 };

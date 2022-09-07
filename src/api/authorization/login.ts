@@ -2,6 +2,7 @@ import { storageUserAccInfo } from '../../components/utils/storage';
 import { UserResponse } from '../../interfaces & types/authorization';
 import { baseUrl } from '../api';
 import { createEmptyStats, getUserStatistics } from '../statistics/userStatistics';
+import { setCookie } from './cookie';
 // import { getAllUserWords } from '../usersWords/usersWords';
 
 export const loginUser = async (user: UserResponse) => {

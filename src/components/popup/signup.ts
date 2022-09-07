@@ -54,7 +54,6 @@ export const createSignIn = () => {
     const popup_hello_wind_h1 = document.createElement('h1');
     popup_hello_wind_h1.classList.add('main_section_h1', 'popuph1');
     popup_hello_wind.appendChild(popup_hello_wind_h1);
-    popup_hello_wind_h1.textContent = 'Nice to meet you!';
 
     const popupS = document.querySelector('.popup_registration');
 

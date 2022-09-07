@@ -203,7 +203,6 @@ const listenPagination = (pag: HTMLElement) => {
 const createGroups = (activeItem: number) => {
     const groups = document.createElement('div');
     groups.classList.add('groups');
-
     const groups_title = document.createElement('h6');
     groups_title.classList.add('groups_title');
     groups_title.textContent = 'Degree of difficulty:';

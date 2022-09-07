@@ -269,7 +269,11 @@
 
     .correct_answers {
         max-height: 210px;
-      }
+    }
+
+    .incorrect_answers {
+        max-height: 210px;
+    }
 }
 
 @media (max-height: 855px) {
@@ -300,5 +304,29 @@
     .word_image {
         max-width: 120px;
         margin: 5px;
+    }
+
+    .stats_container_result {
+        margin: 0;
+    }
+
+    #sprint .close_a {
+        margin-top: 8px;
+    }
+
+    #sprint .game {
+        gap: 0;
+    }
+
+    .game_container#sprint {
+        height: 90vh;
+    }
+
+    .correct_answers {
+        max-height: 230px;
+    }
+
+    .incorrect_answers {
+        max-height: 230px;
     }
 }

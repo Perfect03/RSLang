@@ -63,7 +63,6 @@ export const createStatsPopUp = (game: IGame) => {
     incorrect_answers_container.appendChild(incorrect_answers_title);
     incorrect_answers_container.appendChild(incorrect_answers);
     stats_container.appendChild(buttons_div);
-    // buttons_div.appendChild(repeat_btn);
     buttons_div.appendChild(mainpage_a);
     mainpage_a.appendChild(mainpage_btn);
 

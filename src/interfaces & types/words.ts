@@ -16,3 +16,33 @@ export interface IWord {
 }
 
 export type IWords = IWord[];
+
+export type ItempStorageUsersWords = {
+    learnedWords: IWordIsDiffOrLearnResponse[];
+    hardWords: IWordIsDiffOrLearnResponse[];
+};
+
+export interface IWordIsDiffOrLearn {
+    wordId: string;
+    word: {
+        difficulty: string;
+        optional?: {
+            learned: boolean;
+            option2?: string;
+        };
+    };
+}
+
+export interface IWordIsDiffOrLearnResponse {
+    userId: string;
+    difficulty: string;
+    optional: {
+        learned: boolean;
+    };
+    wordId: string;
+}
+
+export interface IStorageUserWords {
+    hardWords: IWord[];
+    learnedWords: IWord[];
+}

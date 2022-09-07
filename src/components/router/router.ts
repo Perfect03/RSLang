@@ -1,10 +1,10 @@
 import { IPage } from '../../interfaces & types/page';
 import { createMain } from '../main/render';
 import { createTextbook } from '../textbook/textbook';
-import { createStatistics } from '../statistics/statistics';
-import { createDictionary } from '../dictionary/dictionary';
-import { audiochallengeLevelPage } from '../minigames/audiochallenge/audiochallenge-level';
+import { createStatistics } from '../statistics/layout';
+import { chooseLevelPage } from '../minigames/choose-level';
 import { header_content_page_name } from '../header/header';
+import { addKeyBoardToGame, deleteKeyBoardToGame } from '../minigames/audiochallenge/choose-with-keyboard';
 
 export const routes = {
     home: {
@@ -25,16 +25,16 @@ export const routes = {
         name: 'Statistics',
         description: 'This is the statistics page',
     },
-    dictionary: {
-        template: createDictionary,
-        title: 'Dictionary',
-        name: 'Dictionary',
-        description: 'This is the dictionary page',
-    },
     audioChallenge: {
-        template: audiochallengeLevelPage,
+        template: chooseLevelPage,
         title: 'Minigames',
-        name: 'Minigames',
+        name: 'Audio challenge',
+        description: 'This is the minigames page',
+    },
+    sprint: {
+        template: chooseLevelPage,
+        title: 'Sprint',
+        name: 'Sprint',
         description: 'This is the minigames page',
     },
 };
@@ -51,7 +51,8 @@ export const locationHandler = async (): Promise<void> => {
     //state.view = location;
     //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
-    route.template();
+    route.template(`${location}`);
+    location === 'audioChallenge' ? addKeyBoardToGame() : deleteKeyBoardToGame();
     header_content_page_name.textContent = route.name;
     //(<HTMLElement>document.getElementById('content')).innerHTML = html;
     //const listeners = new Listen();

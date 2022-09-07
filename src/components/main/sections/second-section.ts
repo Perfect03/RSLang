@@ -17,13 +17,8 @@ export const createSecondSection = () => {
     const main_section_two_textbook = document.createElement('div');
     main_section_two_textbook.classList.add('main_section_two_textbook', 'advantages_cards');
 
-    const main_section_two_textbook_img = document.createElement('img');
-    main_section_two_textbook_img.classList.add('main_section_two_images');
-    main_section_two_textbook_img.src = 'components/main/main-assets/textbook.jpg';
-    main_section_two_textbook.append(main_section_two_textbook_img);
-
     const main_section_two_textbook_h1 = document.createElement('h1');
-    main_section_two_textbook_h1.classList.add('main_section_two_headers');
+    main_section_two_textbook_h1.classList.add('main_section_two_headers', 'slide_h1');
     main_section_two_textbook.append(main_section_two_textbook_h1);
     main_section_two_textbook_h1.textContent = 'Textbook';
 
@@ -31,64 +26,39 @@ export const createSecondSection = () => {
     main_section_two_textbook_p.classList.add('main_section_two_p');
     main_section_two_textbook.append(main_section_two_textbook_p);
     main_section_two_textbook_p.textContent =
-        'The electronic textbook consists of six sections. Each section has 30 pages of 20 words. The translation of the word, the thematic image, as well as the pronunciation of both the word separately and as part of the phrase are presented.';
+        'The electronic textbook consists of six sections, 30 pages each, containing 20 words. That`s 3,600 new words! You can hear the pronunciation, see the translation and examples of usage. Increase your vocabulary! And in section 7, you can save particularly difficult words.';
 
     main_section_two_box.append(main_section_two_textbook);
 
-    //Dictionary
-    const main_section_two_dictionary = document.createElement('div');
-    main_section_two_dictionary.classList.add('main_section_two_dictionary', 'advantages_cards');
-    main_section_two_box.append(main_section_two_dictionary);
-
-    const main_section_two_dictionary_img = document.createElement('img');
-    main_section_two_dictionary_img.classList.add('main_section_two_images');
-    main_section_two_dictionary_img.src = 'components/main/main-assets/dictionary.jpg';
-    main_section_two_dictionary.append(main_section_two_dictionary_img);
-
-    const main_section_two_dictionary_h1 = document.createElement('h1');
-    main_section_two_dictionary_h1.classList.add('main_section_two_headers');
-    main_section_two_dictionary.append(main_section_two_dictionary_h1);
-    main_section_two_dictionary_h1.textContent = 'Dictionary';
-
-    const main_section_two_dictionary_p = document.createElement('p');
-    main_section_two_dictionary_p.classList.add('main_section_two_p');
-    main_section_two_dictionary.append(main_section_two_dictionary_p);
-    main_section_two_dictionary_p.textContent =
-        'The dictionary contains lists of studied words, words that do not need to be learned, as well as those that cause difficulties. The dictionary reflects statistics for each section and student progress.';
-
     //Games
     const main_section_two_games = document.createElement('div');
-    main_section_two_games.classList.add('main_section_two_games', 'advantages_cards');
+    main_section_two_games.classList.add('main_section_two_games', 'advantages_cards', 'active_slide');
     main_section_two_box.append(main_section_two_games);
 
-    const main_section_two_games_img = document.createElement('img');
-    main_section_two_games_img.classList.add('main_section_two_images');
-    main_section_two_games_img.src = 'components/main/main-assets/games.jpg';
-    main_section_two_games.append(main_section_two_games_img);
-
     const main_section_two_games_h1 = document.createElement('h1');
-    main_section_two_games_h1.classList.add('main_section_two_headers');
+    main_section_two_games_h1.classList.add('main_section_two_headers', 'slide_h1');
     main_section_two_games.append(main_section_two_games_h1);
     main_section_two_games_h1.textContent = 'Games';
+    main_section_two_games_h1.style.position = 'absolute';
+    main_section_two_games_h1.style.bottom = '225px';
+    main_section_two_games_h1.style.color = '#FFF';
 
     const main_section_two_games_p = document.createElement('p');
-    main_section_two_games_p.classList.add('main_section_two_p');
+    main_section_two_games_p.classList.add('main_section_two_p', 'games_p');
     main_section_two_games.append(main_section_two_games_p);
     main_section_two_games_p.textContent =
-        'For learning words and reinforcing memorization, the application has 4 games: Savannah, Sprint, Audio Chalenge and Imaginarium, which will help you to "pump" your vocabulary in a playful way';
+        'If you`re bored just looking at word cards, we`ve put together some awesome word study and memorization games called Sprint and Audio Chalenge. Learning doesn`t have to be boring!';
+    main_section_two_games_p.style.bottom = '70px';
+    main_section_two_games_p.style.top = 'auto';
+    main_section_two_games_p.style.color = '#FFF';
 
     //Statistic
     const main_section_two_statistics = document.createElement('div');
     main_section_two_statistics.classList.add('main_section_two_statistics', 'advantages_cards');
     main_section_two_box.append(main_section_two_statistics);
 
-    const main_section_two_statistics_img = document.createElement('img');
-    main_section_two_statistics_img.classList.add('main_section_two_images');
-    main_section_two_statistics_img.src = 'components/main/main-assets/statistic.jpg';
-    main_section_two_statistics.append(main_section_two_statistics_img);
-
     const main_section_two_statistics_h1 = document.createElement('h1');
-    main_section_two_statistics_h1.classList.add('main_section_two_headers');
+    main_section_two_statistics_h1.classList.add('main_section_two_headers', 'slide_h1');
     main_section_two_statistics.append(main_section_two_statistics_h1);
     main_section_two_statistics_h1.textContent = 'Statistics';
 
@@ -96,5 +66,20 @@ export const createSecondSection = () => {
     main_section_two_statistics_p.classList.add('main_section_two_p');
     main_section_two_statistics.append(main_section_two_statistics_p);
     main_section_two_statistics_p.textContent =
-        'All the progress of training can be viewed in statistics, where data for the current day, as well as for the entire training period, are presented. The information is presented both in the form of a table and graphs, which is very convenient.';
+        'This section will give you an idea of the statistics available for the day as well as for the entire training period. It`s always easier to move forward when you can see the goal.';
+
+    const slides = document.querySelectorAll('.advantages_cards');
+
+    slides.forEach((slide) => {
+        slide.addEventListener('click', () => {
+            clearActiveClasses();
+            slide.classList.add('active_slide');
+        });
+    });
+
+    const clearActiveClasses = () => {
+        slides.forEach((slide) => {
+            slide.classList.remove('active_slide');
+        });
+    };
 };

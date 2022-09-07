@@ -1,3 +1,6 @@
+import { deleteCookie } from '../../api/authorization/cookie';
+import { getUserStatistics } from '../../api/statistics/userStatistics';
+import { changeUiForNonAuthUser } from '../popup/login-authorization';
 import './burger.css';
 
 export const createBurger = () => {
@@ -35,18 +38,7 @@ export const createBurger = () => {
     const burger_menu_img_textbook = document.createElement('img');
     burger_menu_img_textbook.classList.add('burger_menu_img');
     burger_menu_link_textbook.append(burger_menu_img_textbook);
-    burger_menu_img_textbook.src = 'components/header/header-assets/textbook.png';
-
-    const burger_menu_link_dictionary = document.createElement('a');
-    burger_menu_link_dictionary.classList.add('burger_menu_link');
-    burger_menu_nav.append(burger_menu_link_dictionary);
-    burger_menu_link_dictionary.textContent = 'Dictionary';
-    burger_menu_link_dictionary.href = '#page-3';
-
-    const burger_menu_img_dictionary = document.createElement('img');
-    burger_menu_img_dictionary.classList.add('burger_menu_img');
-    burger_menu_link_dictionary.append(burger_menu_img_dictionary);
-    burger_menu_img_dictionary.src = 'components/header/header-assets/dictionary.png';
+    burger_menu_img_textbook.src = 'components/header/header-assets/dictionary.png';
 
     const burger_menu_link_audiochalenge = document.createElement('a');
     burger_menu_link_audiochalenge.classList.add('burger_menu_link');
@@ -63,7 +55,7 @@ export const createBurger = () => {
     burger_menu_link_sprint.classList.add('burger_menu_link');
     burger_menu_nav.append(burger_menu_link_sprint);
     burger_menu_link_sprint.textContent = 'Sprint';
-    burger_menu_link_sprint.href = '#page-4';
+    burger_menu_link_sprint.href = '#sprint';
 
     const burger_menu_img_sprint = document.createElement('img');
     burger_menu_img_sprint.classList.add('burger_menu_img');
@@ -76,6 +68,10 @@ export const createBurger = () => {
     burger_menu_link_statistics.textContent = 'Statistics';
     burger_menu_link_statistics.href = '#statistics';
 
+    burger_menu_link_statistics.addEventListener('click', async function () {
+        await getUserStatistics();
+    });
+
     const burger_menu_img_statistics = document.createElement('img');
     burger_menu_img_statistics.classList.add('burger_menu_img');
     burger_menu_link_statistics.append(burger_menu_img_statistics);
@@ -86,6 +82,11 @@ export const createBurger = () => {
     burger_menu_nav.append(burger_menu_link_logout);
     burger_menu_link_logout.textContent = 'Log Out';
     burger_menu_link_logout.href = '#page-6';
+
+    burger_menu_link_logout.addEventListener('click', function () {
+        deleteCookie('userId', 'token');
+        changeUiForNonAuthUser();
+    });
 
     const burger_menu_img_logout = document.createElement('img');
     burger_menu_img_logout.classList.add('burger_menu_img');
@@ -113,7 +114,7 @@ function burgerMenu() {
 
     links.forEach((el) => {
         el.addEventListener('click', () => {
-            burger_menu_main?.classList.remove('burger_menu_active');
+            (burger_menu_main as HTMLElement).classList.remove('burger_menu_active');
             body.style.overflowY = 'visible';
             body.style.paddingRight = '0';
         });
@@ -121,8 +122,8 @@ function burgerMenu() {
     overlay?.addEventListener('click', () => toggleMenu());
 
     function toggleMenu() {
-        burger_menu_main?.classList.toggle('burger_menu_active');
-        if (burger_menu_main?.classList.contains('burger_menu_active')) {
+        (burger_menu_main as HTMLElement).classList.toggle('burger_menu_active');
+        if ((burger_menu_main as HTMLElement).classList.contains('burger_menu_active')) {
             body.style.overflowY = 'hidden';
             body.style.paddingRight = '17px';
         } else {

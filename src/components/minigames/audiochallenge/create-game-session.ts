@@ -1,12 +1,13 @@
 import { baseUrl, getWordById, getWords } from '../../../api/api';
 import { IWord, IWords } from '../../../interfaces & types/words';
 import { getRandomInt } from '../../utils/helpers';
-import { dataStorage, setAudioChallengeCurrentWord, whichRoundInGameAudio } from '../../utils/storage';
-import { addKeyBoardToGame } from './choose-with-keyboard';
+import { dataStorage, setCurrentWord, whichRoundInGameAudio } from '../../utils/storage';
+import { deleteKeyBoardToGame } from './choose-with-keyboard';
 import { addListenersToWordsBtn, changeNextForIdkBtn, disableWordsButton } from './correct-or-incorrect-answer';
-import { createStatsPopUp } from './statistics-popup';
+import { createStatsPopUp } from '../statistics-popup';
+import { getUserStatistics, sendUserStatisitcs } from '../../../api/statistics/userStatistics';
 
-export const createGameAudio = async (level: number) => {
+export const createGameAudio = async (level: string, page: string | null = null) => {
     resetStorageAudiochallenge();
     const session_words: IWords = [];
     addListenersToWordsBtn();
@@ -23,11 +24,10 @@ export const createGameAudio = async (level: number) => {
         }
     };
 
-    await readWords(getRandomInt(29), level);
+    await readWords(page ? Number(page) : getRandomInt(29), Number(level));
     createRoundGameAudio(session_words);
     putWordsInGameAudio(dataStorage.audiochallenge__round__words);
     addListenerToSkipBtn();
-    addKeyBoardToGame();
 };
 
 export const createRoundGameAudio = (cards: IWords) => {
@@ -47,7 +47,7 @@ export const putWordsInGameAudio = async (cards: IWords) => {
     }
     const random_index = getRandomInt(4);
     const word = await getWordById(words_div[random_index].dataset.id as string);
-    setAudioChallengeCurrentWord(word);
+    setCurrentWord(word);
     setCurrentWordAudioAndImage();
 };
 
@@ -71,22 +71,30 @@ export const addListenerToSkipBtn = () => {
             changeNextForIdkBtn();
             disableWordsButton(false);
         } else {
-            createStatsPopUp();
+            deleteKeyBoardToGame();
+            createStatsPopUp('audioChallenge');
             dataStorage.audiochallenge__num__of__round = 9;
+
+            sendUserStatisitcs();
+            getUserStatistics();
         }
+        const words_div: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.word_div');
+        words_div.forEach((el) => {
+            el.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.15)';
+        });
     });
 };
 
 export const setCurrentWordAudioAndImage = () => {
     const audio = document.querySelector('.word_audio') as HTMLAudioElement;
-    audio.src = `${baseUrl}${dataStorage.audiochallenge__current__word.audio}`;
+    audio.src = `${baseUrl}${dataStorage.game__current__word.audio}`;
 
     if (dataStorage.audiochallenge__num__of__round < 11) {
         audio.play();
     }
 
     const word_image = document.querySelector('.word_image') as HTMLImageElement;
-    word_image.src = `${baseUrl}${dataStorage.audiochallenge__current__word.image}`;
+    word_image.src = `${baseUrl}${dataStorage.game__current__word.image}`;
 };
 
 const resetStorageAudiochallenge = () => {
@@ -111,5 +119,5 @@ const resetStorageAudiochallenge = () => {
     dataStorage.audiochallenge__round__wrong__answers = [];
     dataStorage.audiochallenge__session__words = [];
     dataStorage.audiochallenge__round__words = [];
-    dataStorage.audiochallenge__current__word = emptyWord;
+    dataStorage.game__current__word = emptyWord;
 };

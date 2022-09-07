@@ -6,6 +6,7 @@ body {
     padding-left: 65px;
     max-width: inherit;
 }
+
 /*Первая секция */
 .main_section_one {
     display: flex;
@@ -53,8 +54,49 @@ body {
     justify-content: center;
 }
 
-.main_section_h1 {
+.advantages_cards {
+    height: 60vh;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    flex: 1;
+    position: relative;
+    transition: all 500ms ease-in-out;
+    display: flex;
+    justify-content: center;
+}
+
+.advantages_cards .main_section_two_headers {
+    font-size: 5px;
+    margin: 0;
+    opacity: 0;
+}
+
+.advantages_cards.active_slide {
+    flex: 15;
+}
+
+.advantages_cards.active_slide .main_section_two_headers {
+    margin-top: 20px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
     font-size: 25px;
+    font-weight: 600;
+}
+
+.advantages_cards.active_slide .main_section_two_p {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+    position: absolute;
+    color: black;
+    top: 70px;
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+.main_section_h1 {
+    font-size: 32px;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.253);
     margin: 10px;
     padding: 10px;
@@ -66,23 +108,18 @@ body {
     flex-wrap: wrap;
     max-width: 900px;
     justify-content: center;
-}
+    padding: 0 5px;
 
-.advantages_cards {
-    width: 300px;
-    height: 300px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-    margin: 10px;
 }
 
 .main_section_two_images {
-    width: 70px;
-    height: 70px;
+    width: 100%;
+    height: auto;
     margin: 10px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 20px;
 }
 
 .main_section_two_headers {
@@ -92,12 +129,48 @@ body {
 }
 
 .main_section_two_p {
-    font-size: 15px;
-    text-align: center;
-    margin: 10px;
+    margin: 0;
+    opacity: 0;
+    font-size: 5px;
+}
+
+.main_section_two_textbook {
+    background-color: #aa8a73;
+    background-image: url('./main-assets/bookF.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.main_section_two_games {
+    background-color: #6935b9;
+    background-image: url('./main-assets/gameF.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.main_section_two_statistics {
+    background-color: #1fb8ec;
+    background-image: url('./main-assets/statF.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 /*Третья секция */
+.main_section_three_box {
+    margin: 10px;
+    text-align: center;
+    max-width: 723px;
+}
+
+.main_section_three {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: 0.5px;
+}
 
 /*Четвертая секция */
 .main_section_four_content {
@@ -157,11 +230,13 @@ body {
     margin: 10px;
     display: flex;
     flex-direction: row;
+    border-radius: 10px;
 }
 
 .developer_img_box {
     height: 240px;
-    margin: 5px;
+    margin: 10px 5px 5px 5px;
+    border-radius: 10px;
 }
 
 .main_section_five_card_info {
@@ -190,11 +265,12 @@ body {
 @media (max-width: 580px) {
     .main_section_five_card {
         width: 300px;
-        height: 175px;
+        height: 190px;
     }
 
     .developer_img_box {
         height: 150px;
+        margin: 18px 5px 5px 5px;
     }
 
     .name_dev {
@@ -222,5 +298,9 @@ body {
     .main_section_one_img {
         max-height: 315px;
         margin: 10px;
+    }
+
+    .advantages_cards.active_slide .main_section_two_p {
+        font-size: 12px;
     }
 }

@@ -1,7 +1,6 @@
 import { deleteChildsOfMain } from '../../utils/delete-main-childs';
 
 export const createLayoutAudioChallenge = () => {
-    console.log('AudioChallenge Layout');
     const main = document.querySelector('main') as HTMLElement;
     const audiochallenge_section = document.createElement('section');
     const audiochallenge_wrapper = document.createElement('section');
@@ -20,15 +19,16 @@ export const createLayoutAudioChallenge = () => {
     const skip_btn_container = document.createElement('div');
     const skip_btn = document.createElement('button');
 
-    audiochallenge_section.classList.add('audiochallenge_container');
+    audiochallenge_section.classList.add('game_container');
+    audiochallenge_section.id = 'audioChallenge';
     audiochallenge_wrapper.classList.add('audiochallenge_wrapper');
     audiochallenge_header.classList.add('audiochallenge_header');
     progress_bar.classList.add('progress_bar');
     close_btn.classList.add('close_btn');
-    audiochallenge_game_container.classList.add('audiochallenge_game_container');
+    audiochallenge_game_container.classList.add('game');
     replay_btn_container.classList.add('replay_btn_container');
     replay_btn_container_img.classList.add('replay_btn_container_img');
-    replay_btn_container_img.src = 'components/minigames/audiochallenge/assets/volume.png';
+    replay_btn_container_img.src = 'components/minigames/assets/volume.png';
     words_wrapper.classList.add('words_wrapper');
     replay_btn.classList.add('replay_btn');
     word_image_container.classList.add('word_image_container');
@@ -77,11 +77,17 @@ export const createLayoutAudioChallenge = () => {
 };
 
 export const hideGameDiv = () => {
-    const replay_btn_container = document.querySelector('.replay_btn_container') as HTMLDivElement;
+    const elements = document.querySelectorAll(
+        '.replay_btn_container, .words_wrapper, .skip_btn_container, #sprint .points, #sprint .word, #sprint .seconds'
+    ) as NodeListOf<HTMLElement>;
+    elements.forEach((el) => {
+        el.style.display = 'none';
+    });
+    /*const replay_btn_container = document.querySelector('.replay_btn_container') as HTMLDivElement;
     const words_wrapper = document.querySelector('.words_wrapper') as HTMLDivElement;
     const skip_btn_container = document.querySelector('.skip_btn_container') as HTMLDivElement;
 
     replay_btn_container.style.display = 'none';
     words_wrapper.style.display = 'none';
-    skip_btn_container.style.display = 'none';
+    skip_btn_container.style.display = 'none';*/
 };

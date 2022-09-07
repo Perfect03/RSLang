@@ -4,9 +4,14 @@
     max-width: 100%;
 }
 
-.audiochallenge_container {
+.game_container#audioChallenge {
     background: linear-gradient(335deg, rgb(98, 8, 240) 0%, rgb(135, 28, 241) 35%, rgb(212, 81, 220) 100%);
     height: 70vh;
+    background-image: url('./assets/audioback.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .audiochallenge_wrapper {
@@ -23,7 +28,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 50px;
-    color: wheat;
+    color: #4f3e20;
 }
 
 .close_btn {
@@ -34,7 +39,8 @@
     --aa: 1px;
 
     /* anti-aliasing */
-    --color: wheat;
+    --color: #4f3e20;
+    ;
     border-radius: 3px;
     background:
         linear-gradient(45deg, transparent calc(50% - var(--weight) - var(--aa)), var(--color) calc(50% - var(--weight)), var(--color) calc(50% + var(--weight)), transparent calc(50% + var(--weight) + var(--aa))),
@@ -43,13 +49,14 @@
     transition: 0.5s;
 }
 
-.audiochallenge_game_container {
+#audioChallenge .game {
     display: flex;
     flex-direction: column;
     height: 50vh;
     width: 70vw;
-    background: #ffffffde;
+    background: rgba(255, 255, 255, 0.57);
     border-radius: 2%;
+    align-items: center;
 }
 
 .replay_btn_container {
@@ -77,23 +84,23 @@
 
 .words_wrapper {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    width: 100%;
-    height: 15%;
+    width: 450px;
 }
 
 .word_div {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 125px;
+    width: 155px;
     height: 50px;
     background-color: #fff;
-    border-radius: 10%;
+    border-radius: 5%;
     cursor: pointer;
     font-weight: 600;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    margin: 5px;
 }
 
 .word_div:hover {
@@ -126,127 +133,106 @@
 
 .stats_container {
     display: flex;
-    width: 100%;
     height: 100%;
-    gap: 15px;
     flex-direction: column;
-    align-content: space-around;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
 }
 
 .stats_header {
-    height: 9%;
-    width: 100%;
+    height: 25px;
+    width: 200px;
+    text-align: center;
+    font-weight: 600;
+    margin: 5px;
+}
+
+#sprint .stats_header {
+    display: none;
 }
 
 .audio_btn {
     width: 30px;
     height: 30px;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.audio_btn_img {
+    width: 25px;
+}
+
+.stats_container_result {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.correct_answers_title_h {
+    color: #448a1c;
+    font-weight: 600;
+}
+
+.incorrect_answers_title_h {
+    color: #d93131;
+    font-weight: 600;
 }
 
 .correct_answers_container {
-    height: 33%;
-    width: 100%;
+    text-align: center;
+    padding: 5px;
 }
 
 .correct_answers {
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 240px;
 }
 
 .incorrect_answers_container {
-    height: 38%;
-    width: 100%;
-}
-
-.incorret_answers {
-    width: 100%;
-    height: 100%;
-}
-
-.correct_answers {
-    height: 7em;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+    text-align: center;
+    padding: 5px;
 }
 
 .incorrect_answers {
-    height: 7em;
     display: flex;
     flex-direction: column;
+    max-height: 350px;
     overflow-y: auto;
+    overflow-x: hidden;
+    width: 240px;
 }
 
 .answer_div {
-    gap: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    gap: 5px;
 }
 
 .buttons_div {
     display: flex;
-    height: 20%;
-    width: 100%;
-    gap: 50px;
-
     flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
     justify-content: center;
     align-items: center;
 }
 
-.level_wrapper {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    
-    width: 100%;
-    height: 80vh;
-    
-}
-
-.levels_div {
-    gap: 4px;
-    display: flex;
-    flex-direction: row;    
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-
-    width: 80%;
-    height: 15%;
-
-    border: dashed darkmagenta 3px;
-    border-radius: 20px;
-}
-
-.levels_title {
-    font-size: 36px;
-}
-
-.level {
-    width: 16%;
-    height: 95%;
-
-    border: 1px solid chocolate;
-    border-radius: 25%;
-
-    font-size: 2rem;
+.mainpage_btn {
+    cursor: pointer;
+    width: 160px;
+    font-weight: 600;
 }
 
 @media (max-width: 740px) {
-    .audiochallenge_game_container {
+    #audioChallenge .game {
         height: 60vh;
     }
-
 
     .replay_btn_container {
         height: 40%;
@@ -257,12 +243,90 @@
     }
 
     .words_wrapper {
-        height: 45%;
+        height: 50%;
         flex-direction: column;
         align-items: center;
     }
 
     .word_div {
         width: 165px;
+    }
+
+    .stats_container_result {
+        margin: 5px;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 432px) {
+    .incorrect_answers_container {
+        font-size: 12px;
+    }
+
+    .word_image {
+        max-height: 155px;
+    }
+
+    .correct_answers {
+        max-height: 210px;
+    }
+
+    .incorrect_answers {
+        max-height: 210px;
+    }
+}
+
+@media (max-height: 855px) {
+    .game_container#audioChallenge {
+        height: 90vh;
+    }
+
+    .audiochallenge_header {
+        height: 50px;
+    }
+
+    #audioChallenge .game {
+        height: 75vh;
+    }
+
+    .skip_btn {
+        height: 40px;
+    }
+
+    .skip_btn_container {
+        height: 30%;
+    }
+
+    .word_div {
+        height: 35px;
+    }
+
+    .word_image {
+        max-width: 120px;
+        margin: 5px;
+    }
+
+    .stats_container_result {
+        margin: 0;
+    }
+
+    #sprint .close_a {
+        margin-top: 8px;
+    }
+
+    #sprint .game {
+        gap: 0;
+    }
+
+    .game_container#sprint {
+        height: 90vh;
+    }
+
+    .correct_answers {
+        max-height: 230px;
+    }
+
+    .incorrect_answers {
+        max-height: 230px;
     }
 }

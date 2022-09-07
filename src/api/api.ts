@@ -8,7 +8,6 @@ const requestForWords = async (page: number, group: number): Promise<IWord[]> =>
         const response = await axios.get(`${baseUrl}words?page=${page}&group=${group}`);
         return response.data;
     } catch (error) {
-        console.error(error);
         return [];
     }
 };
@@ -22,7 +21,6 @@ const requestForWordById = async (id: string) => {
         const response = await axios.get(`${baseUrl}words/${id}`);
         return response.data;
     } catch (error) {
-        console.log(error);
         return [];
     }
 };

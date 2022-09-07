@@ -1,3 +1,6 @@
+export const main_section_four_button_login = document.createElement('button');
+export const main_section_four_button_signup = document.createElement('button');
+
 export const createFourthSection = () => {
     const main = document.querySelector('main') as HTMLElement;
     const main_section_four = document.createElement('section');
@@ -16,7 +19,7 @@ export const createFourthSection = () => {
     const main_section_four_content_p = document.createElement('p');
     main_section_four_content_p.classList.add('main_section_four_content_p');
     main_section_four_content_p.textContent =
-        'If you want to see statistics for all time and have access to the dictionary, please login or sign up first.';
+        'Some of the magic features of our app are not available to users with whom we are not familiar. If you want to access them, please log in or register first.';
     main_section_four_content.append(main_section_four_content_p);
     //div
     const main_section_four_button_box = document.createElement('div');
@@ -24,13 +27,21 @@ export const createFourthSection = () => {
     main_section_four_content.append(main_section_four_button_box);
 
     //buttons
-    const main_section_four_button_login = document.createElement('button');
-    main_section_four_button_login.classList.add('main_page_button', 'custom-btn', 'section_four_button_login');
+    main_section_four_button_login.classList.add(
+        'main_page_button',
+        'custom-btn',
+        'section_four_button_login',
+        'open_pop_login'
+    );
     main_section_four_button_box.append(main_section_four_button_login);
     main_section_four_button_login.textContent = 'LOGIN';
 
-    const main_section_four_button_signup = document.createElement('button');
-    main_section_four_button_signup.classList.add('main_page_button', 'custom-btn', 'section_four_button_signup');
+    main_section_four_button_signup.classList.add(
+        'main_page_button',
+        'custom-btn',
+        'section_four_button_signup',
+        'open_pop_sign'
+    );
     main_section_four_button_box.append(main_section_four_button_signup);
     main_section_four_button_signup.textContent = 'SIGN UP';
 

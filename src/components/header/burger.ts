@@ -85,7 +85,7 @@ export const createBurger = () => {
 
     burger_menu_link_logout.addEventListener('click', function () {
         changeUiForNonAuthUser();
-        window.location.hash='';
+        window.location.hash = '';
         createMain();
     });
 

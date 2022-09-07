@@ -43,7 +43,10 @@ export const listenMenus = () => {
 };
 
 export const locationHandler = async (): Promise<void> => {
-    const location: IPage = (window.location.hash.replace('#', '') == 'log-out') ? 'home' as IPage : window.location.hash.replace('#', '') as IPage;
+    const location: IPage =
+        window.location.hash.replace('#', '') == 'log-out'
+            ? ('home' as IPage)
+            : (window.location.hash.replace('#', '') as IPage);
     /*if (location.length == 0) {
         location = '/';
     }*/

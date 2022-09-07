@@ -1,8 +1,9 @@
 import { getWords } from '../../api/api';
-import { IWord } from '../../interfaces & types/words';
+import { IWord, IServerWord } from '../../interfaces & types/words';
 import { baseUrl } from '../../api/api';
 import { difficultWord, learnWord, checkLearnedWords } from './textbook';
-import { storageUsersWords, storageUserAccInfo } from '../utils/storage';
+import { storageUserAccInfo } from '../utils/storage';
+import { axiosGetAllUserWords } from '../../api/usersWords/usersWords';
 
 import './textbook-assets/headphones.png';
 import './textbook-assets/running.png';
@@ -14,12 +15,17 @@ export const readWords = async (page: number, group: number) => {
 };
 
 export const renderWords = async (cards: IWord[]) => {
-    console.log(storageUsersWords);
     const cardsDOM = document.querySelector('.cards') as HTMLElement;
     while (cardsDOM.hasChildNodes()) {
         cardsDOM.removeChild(cardsDOM.firstChild as HTMLElement);
     }
-    for (let i = 0; i < 20; i++) cardsDOM.appendChild(await renderCard(cards[i]));
+    let words: IServerWord[] = [];
+    if (storageUserAccInfo.email) {
+        words = await axiosGetAllUserWords();
+    }
+    for (let i = 0; i < cards.length; i++) {
+        cardsDOM.appendChild(renderCard(cards[i], words));
+    }
     checkLearnedWords();
 };
 
@@ -71,7 +77,7 @@ const createAudio = (card: IWord) => {
     return [card_audio_icon, card_audio, card_audio_meaning, card_audio_example];
 };
 
-export const renderCard = async (card: IWord) => {
+export const renderCard = (card: IWord, words: IServerWord[]) => {
     const newCard = document.createElement('div');
     newCard.classList.add('card');
     const image = document.createElement('img');
@@ -130,48 +136,53 @@ export const renderCard = async (card: IWord) => {
     buttonsLeft.classList.add('card_buttons');
 
     buttonsRight.classList.add('card_buttons');
-    if(storageUserAccInfo.email) {
+    if (storageUserAccInfo.email) {
         const difficultButton = document.createElement('button') as HTMLButtonElement;
-    const difficultButton_text = document.createElement('span');
-    const deleteButton = document.createElement('button');
-    const deleteButton_text = document.createElement('span');
-    difficultButton.classList.add('difficultButton');
-    deleteButton.classList.add('deleteButton');
-    difficultButton.append(difficultButton_text);
-    deleteButton.append(deleteButton_text);
-    difficultButton_text.textContent = 'difficult';
-    deleteButton_text.textContent = 'learned';
-    buttonsLeft.append(difficultButton);
-    buttonsLeft.append(deleteButton);
+        const difficultButton_text = document.createElement('span');
+        const deleteButton = document.createElement('button');
+        const deleteButton_text = document.createElement('span');
+        difficultButton.classList.add('difficultButton');
+        deleteButton.classList.add('deleteButton');
+        difficultButton.append(difficultButton_text);
+        deleteButton.append(deleteButton_text);
+        difficultButton_text.textContent = 'difficult';
+        deleteButton_text.textContent = 'learned';
+        buttonsLeft.append(difficultButton);
+        buttonsLeft.append(deleteButton);
 
-    newCard.dataset.id = card.id;
-    newCard.dataset.difficulty = 'easy';
-
-    if (storageUsersWords.hardWords.some((el) => el.word == card.word)) {
-        newCard.classList.remove('learned_word');
-        newCard.classList.add('hard_word');
-        newCard.dataset.difficulty = 'hard';
-    } else
-        difficultButton.addEventListener('click', () => {
-            difficultWord(card);
-            newCard.classList.remove('learned_word');
-            newCard.classList.add('hard_word');
-            newCard.dataset.difficulty = 'hard';
-            checkLearnedWords();
-        });
-
-    if (storageUsersWords.learnedWords.some((el) => el.word == card.word)) {
-        newCard.classList.remove('hard_word');
-        newCard.classList.add('learned_word');
+        newCard.dataset.id = card.id;
         newCard.dataset.difficulty = 'easy';
-    } else
-        deleteButton.addEventListener('click', () => {
-            learnWord(card);
-            newCard.classList.remove('hard_word');
-            newCard.classList.add('learned_word');
-            newCard.dataset.difficulty = 'easy';
-            checkLearnedWords();
+
+        words = words.filter(function (f) {
+            return f.wordId == card.id;
         });
+        if (words.length) {
+            if (words[0].difficulty == 'hard') {
+                newCard.classList.remove('learned_word');
+                newCard.classList.add('hard_word');
+                newCard.dataset.difficulty = 'hard';
+            }
+            if (words[0].difficulty == 'learned') {
+                newCard.classList.remove('hard_word');
+                newCard.classList.add('learned_word');
+                newCard.dataset.difficulty = 'easy';
+            }
+        } else {
+            difficultButton.addEventListener('click', () => {
+                difficultWord(card);
+                newCard.classList.remove('learned_word');
+                newCard.classList.add('hard_word');
+                newCard.dataset.difficulty = 'hard';
+                checkLearnedWords();
+            });
+            deleteButton.addEventListener('click', () => {
+                learnWord(card);
+                newCard.classList.remove('hard_word');
+                newCard.classList.add('learned_word');
+                newCard.dataset.difficulty = 'easy';
+                checkLearnedWords();
+            });
+        }
     }
     const correctAnswers = document.createElement('div');
     const correctAnswers_text = document.createElement('span');
@@ -210,7 +221,6 @@ export const renderCard = async (card: IWord) => {
     textExampleTranslate.textContent = card.textExampleTranslate;
     textMeaning.insertAdjacentHTML('beforeend', card.textMeaning);
     textMeaningTranslate.textContent = card.textMeaningTranslate;
-    
 
     return newCard;
 };

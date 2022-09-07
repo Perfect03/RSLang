@@ -44,6 +44,7 @@ export const axiosGetAllUserWords = async () => {
     };
     const response = await axios.get(url, { headers });
     console.log('Все слова:', response.data);
+    return response.data;
 };
 
 // export const getAllUserWords = async () => {

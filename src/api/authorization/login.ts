@@ -20,7 +20,6 @@ export const loginUser = async (user: UserResponse) => {
     storageUserAccInfo.refreshToken = content.refreshToken;
     storageUserAccInfo.userId = content.userId;
     storageUserAccInfo.name = content.name;
-
     setCookie('token', content.token, 1);
     setCookie('userId', content.userId, 365);
 

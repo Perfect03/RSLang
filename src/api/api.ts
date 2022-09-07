@@ -16,15 +16,15 @@ export const getWords = async (page: number, group: number): Promise<IWord[]> =>
     return await requestForWords(page, group);
 };
 
-const requestForWordById = async (id: string) => {
-    try {
-        const response = await axios.get(`${baseUrl}words/${id}`);
-        return response.data;
-    } catch (error) {
-        return [];
-    }
+const requestForWordById = async (id: string): Promise<IWord> => {
+    //try {
+    const response = await axios.get(`${baseUrl}words/${id}`);
+    return response.data as IWord;
+    /*} catch (error) {
+        console.log(error);
+    }*/
 };
 
-export const getWordById = async (id: string) => {
+export const getWordById = async (id: string): Promise<IWord> => {
     return await requestForWordById(id);
 };

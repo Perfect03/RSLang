@@ -1,13 +1,18 @@
 import './textbook.css';
 import { readWords, renderWords } from './index';
-import { IWord, IWordIsDiffOrLearn } from '../../interfaces & types/words';
-// import { usersWords } from '../utils/storage';
-import { createUserWord } from '../../api/usersWords/usersWords';
-import { storageUsersWords } from '../utils/storage';
+import { IWord, IWordIsDiffOrLearn, IServerWord } from '../../interfaces & types/words';
+import { storageUserAccInfo } from '../utils/storage';
+import { axiosCreateUserWord, axiosDeleteWord, axiosGetAllUserWords } from '../../api/usersWords/usersWords';
+import { getWordById } from '../../api/api';
 
-export const createTextbook = () => {
+export const createTextbook = async () => {
     localStorage.setItem('pageGames', localStorage.getItem('page') as string);
     localStorage.setItem('groupGames', localStorage.getItem('group') as string);
+
+    if (localStorage.getItem('group') == '6') {
+        localStorage.setItem('group', '0');
+        localStorage.setItem('groupGames', localStorage.getItem('group') as string);
+    }
 
     const textbook = document.createElement('div');
     textbook.id = 'textbook';
@@ -36,7 +41,18 @@ export const createTextbook = () => {
     (main as HTMLElement).append(textbook);
     listenPagination(pagination as HTMLElement);
     listenGroups(groups as HTMLElement);
-    readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
+    if (Number(localStorage.getItem('group')) == 6) {
+        document.querySelectorAll('.pagination li').forEach((el) => {
+            el.classList.remove('active');
+            el.classList.add('disabled');
+            if (el.textContent == '1') {
+                el.classList.add('active');
+                el.classList.remove('disabled');
+            }
+            localStorage.setItem('page', '1');
+        });
+        renderWords(await getHardWords());
+    } else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
 };
 
 const createPagination = (activeItem: number) => {
@@ -126,8 +142,11 @@ const appendPagination = (ul: HTMLElement, numbers: HTMLElement[], borders: HTML
 };
 
 const listenPagination = (pag: HTMLElement) => {
-    pag.addEventListener('click', (e) => {
-        if ((e.target as HTMLElement).classList.contains('page') || (e.target as HTMLElement).tagName == 'A') {
+    pag.addEventListener('click', async (e) => {
+        if (
+            ((e.target as HTMLElement).classList.contains('page') || (e.target as HTMLElement).tagName == 'A') &&
+            Number(localStorage.getItem('group')) != 6
+        ) {
             const active = Array.from(pag.querySelectorAll('.page')).find((el) => el.classList.contains('active'));
             const activeNumber = Number(active?.textContent) - 1;
             if (
@@ -164,7 +183,18 @@ const listenPagination = (pag: HTMLElement) => {
                 pag = createPagination(activeNumberNew as number);
                 localStorage.setItem('page', activeNumberNew?.toString() as string);
                 localStorage.setItem('pageGames', activeNumberNew?.toString() as string);
-                readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
+                if (Number(localStorage.getItem('group')) == 6) {
+                    document.querySelectorAll('.pagination li').forEach((el) => {
+                        el.classList.remove('active');
+                        el.classList.add('disabled');
+                        if (el.textContent == '1') {
+                            el.classList.add('active');
+                            el.classList.remove('disabled');
+                        }
+                        localStorage.setItem('page', '1');
+                    });
+                    renderWords(await getHardWords());
+                } else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
             }
         }
     });
@@ -173,7 +203,6 @@ const listenPagination = (pag: HTMLElement) => {
 const createGroups = (activeItem: number) => {
     const groups = document.createElement('div');
     groups.classList.add('groups');
-
     const groups_title = document.createElement('h6');
     groups_title.classList.add('groups_title');
     groups_title.textContent = 'Degree of difficulty:';
@@ -183,7 +212,7 @@ const createGroups = (activeItem: number) => {
     groups.append(groups_buttons);
 
     const button = [] as HTMLElement[];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < (storageUserAccInfo.email ? 7 : 6); i++) {
         button[i] = document.createElement('button');
         button[i].textContent = `${i + 1}`;
         button[i].classList.add(`${'group' + i}`);
@@ -250,12 +279,12 @@ export const checkLearnedWords = () => {
         if ((el as HTMLElement).classList.contains('learned_word')) learned++;
     });
     if (learned == document.querySelectorAll('.card').length) {
-        (document.querySelector('.textbook_words') as HTMLElement).style.background =
-            'linear-gradient(to right, rgba(162, 246, 104, 0.48), 50%, rgb(250, 252, 252))';
+        (document.querySelector('.textbook_words') as HTMLElement).classList.add('learned');
         (document.querySelector('.page-item.active') as HTMLElement).classList.add('learned');
         (document.querySelector('button.active') as HTMLElement).classList.add('learned');
         (document.querySelector('.textbook_games') as HTMLElement).style.display = 'none';
     } else {
+        (document.querySelector('.textbook_words') as HTMLElement).classList.remove('learned');
         (document.querySelector('.page-item.active') as HTMLElement).classList.remove('learned');
         (document.querySelector('button.active') as HTMLElement).classList.remove('learned');
         (document.querySelector('.textbook_games') as HTMLElement).style.display = 'flex';
@@ -263,55 +292,94 @@ export const checkLearnedWords = () => {
     }
 };
 
+export const getHardWords = async () => {
+    let allUserWords: IServerWord[] = await axiosGetAllUserWords();
+    allUserWords = allUserWords.filter(function (f) {
+        return f.difficulty == 'hard';
+    });
+    const hardWords: IWord[] = [];
+    allUserWords.forEach(async (el) => hardWords.push((await getWordById(el.wordId)) as IWord));
+    return hardWords;
+};
+
 const listenGroups = (groups: HTMLElement) => {
-    groups.addEventListener('click', (e) => {
+    groups.addEventListener('click', async (e) => {
         changeStyleGroup();
         if ((e.target as HTMLElement).tagName == 'BUTTON') {
+            if (Number(localStorage.getItem('group')) == 6) {
+                document.querySelectorAll('.pagination li').forEach((el) => {
+                    el.classList.remove('disabled');
+                    if (el.textContent == '1') {
+                        el.classList.add('active');
+                    }
+                });
+            }
             const active = Array.from(groups.querySelectorAll('button')).find((el) => el.classList.contains('active'));
             active?.classList.remove('active');
             (e.target as HTMLElement).classList.add('active');
             localStorage.setItem('group', (Number((e.target as HTMLElement).textContent) - 1).toString());
             localStorage.setItem('groupGames', (Number((e.target as HTMLElement).textContent) - 1).toString());
-            if (Number((e.target as HTMLElement).textContent) - 1 == 6) {
-                renderWords(storageUsersWords.hardWords);
+            if (Number(localStorage.getItem('group')) == 6) {
+                document.querySelectorAll('.pagination li').forEach((el) => {
+                    el.classList.remove('active');
+                    el.classList.add('disabled');
+                    if (el.textContent == '1') {
+                        el.classList.add('active');
+                        el.classList.remove('disabled');
+                    }
+                    localStorage.setItem('page', '1');
+                });
+                renderWords(await getHardWords());
             } else readWords(Number(localStorage.getItem('page')), Number(localStorage.getItem('group')));
         }
     });
 };
 
-export const difficultWord = (word: IWord) => {
-    storageUsersWords.hardWords.push(word);
+export const difficultWord = async (word: IWord) => {
+    /*storageUsersWords.hardWords.push(word);
     storageUsersWords.learnedWords = storageUsersWords.learnedWords.filter(function (f) {
         return f !== word;
-    });
+    });*/
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
         word: {
             difficulty: 'hard',
-            optional: {
-                learned: false,
-            },
         },
     };
-    createUserWord(wordWithId);
+    try {
+        axiosDeleteWord(wordWithId.wordId);
+        await axiosCreateUserWord(wordWithId);
+        //axiosGetAllUserWords();
+    } catch (err) {
+        console.log(err);
+    }
 };
 
-export const learnWord = (word: IWord) => {
-    storageUsersWords.learnedWords.push(word);
+export const learnWord = async (word: IWord) => {
+    /* storageUsersWords.learnedWords.push(word);
     storageUsersWords.hardWords = storageUsersWords.hardWords.filter(function (f) {
         return f !== word;
-    });
+    });*/
     const wordWithId: IWordIsDiffOrLearn = {
         wordId: word.id,
         word: {
-            difficulty: 'easy',
-            optional: {
-                learned: true,
-            },
+            difficulty: 'learned',
         },
     };
-    createUserWord(wordWithId);
+    try {
+        axiosDeleteWord(wordWithId.wordId);
+        await axiosCreateUserWord(wordWithId);
+        //axiosGetAllUserWords();
+    } catch (err) {
+        console.log(err);
+    }
 };
+
+// const checkWordIsDiffOrLearn = async (id: string) => {
+//     await axiosGetUserWord(id).then(() => {
+//         axiosDeleteWord(id);
+//     });
+// };
 
 const createGames = () => {
     const textbook_games = document.createElement('div');

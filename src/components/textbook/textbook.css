@@ -408,6 +408,10 @@ main {
   background: linear-gradient(rgba(10, 239, 37, 0.45), 50%, rgb(250, 252, 252));
 }
 
+.textbook_words.learned {
+  background: linear-gradient(to right, rgba(162, 246, 104, 0.48), 50%, rgb(250, 252, 252));
+}
+
 .card_content_bottom3 {
   display: flex;
   justify-content: space-between;

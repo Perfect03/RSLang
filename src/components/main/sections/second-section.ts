@@ -15,7 +15,7 @@ export const createSecondSection = () => {
 
     //Textbook
     const main_section_two_textbook = document.createElement('div');
-    main_section_two_textbook.classList.add('main_section_two_textbook', 'advantages_cards', 'active_slide');
+    main_section_two_textbook.classList.add('main_section_two_textbook', 'advantages_cards');
 
     const main_section_two_textbook_h1 = document.createElement('h1');
     main_section_two_textbook_h1.classList.add('main_section_two_headers', 'slide_h1');
@@ -32,7 +32,7 @@ export const createSecondSection = () => {
 
     //Games
     const main_section_two_games = document.createElement('div');
-    main_section_two_games.classList.add('main_section_two_games', 'advantages_cards');
+    main_section_two_games.classList.add('main_section_two_games', 'advantages_cards', 'active_slide');
     main_section_two_box.append(main_section_two_games);
 
     const main_section_two_games_h1 = document.createElement('h1');

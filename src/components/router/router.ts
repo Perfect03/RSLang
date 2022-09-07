@@ -4,6 +4,7 @@ import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/layout';
 import { chooseLevelPage } from '../minigames/choose-level';
 import { header_content_page_name } from '../header/header';
+import { addKeyBoardToGame, deleteKeyBoardToGame } from '../minigames/audiochallenge/choose-with-keyboard';
 
 export const routes = {
     home: {
@@ -43,7 +44,10 @@ export const listenMenus = () => {
 };
 
 export const locationHandler = async (): Promise<void> => {
-    const location: IPage = <IPage>window.location.hash.replace('#', '');
+    const location: IPage =
+        window.location.hash.replace('#', '') == 'log-out'
+            ? ('home' as IPage)
+            : (window.location.hash.replace('#', '') as IPage);
     /*if (location.length == 0) {
         location = '/';
     }*/
@@ -51,9 +55,16 @@ export const locationHandler = async (): Promise<void> => {
     //location === 'winners' ? await updateStateWinners() : await updateStateGarage();
     const route = routes[location];
     route.template(`${location}`);
+    location === 'audioChallenge' ? addKeyBoardToGame() : deleteKeyBoardToGame();
     header_content_page_name.textContent = route.name;
-    //(<HTMLElement>document.getElementById('content')).innerHTML = html;
-    //const listeners = new Listen();
-    //location === 'garage' ? listeners.ListenGarage() : listeners.ListenWinners();
     document.title = route.title;
+    const footer = document.querySelector('.footer') as HTMLElement;
+    if (
+        header_content_page_name.textContent === 'Audio challenge' ||
+        header_content_page_name.textContent === 'Sprint'
+    ) {
+        footer.style.opacity = '0';
+    } else {
+        footer.style.opacity = '1';
+    }
 };

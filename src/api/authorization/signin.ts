@@ -14,6 +14,8 @@ export const createUser = async (user: UserInfo) => {
 };
 
 export const alternativeCreateUser = (user: UserInfo) => {
+    const popuphello = document.querySelector('.popuph1') as HTMLElement;
+    popuphello.textContent = '';
     const headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -24,7 +26,9 @@ export const alternativeCreateUser = (user: UserInfo) => {
     axios
         .post(`${baseUrl}users`, body, { headers })
         .then(() => {
-            console.log('Пользователь создан!');
+            popuphello.textContent = 'Nice to meet you!';
         })
-        .catch((error) => console.log(error.response.data));
+        .catch(() => {
+            popuphello.textContent = 'Something wrong :(';
+        });
 };

@@ -86,14 +86,14 @@
 }
 
 .popup_hello {
-    display: none;
+    visibility: hidden;
 }
 
 .popup_hello_wind {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(0deg, rgb(255, 184, 247) 0%, rgb(211, 172, 251) 80%);
+    background: linear-gradient(0deg, rgb(233, 226, 232) 0%, rgb(211, 172, 251) 90%);
 }
 
 .popuph1 {

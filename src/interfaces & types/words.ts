@@ -15,7 +15,14 @@ export interface IWord {
     wordTranslate: string;
 }
 
+export interface IServerWord {
+    wordId: string;
+    difficulty: IWordDifficulty;
+}
+
 export type IWords = IWord[];
+
+export type IWordDifficulty = 'learned' | 'hard';
 
 export type ItempStorageUsersWords = {
     learnedWords: IWordIsDiffOrLearnResponse[];

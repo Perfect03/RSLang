@@ -4,6 +4,7 @@ import { createTextbook } from '../textbook/textbook';
 import { createStatistics } from '../statistics/layout';
 import { chooseLevelPage } from '../minigames/choose-level';
 import { header_content_page_name } from '../header/header';
+import { addKeyBoardToGame, deleteKeyBoardToGame } from '../minigames/audiochallenge/choose-with-keyboard';
 
 export const routes = {
     home: {
@@ -46,6 +47,7 @@ export const locationHandler = async (): Promise<void> => {
     const location: IPage = <IPage>window.location.hash.replace('#', '');
     const route = routes[location];
     route.template(`${location}`);
+    location === 'audioChallenge' ? addKeyBoardToGame() : deleteKeyBoardToGame();
     header_content_page_name.textContent = route.name;
     document.title = route.title;
     const footer = document.querySelector('.footer') as HTMLElement;

@@ -36,13 +36,3 @@ export const changeUiForNonAuthUser = () => {
     header_content_login.style.display = 'flex';
     header_content_user_box.style.display = 'none';
 };
-
-export const dontKnow = () => {
-    const popup_hello = document.querySelector('.popup_hello') as HTMLElement;
-    const popuphello = document.querySelector('.popuph1') as HTMLElement;
-    popuphello.textContent = 'Sorry, user is not found...';
-    popup_hello.style.visibility = 'visible';
-    setTimeout(function () {
-        (document.querySelector('.popup_hello') as HTMLElement).style.visibility = 'hidden';
-    }, 1000);
-};

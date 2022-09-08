@@ -39,7 +39,7 @@ const replaceUserStats = (stats: IGetUserStatistic) => {
     storageUserStatistic.optional.sprint__accuracy = stats.optional.sprint__accuracy;
     storageUserStatistic.optional.sprint__words = stats.optional.sprint__words;
     storageUserStatistic.optional.sprint__right = stats.optional.sprint__right;
-    storageUserStatistic.optional.sprint__in_a_row = stats.optional.audiochallenge__in_a_row;
+    storageUserStatistic.optional.sprint__in_a_row = stats.optional.sprint__in_a_row;
 };
 
 export const createEmptyStats = async () => {

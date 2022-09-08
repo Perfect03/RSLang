@@ -45,7 +45,6 @@ const getUserByCookie = async (userId: string, token: string) => {
             },
         };
         const response = await axios.get(`${baseUrl}users/${userId}`, config);
-        console.log(response.statusText);
         storageUserAccInfo.name = response.data.name;
         storageUserAccInfo.email = response.data.email;
         storageUserAccInfo.token = token;

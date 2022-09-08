@@ -2,8 +2,10 @@ import './stat.css';
 import './assets/audio.png';
 import './assets/sprint.png';
 import { storageUserStatistic } from '../utils/storage';
+import { axiosGetAllUserWords } from '../../api/usersWords/usersWords';
+import { IServerWord } from '../../interfaces & types/words';
 
-export const createStatistics = () => {
+export const createStatistics = async () => {
     const deleteChildsOfMain = () => {
         const main = document.querySelector('main') as HTMLElement;
         while (main.hasChildNodes()) {
@@ -50,7 +52,13 @@ export const createStatistics = () => {
     const main_stat_words_box_h3 = document.createElement('h3');
     main_stat_words_box_h3.classList.add('main_stat_words_box_h3');
     main_stat_words_box.append(main_stat_words_box_h3);
-    main_stat_words_box_h3.textContent = storageUserStatistic.learnedWords.toString();
+
+    const words: IServerWord[] = await axiosGetAllUserWords();
+    let learnedWords =0;
+    words.forEach((el) => {
+        if(el.difficulty=='learned') learnedWords++;
+    })
+    main_stat_words_box_h3.textContent = `${learnedWords}`;
 
     const main_stat_words_box_p = document.createElement('p');
     main_stat_words_box_p.classList.add('main_stat_words_box_p');
